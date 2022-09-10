@@ -366,10 +366,11 @@
   function handleMobileFirstTimeLoad() {
     window.onload = function () {
       const screenWidth = screen.width;
-      const x = 0;
-      const y = screenWidth;
+      const x = screenWidth;
+      const y = 0;
 
-      window.scrollTo(x, y);
+      window.scrollTo(window.innerWidth, window.innerHeight);
+      // window.scrollBy(x, y);
     };
   }
 
