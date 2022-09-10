@@ -363,6 +363,16 @@
     }
   }
 
+  function handleMobileFirstTimeLoad() {
+    window.onload = function () {
+      const screenWidth = screen.width;
+      const x = 0;
+      const y = screenWidth;
+
+      window.scrollTo(x, y);
+    };
+  }
+
   function main() {
     const rub = document.getElementsByClassName(classes.rub)[0];
     const layerBrushContent = document.getElementsByClassName(
@@ -440,6 +450,8 @@
     handleSearchOnclick(search, layerSearchPortfolio, content);
 
     handleRubOnclick(rub, layerBrushContent);
+
+    handleMobileFirstTimeLoad();
   }
 
   main();

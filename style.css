@@ -186,12 +186,14 @@ body {
   --padding-value: 12px;
   height: var(--size-bar);
   width: calc(100% - 2 * var(--padding-value));
+  z-index: 15;
 }
 
 .close-search .bar:nth-of-type(2) {
   --padding-value: 12px;
   width: var(--size-bar);
   height: calc(100% - var(--padding-value) * 2);
+  z-index: 20;
 }
 
 .close-search:active {
