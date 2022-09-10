@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.layer {
+  min-height: 300px;
+  background-color: blanchedalmond;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.h3 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 24px;
+  width: 100%;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.layer-multiple-rectangles {
+  padding: 24px;
+  min-height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rectangle {
+  height: 170px;
+  width: 300px;
+  border-radius: 2px;
+  margin-top: 24px;
+  background-color: rgb(142, 177, 243);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 2px 3px 1px #11111170;
+  transition-duration: 800ms;
+  transition-property: all;
+  position: relative;
+}
+
+.rectangle:nth-child(2n + 1) {
+  left: -40%;
+}
+
+.rectangle:nth-child(2n) {
+  right: -40%;
+}
+
+.rectangle:nth-of-type(1) {
+  margin-top: 0;
+}
+
+.text {
+  font-size: 24px;
+  color: #fff;
+}
+
+.displayNone {
+  display: none;
+}
+
+.opacity0 {
+  opacity: 0;
+}
+
+.temporary {
+  transition-property: all;
+}
+
+.left0 {
+  left: 0 !important;
+}
+
+.right0 {
+  right: 0 !important;
+}

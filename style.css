@@ -1,0 +1,328 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --border-radius: 2px;
+
+  --bg-rust: #e1e1db;
+  --bg-light: #fafafa;
+  --bg-sidebar-light: #eaeaea;
+
+  --bg-nav-light: #fafafa;
+  --bg-nav-rust: ;
+
+  --size-bar: 4px;
+
+  --color-stroke: #747474;
+
+  --button-active-scale-value: 0.9;
+
+  --webkit-tab-hight-light-color: #bbbbbb3b;
+  --active-sidebar-light-color: #5e5eff;
+
+  --active-light-button-background-color: #9d9d9d;
+  --active-dark-button-background-color: #1c2128;
+  --active-dark-stroke-color: #cdd9e5;
+  --active-dark-background-color: #1c2128;
+  --active-button-on-click-color: #ededed;
+}
+
+html {
+  overflow-y: hidden;
+}
+
+body {
+  width: 200vw;
+}
+
+.layer {
+  display: flex;
+}
+
+.layer-sidebar-navigation {
+  --padding-value: 12px;
+  --padding-square-value: 6px;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-light);
+  background-color: var(--bg-sidebar-light);
+  padding: calc(var(--padding-square-value) + var(--padding-value));
+}
+
+.layer-sidebar-navigation {
+  border-right: 0.1px solid var(--color-stroke);
+}
+
+.sidebar-navigate {
+  font-weight: 500;
+  margin-top: 12px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navigate.active-light {
+  color: var(--active-sidebar-light-color);
+  background-color: unset;
+  -webkit-tap-highlight-color: var(--webkit-tab-hight-light-color);
+}
+
+.sidebar-navigate.active-light {
+  color: var(--active-sidebar-light-color);
+  background-color: unset;
+}
+
+.sidebar-navigate:nth-of-type(1) {
+  margin-top: 0;
+}
+
+.sidebar-sub-navigate {
+  margin-top: 12px;
+  margin-left: 17px;
+  cursor: pointer;
+}
+
+.layer-content {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--bg-nav-light);
+}
+
+.square {
+  padding: 6px;
+
+  --size: 35px;
+  height: var(--size);
+  width: var(--size);
+
+  margin-left: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-tap-highlight-color: #bbbbbb3b;
+}
+
+.layer-content:not(.active-dark) .square:active {
+  background-color: var(--active-button-on-click-color);
+}
+
+.square:nth-of-type(1) {
+  margin-left: 0;
+}
+
+.navigation {
+  width: 100%;
+
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.layer-search-portfolio {
+  --padding-square-value: 6px;
+  --padding-value: 12px;
+  position: absolute;
+  border: 1px solid var(--color-stroke);
+  width: calc(
+    100% - var(--padding-value) * 2 - var(--padding-square-value) * 2
+  );
+  top: 100%;
+  left: calc(var(--padding-value) + var(--padding-square-value));
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  z-index: 5;
+}
+
+.input-search-portfolio {
+  width: 100%;
+  padding: 12px;
+  padding-right: calc(45px);
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: var(--color-stroke);
+  background-color: var(--bg-light);
+}
+
+.layer-content.active-light .input-search-portfolio::placeholder {
+  color: var(--color-stroke);
+}
+
+.layer-content.active-dark .input-search-portfolio::placeholder {
+  color: var(--active-dark-stroke-color);
+}
+
+.layer-content.active-dark .input-search-portfolio::selection {
+  background-color: var(--active-dark-background-color);
+}
+
+.close-search {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 45px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: center center;
+  transform: rotate(45deg);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.close-search .bar {
+  position: absolute;
+}
+
+.close-search .bar:nth-of-type(1) {
+  --padding-value: 12px;
+  width: calc(100% - 2 * var(--padding-value));
+  left: var(--padding-value);
+}
+
+.close-search .bar:nth-of-type(2) {
+  --padding-value: 12px;
+  width: var(--size-bar);
+  height: calc(100% - var(--padding-value) * 2);
+}
+
+.close-search:active {
+  transform: rotate(45deg) scale(var(--button-active-scale-value));
+}
+
+.input-search-portfolio::selection {
+  background-color: #747474;
+  color: #fff;
+}
+
+.layer-3-squares {
+  display: flex;
+}
+
+.layer-3-squares-search-brush {
+  display: flex;
+  position: relative;
+}
+
+.layer-brush-content {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+
+  top: 100%;
+  border-radius: var(--border-radius);
+  margin-top: 12px;
+  z-index: 10;
+}
+
+.display-none {
+  display: none;
+}
+
+.portfolio-title {
+  font-size: 24px;
+  margin-left: 12px;
+  color: var(--color-stroke);
+}
+
+.print {
+  margin-left: auto;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bar {
+  width: 100%;
+  height: var(--size-bar);
+  background-color: var(--color-stroke);
+  border-radius: var(--border-radius);
+}
+
+.fa-paint-brush:before {
+  content: "\f1fc";
+}
+
+.svg-rub {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-stroke);
+  fill: var(--color-stroke);
+}
+
+i {
+  color: var(--color-stroke);
+}
+
+.button-change-page-color {
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--color-stroke);
+  padding: 12px;
+  border: 1px solid var(--active-light-button-background-color);
+}
+
+.layer-content.active-light .button-change-page-color:hover {
+  background-color: var(--active-light-button-background-color) !important;
+  color: var(--bg-light) !important;
+}
+
+.button-light-page {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.layer-content.active-light .button-light-page {
+  background-color: var(--active-light-button-background-color);
+  color: var(--bg-light);
+}
+
+.layer-content.active-dark .button-change-page-color:hover {
+  background-color: rgb(65, 74, 84) !important;
+  color: rgb(205, 217, 229) !important;
+}
+
+.button-dark-page {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.layer-content.active-light .content {
+  color: var(--color-stroke);
+}
+
+.layer-content.active-dark .content {
+  color: var(--active-dark-stroke-color);
+}
+
+.content {
+  padding: 12px 18px;
+  padding-top: 0;
+}
+
+/* Responsive for device width from 1024px  */
+
+@media screen and (min-width: 1024px) {
+  body {
+    width: 100vw;
+  }
+
+  .layer-sidebar-navigation {
+    width: 20vw;
+  }
+
+  .layer-content {
+    width: 80vw;
+  }
+}

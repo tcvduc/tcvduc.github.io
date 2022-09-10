@@ -1,0 +1,25 @@
+Portfolio Note
+
+I. Portfolio Content
+1. Introduction
+
+2. Frontend Web Page
+
+
+II. On the web
+1. Mobile screen
+1.1. Navigation bar
++ Introduction tab
++ Project tab
+1.2. Content
+- Display content corresponding
+the navigation bar tab.
+
+2. Large screen
+2.1. Side bar
++ Introduction tab
++ Project tab
+
+2.2. Content 
+- Display content corresponding side
+bar tab.
