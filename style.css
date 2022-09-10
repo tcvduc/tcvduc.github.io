@@ -184,8 +184,8 @@ body {
 
 .close-search .bar:nth-of-type(1) {
   --padding-value: 12px;
+  height: var(--size-bar);
   width: calc(100% - 2 * var(--padding-value));
-  left: var(--padding-value);
 }
 
 .close-search .bar:nth-of-type(2) {
