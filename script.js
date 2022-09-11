@@ -3,6 +3,7 @@
     bar: "bar",
     rub: "rub",
     svgRub: "svg-rub",
+    layerWrapForMobile: "layer-wrap-for-mobile",
     portfolioTitle: "portfolio-title",
     search: "search",
     hamburger: "hamburger",
@@ -194,6 +195,9 @@
    * @param {HTMLElement} inputSearchPortfolio
    * @param {HTMLElement} layerSidebarNavigation
    * @param {HTMLElement} layer
+   * @param {HTMLElement} layerBrushContent
+   *
+   *
    *
    */
   function handleButtonDarkPageOnclick(
@@ -208,9 +212,13 @@
     layerSearchPortfolio,
     inputSearchPortfolio,
     layerSidebarNavigation,
-    layer
+    layer,
+    layerBrushContent
   ) {
     buttonDarkPage.onclick = function () {
+      // hide layerBrushContent
+      layerBrushContent.classList.add(classes.displayNone);
+
       // remove all page active color
       layer.classList.remove(classes.activeLight);
       layer.classList.add(classes.activeDark);
@@ -294,6 +302,7 @@
    * @param {HTMLElement} buttonDarkPage
    * @param {HTMLElement} layerSearchPortfolio
    * @param {HTMLElement} inputSearchPortfolio
+   * @param {HTMLElement} layerBrushContent
    *
    *
    */
@@ -308,7 +317,8 @@
     faFaPrint,
     buttonDarkPage,
     layerSearchPortfolio,
-    inputSearchPortfolio
+    inputSearchPortfolio,
+    layerBrushContent
   ) {
     buttonLightPage.onclick = function () {
       /**
@@ -319,6 +329,8 @@
        * 3. change layer-brush-content color - done
        * 4. change input-search-portfolio color - done
        * 5. content change color
+       * 6. hide layerBrushContent - done
+       * 7. sidebar change color
        *
        *
        */
@@ -365,6 +377,11 @@
 
       layerSearchPortfolio.style.borderColor =
         webPageColor.light.layerContent.layerSearchPortfolio.borderColor;
+
+      // 5.
+
+      // 6.
+      layerBrushContent.classList.add(classes.displayNone);
     };
   }
 
@@ -392,12 +409,19 @@
     }
   }
 
-  function handleMobileFirstTimeLoad() {
+  /**
+   *
+   * @param {HTMLElement} layer
+   * @param {HTMLElement} layerWrapForMobile
+   */
+  function handleMobileFirstTimeLoad(layer, layerWrapForMobile) {
     window.onload = function () {
       const screenWidth = screen.width;
-
       if (screenWidth < responsiveNumber.widthFrom1024) {
-        document.body.classList.add(classes.translateXNegative100vw);
+        layer.scrollBy({
+          left: screenWidth,
+          behavior: "smooth",
+        });
       }
     };
   }
@@ -405,32 +429,18 @@
   /**
    *
    * @param {HTMLElement} hamburger
+   * @param {HTMLElement} layer
+   *
+   *
    */
-  function handleHamburgerOnclick(hamburger) {
+  function handleHamburgerOnclick(hamburger, layer) {
     hamburger.onclick = function () {
-      const flag = wasElementHasClassName(
-        document.body,
-        classes.translateXNegative100vw
-      );
-
-      if (flag) {
-        document.body.classList.remove(classes.translateXNegative100vw);
-        document.body.classList.add(classes.translateX0);
-
-        window.setTimeout(function () {
-          document.body.classList.remove(classes.translateX0);
-        }, animationDurationMillisecondUnit);
-        return;
-      }
-
-      if (!flag) {
-        const x = window.innerWidth;
-        const y = 0;
-        console.log(1);
-
-        window.scrollBy(-100, y);
-
-        // window.scrollTo(50, y);
+      const screenWidth = screen.width;
+      if (screenWidth < responsiveNumber.widthFrom1024) {
+        layer.scrollBy({
+          left: -screenWidth,
+          behavior: "smooth",
+        });
       }
     };
   }
@@ -483,7 +493,11 @@
 
     const hamburger = document.getElementsByClassName(classes.hamburger)[0];
 
-    handleHamburgerOnclick(hamburger);
+    const layerWrapForMobile = document.getElementsByClassName(
+      classes.layerWrapForMobile
+    )[0];
+
+    handleHamburgerOnclick(hamburger, layer);
 
     // w
     handleSidebarNavigatesOnclick(sidebarNavigates);
@@ -501,7 +515,8 @@
       layerSearchPortfolio,
       inputSearchPortfolio,
       layerSidebarNavigation,
-      layer
+      layer,
+      layerBrushContent
     );
 
     // w
@@ -515,7 +530,8 @@
       faFaPrint,
       buttonDarkPage,
       layerSearchPortfolio,
-      inputSearchPortfolio
+      inputSearchPortfolio,
+      layerBrushContent
     );
 
     handleCloseSearchOnclick(closeSearch, inputSearchPortfolio);
@@ -525,7 +541,8 @@
 
     handleRubOnclick(rub, layerBrushContent);
 
-    handleMobileFirstTimeLoad();
+    // web page first time on load
+    handleMobileFirstTimeLoad(layer, layerWrapForMobile);
   }
 
   main();

@@ -41,11 +41,16 @@ a {
   text-decoration: none;
 }
 
-body {
-  width: 200vw;
+.layer {
+  --mobile-sidebar-width: 100vw;
+  display: inline-block;
+  width: var(--mobile-sidebar-width);
+  overflow-x: scroll;
 }
 
-.layer {
+.layer-wrap-for-mobile {
+  width: 200vw;
+  background-color: #8fb7e0;
   display: flex;
 }
 
@@ -336,8 +341,9 @@ i {
 /* Responsive for device width from 1024px  */
 
 @media screen and (min-width: 1024px) {
-  body {
+  .layer-wrap-for-mobile {
     width: 100vw;
+    overflow-x: hidden;
   }
 
   .layer-sidebar-navigation {
