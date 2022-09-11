@@ -36,6 +36,29 @@
     widthFrom1024: 1024,
   };
 
+  const sidebarNavigateIndexNote = {
+    index0: {
+      value: 0,
+      content: "Introduction <h3>h3 element </h3>",
+    },
+    index1: {
+      value: 1,
+      content: "Portfolio",
+    },
+    index2: {
+      value: 2,
+      content: "Expanding Cards",
+    },
+    index3: {
+      value: 3,
+      content: "Progress Steps",
+    },
+    index4: {
+      value: 4,
+      content: "Rotating Navigation",
+    },
+  };
+
   const webPageColor = {
     light: {
       layerContent: {
@@ -418,14 +441,68 @@
 
   /**
    *
-   * @param {NodeList} sidebarNavigates
+   * @param {HTMLElement} contentElement
+   * @param {any} caseIndexContent
+   *
+   *
    */
-  function handleSidebarNavigatesOnclick(sidebarNavigates) {
+  function displayCaseIndexContent(contentElement, caseIndexContent) {
+    contentElement.innerHTML = caseIndexContent;
+  }
+
+  /**
+   *
+   * @param {NodeList} sidebarNavigates
+   * @param {HTMLElement} content
+   *
+   *
+   */
+  function handleSidebarNavigatesOnclick(sidebarNavigates, content) {
     for (let i = sidebarNavigates.length - 1; i >= 0; --i) {
       sidebarNavigates[i].addEventListener("click", function () {
         unActiveLightSideBarNavigateColor(sidebarNavigates);
 
         sidebarNavigates[i].classList.add(classes.active);
+
+        switch (i) {
+          case 0:
+            displayCaseIndexContent(
+              content,
+              sidebarNavigateIndexNote.index0.content
+            );
+            break;
+
+          case 1:
+            displayCaseIndexContent(
+              content,
+              sidebarNavigateIndexNote.index1.content
+            );
+            break;
+
+          case 2:
+            displayCaseIndexContent(
+              content,
+              sidebarNavigateIndexNote.index2.content
+            );
+            break;
+
+          case 3:
+            displayCaseIndexContent(
+              content,
+              sidebarNavigateIndexNote.index3.content
+            );
+            break;
+
+          case 4:
+            displayCaseIndexContent(
+              content,
+              sidebarNavigateIndexNote.index4.content
+            );
+            break;
+
+          default:
+            break;
+        }
       });
     }
   }
@@ -521,7 +598,7 @@
     handleHamburgerOnclick(hamburger, layer);
 
     // w
-    handleSidebarNavigatesOnclick(sidebarNavigates);
+    handleSidebarNavigatesOnclick(sidebarNavigates, content);
 
     // w
     handleButtonDarkPageOnclick(
