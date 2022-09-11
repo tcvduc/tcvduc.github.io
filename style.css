@@ -338,6 +338,18 @@ i {
   transform: translateX(0);
 }
 
+.layer.active-dark .navigate {
+  color: var(--active-dark-stroke-color);
+}
+
+.layer.active-light .layer-sidebar-navigation {
+  background-color: var(--bg-sidebar-light);
+}
+
+.layer.active-light .navigate {
+  color: var(--color-stroke);
+}
+
 /* Responsive for device width from 1024px  */
 
 @media screen and (min-width: 1024px) {

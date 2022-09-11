@@ -61,7 +61,14 @@
           },
         },
       },
-      layerSideBarNavigation: {},
+
+      layerSideBarNavigation: {
+        backgroundColor: "#eaeaea",
+        navigate: {
+          color: "#747474",
+          activeColor: "#1c1c1c",
+        },
+      },
     },
 
     dark: {
@@ -303,6 +310,10 @@
    * @param {HTMLElement} layerSearchPortfolio
    * @param {HTMLElement} inputSearchPortfolio
    * @param {HTMLElement} layerBrushContent
+   * @param {HTMLElement} layer
+   * @param {HTMLElement} layerSidebarNavigation
+   *
+   *
    *
    *
    */
@@ -318,7 +329,9 @@
     buttonDarkPage,
     layerSearchPortfolio,
     inputSearchPortfolio,
-    layerBrushContent
+    layerBrushContent,
+    layer,
+    layerSidebarNavigation
   ) {
     buttonLightPage.onclick = function () {
       /**
@@ -331,7 +344,7 @@
        * 5. content change color
        * 6. hide layerBrushContent - done
        * 7. sidebar change color
-       *
+       * 8. layer remove all color active, active light color
        *
        */
 
@@ -382,6 +395,14 @@
 
       // 6.
       layerBrushContent.classList.add(classes.displayNone);
+
+      // 7.
+      layerSidebarNavigation.style.backgroundColor =
+        webPageColor.light.layerSideBarNavigation.backgroundColor;
+
+      // 8.
+      layer.classList.remove(classes.activeDark);
+      layer.classList.add(classes.activeLight);
     };
   }
 
@@ -531,7 +552,9 @@
       buttonDarkPage,
       layerSearchPortfolio,
       inputSearchPortfolio,
-      layerBrushContent
+      layerBrushContent,
+      layer,
+      layerSidebarNavigation
     );
 
     handleCloseSearchOnclick(closeSearch, inputSearchPortfolio);
