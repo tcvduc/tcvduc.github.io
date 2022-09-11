@@ -16,13 +16,14 @@
   --bg-nav-rust: ;
 
   --size-bar: 4px;
+  --transition-duration: 800ms;
 
   --color-stroke: #747474;
 
   --button-active-scale-value: 0.9;
 
   --webkit-tab-hight-light-color: #bbbbbb3b;
-  --active-sidebar-light-color: #5e5eff;
+  --active-sidebar-light-color: #1c1c1c;
 
   --active-light-button-background-color: #9d9d9d;
   --active-dark-button-background-color: #1c2128;
@@ -53,13 +54,8 @@ body {
   --padding-square-value: 6px;
   width: 100vw;
   height: 100vh;
-  background-color: var(--bg-light);
   background-color: var(--bg-sidebar-light);
   padding: calc(var(--padding-square-value) + var(--padding-value));
-}
-
-.layer-sidebar-navigation {
-  border-right: 0.1px solid var(--color-stroke);
 }
 
 .sidebar-navigate {
@@ -70,10 +66,8 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-.navigate.active-light {
-  color: var(--active-sidebar-light-color);
-  background-color: unset;
-  -webkit-tap-highlight-color: var(--webkit-tab-hight-light-color);
+.sidebar-navigate .navigate {
+  color: var(--color-stroke);
 }
 
 .sidebar-navigate.active-light {
@@ -316,6 +310,27 @@ i {
 .content {
   padding: 12px 18px;
   padding-top: 0;
+}
+
+.layer.active-dark .navigate.active {
+  color: #8fb7e0;
+}
+
+.layer.active-light .navigate.active {
+  color: var(--active-sidebar-light-color);
+}
+
+.translateXNegative100vw {
+  transform: translateX(-100vw);
+}
+
+.translateX100vw {
+  transform: translateX(100vw);
+}
+
+.translateX0 {
+  transition: var(--transition-duration);
+  transform: translateX(0);
 }
 
 /* Responsive for device width from 1024px  */

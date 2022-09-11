@@ -5,21 +5,34 @@
     svgRub: "svg-rub",
     portfolioTitle: "portfolio-title",
     search: "search",
+    hamburger: "hamburger",
     sidebarNavigates: ".sidebar-navigate .navigate",
     faFaSearch: "fa fa-search",
     faFaPrint: "fa fa-print",
     displayNone: "display-none",
+    layer: "layer",
     layerContent: "layer-content",
     layerBrushContent: "layer-brush-content",
     layerSearchPortfolio: "layer-search-portfolio",
+    layerSidebarNavigation: "layer-sidebar-navigation",
     closeSearch: "close-search",
     inputSearchPortfolio: "input-search-portfolio",
+    active: "active",
     activeLight: "active-light",
     activeDark: "active-dark",
     buttonLightPage: "button-light-page",
     buttonDarkPage: "button-dark-page",
     buttonChangePageColor: "button-change-page-color",
     content: "content",
+    translateXNegative100vw: "translateXNegative100vw",
+    translateX100vw: "translateX100vw",
+    translateX0: "translateX0",
+  };
+
+  const animationDurationMillisecondUnit = 800;
+
+  const responsiveNumber = {
+    widthFrom1024: 1024,
   };
 
   const webPageColor = {
@@ -73,7 +86,15 @@
           },
         },
       },
-      layerSideBarNavigation: {},
+      layerSideBarNavigation: {
+        backgroundColor: "#2e3641",
+        color: "rgb(205, 217, 229)",
+
+        navigate: {
+          color: "rgb(205, 217, 229)",
+          activeColor: "rgb(143 183 224)",
+        },
+      },
     },
   };
 
@@ -171,6 +192,8 @@
    * @param {HTMLElement} buttonLightPage
    * @param {HTMLElement} layerSearchPortfolio
    * @param {HTMLElement} inputSearchPortfolio
+   * @param {HTMLElement} layerSidebarNavigation
+   * @param {HTMLElement} layer
    *
    */
   function handleButtonDarkPageOnclick(
@@ -183,11 +206,14 @@
     faFaPrint,
     buttonLightPage,
     layerSearchPortfolio,
-    inputSearchPortfolio
+    inputSearchPortfolio,
+    layerSidebarNavigation,
+    layer
   ) {
     buttonDarkPage.onclick = function () {
       // remove all page active color
-      layerContent.classList.remove(classes.activeLight);
+      layer.classList.remove(classes.activeLight);
+      layer.classList.add(classes.activeDark);
 
       // change layer content background color
       layerContent.style.backgroundColor =
@@ -200,7 +226,7 @@
        * 2. rub - done
        * 3. search icon - done
        * 4. portfolio title - done
-       * 5. print icon
+       * 5. print icon - done
        * 6. change navigation tab mobile selection background
        * 7. content change color
        *
@@ -246,6 +272,13 @@
         webPageColor.dark.layerContent.layerSearchPortfolio.inputSearchPortfolio.backgroundColor;
       inputSearchPortfolio.style.color =
         webPageColor.dark.layerContent.layerSearchPortfolio.inputSearchPortfolio.borderColor;
+
+      // layerSidebarNavigation
+      layerSidebarNavigation.style.backgroundColor =
+        webPageColor.dark.layerSideBarNavigation.backgroundColor;
+
+      layerSidebarNavigation.style.color =
+        webPageColor.dark.layerSideBarNavigation.color;
     };
   }
 
@@ -341,7 +374,7 @@
    */
   function unActiveLightSideBarNavigateColor(sidebarNavigates) {
     for (let i = sidebarNavigates.length - 1; i >= 0; --i) {
-      sidebarNavigates[i].classList.remove(classes.activeLight);
+      sidebarNavigates[i].classList.remove(classes.active);
     }
   }
 
@@ -354,11 +387,7 @@
       sidebarNavigates[i].addEventListener("click", function () {
         unActiveLightSideBarNavigateColor(sidebarNavigates);
 
-        if (i === 1) {
-          i = i + 1;
-        }
-
-        sidebarNavigates[i].classList.add(classes.activeLight);
+        sidebarNavigates[i].classList.add(classes.active);
       });
     }
   }
@@ -366,11 +395,43 @@
   function handleMobileFirstTimeLoad() {
     window.onload = function () {
       const screenWidth = screen.width;
-      const x = screenWidth;
-      const y = 0;
 
-      window.scrollTo(window.innerWidth, window.innerHeight);
-      // window.scrollBy(x, y);
+      if (screenWidth < responsiveNumber.widthFrom1024) {
+        document.body.classList.add(classes.translateXNegative100vw);
+      }
+    };
+  }
+
+  /**
+   *
+   * @param {HTMLElement} hamburger
+   */
+  function handleHamburgerOnclick(hamburger) {
+    hamburger.onclick = function () {
+      const flag = wasElementHasClassName(
+        document.body,
+        classes.translateXNegative100vw
+      );
+
+      if (flag) {
+        document.body.classList.remove(classes.translateXNegative100vw);
+        document.body.classList.add(classes.translateX0);
+
+        window.setTimeout(function () {
+          document.body.classList.remove(classes.translateX0);
+        }, animationDurationMillisecondUnit);
+        return;
+      }
+
+      if (!flag) {
+        const x = window.innerWidth;
+        const y = 0;
+        console.log(1);
+
+        window.scrollBy(-100, y);
+
+        // window.scrollTo(50, y);
+      }
     };
   }
 
@@ -414,6 +475,16 @@
       classes.sidebarNavigates
     );
 
+    const layerSidebarNavigation = document.getElementsByClassName(
+      classes.layerSidebarNavigation
+    )[0];
+
+    const layer = document.getElementsByClassName(classes.layer)[0];
+
+    const hamburger = document.getElementsByClassName(classes.hamburger)[0];
+
+    handleHamburgerOnclick(hamburger);
+
     // w
     handleSidebarNavigatesOnclick(sidebarNavigates);
 
@@ -428,7 +499,9 @@
       faFaPrint,
       buttonLightPage,
       layerSearchPortfolio,
-      inputSearchPortfolio
+      inputSearchPortfolio,
+      layerSidebarNavigation,
+      layer
     );
 
     // w
