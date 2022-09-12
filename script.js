@@ -41,7 +41,14 @@
       value: 0,
       title: "Introduction",
       content: `
-      Introduction`,
+        <iframe
+          src="./introduction/index.html"
+          height="100%"
+          width="100%"
+        >
+        
+        </iframe>
+      `,
     },
     index1: {
       value: 1,
@@ -535,8 +542,9 @@
    *
    * @param {HTMLElement} layer
    * @param {HTMLElement} layerWrapForMobile
+   * @param {HTMLElement} content
    */
-  function handleMobileFirstTimeLoad(layer, layerWrapForMobile) {
+  function handleMobileFirstTimeLoad(layer, layerWrapForMobile, content) {
     window.onload = function () {
       const screenWidth = screen.width;
       if (screenWidth < responsiveNumber.widthFrom1024) {
@@ -545,6 +553,8 @@
           behavior: "smooth",
         });
       }
+
+      displayCaseIndexContent(content, sidebarNavigateIndexNote.index0.content);
     };
   }
 
@@ -666,7 +676,7 @@
     handleRubOnclick(rub, layerBrushContent);
 
     // web page first time on load
-    handleMobileFirstTimeLoad(layer, layerWrapForMobile);
+    handleMobileFirstTimeLoad(layer, layerWrapForMobile, content);
   }
 
   main();
