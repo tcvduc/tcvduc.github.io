@@ -3,28 +3,27 @@
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 25px;
 }
 
 :root {
   --color-stroke: #747474;
+  --border-radius-value: 2px;
+  --color-copy-success-clipboard: #57ab5a;
 }
 
 .title {
-  font-size: 18px;
-  margin-bottom: 18px;
+  font-size: 16px;
+  margin-bottom: 12px;
   font-weight: 500;
 }
 
 .section {
-  margin: 18px 0;
+  margin: 12px 0;
 }
 
 .section:nth-of-type(2) {
   margin-top: 0;
-}
-
-.paragraph {
-  line-height: 25px;
 }
 
 .layer-company-and-year {
@@ -47,7 +46,7 @@
 }
 
 .experience {
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .layer-institute-and-year {
@@ -64,7 +63,7 @@
 }
 
 .education {
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .layer-social-network-icons {
@@ -75,7 +74,7 @@
   --size: 45px;
   width: var(--size);
   height: var(--size);
-  margin-left: 18px;
+  margin-left: 12px;
 }
 
 .social-network-icon:nth-of-type(1) {
@@ -93,4 +92,74 @@ img {
 
 .contact a {
   text-decoration: none;
+  color: #111;
+}
+
+.contact {
+  padding: 12px;
+  margin-top: 12px;
+  cursor: pointer;
+  border-radius: var(--border-radius-value);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  position: relative;
+}
+
+.contact::after {
+  content: "Copied!";
+  position: absolute;
+  left: calc(100% + 12px + 7px);
+  padding: 6px 12px;
+  border: 1px solid #eaeaea;
+  border-radius: var(--border-radius-value);
+  background-color: #eaeaea;
+  font-size: 14px;
+  display: none;
+}
+
+.contact::before {
+  content: "";
+  --size: 9px;
+  position: absolute;
+  left: calc(100% + 2px);
+  border-top: var(--size) solid transparent;
+  border-bottom: var(--size) solid transparent;
+  border-left: var(--size) solid transparent;
+  border-right: calc(var(--size)) solid #eaeaea;
+  border-radius: var(--border-radius-value);
+  z-index: 5;
+  display: none;
+}
+
+.contact:hover {
+  background-color: rgba(17, 17, 17, 0.081);
+}
+
+.contact:active {
+  background-color: rgba(17, 17, 17, 0.302);
+}
+
+.contact.active::after,
+.contact.active::before {
+  display: initial;
+}
+
+.icon-copy {
+  --size: 30px;
+  width: var(--size);
+  height: var(--size);
+  border: 1px solid var(--color-stroke);
+  border-radius: var(--border-radius-value);
+}
+
+.copy-success-clipboard {
+  border-color: var(--color-copy-success-clipboard);
+}
+
+@media screen and (min-width: 768px) {
+  .contact {
+    width: 400px;
+  }
 }
