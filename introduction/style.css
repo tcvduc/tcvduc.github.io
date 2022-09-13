@@ -12,6 +12,15 @@
   --color-copy-success-clipboard: #57ab5a;
 }
 
+img {
+  width: 100%;
+}
+
+.avatar {
+  width: 100%;
+  max-width: 300px;
+}
+
 .title {
   font-size: 16px;
   margin-bottom: 12px;
@@ -71,7 +80,7 @@
 }
 
 .social-network-icon {
-  --size: 45px;
+  --size: 40px;
   width: var(--size);
   height: var(--size);
   margin-left: 12px;
@@ -141,11 +150,6 @@ img {
   background-color: rgba(17, 17, 17, 0.302);
 }
 
-.contact.active::after,
-.contact.active::before {
-  display: initial;
-}
-
 .icon-copy {
   --size: 30px;
   width: var(--size);
@@ -158,8 +162,39 @@ img {
   border-color: var(--color-copy-success-clipboard);
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #000;
+  padding: 18px;
+}
+
+.column {
+  width: 100%;
+  min-height: 300px;
+  border: 1px solid #000;
+  margin-top: 18px;
+}
+
+.column:nth-of-type(1) {
+  margin-top: 0;
+}
+
 @media screen and (min-width: 768px) {
   .contact {
     width: 400px;
+  }
+
+  .contact.active::after,
+  .contact.active::before {
+    display: initial;
+  }
+
+  .avatar {
+    width: 200px;
+  }
+
+  .row {
+    flex-wrap: nowrap;
   }
 }

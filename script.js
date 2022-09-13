@@ -34,6 +34,7 @@
 
   const responsiveNumber = {
     widthFrom1024: 1024,
+    widthFrom768: 768,
   };
 
   const sidebarNavigateIndexNote = {
@@ -547,7 +548,7 @@
   function handleMobileFirstTimeLoad(layer, layerWrapForMobile, content) {
     window.onload = function () {
       const screenWidth = screen.width;
-      if (screenWidth < responsiveNumber.widthFrom1024) {
+      if (screenWidth < responsiveNumber.widthFrom768) {
         layer.scrollBy({
           left: screenWidth,
           behavior: "smooth",

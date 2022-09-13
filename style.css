@@ -355,9 +355,9 @@ iframe {
   color: var(--color-stroke);
 }
 
-/* Responsive for device width from 1024px  */
+/* Responsive for device width from 768px  */
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .layer-wrap-for-mobile {
     width: 100vw;
     overflow-x: hidden;
