@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.layer {
+  width: 100vw;
+  height: 100vh;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+}
+
+.column {
+  width: 100%;
+  height: 50%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.column:nth-child(1) {
+  background-image: url("https://50projects50days.com/projects/split-landing-page/ps.jpg");
+}
+
+.column:nth-child(2) {
+  background-image: url("https://50projects50days.com/projects/split-landing-page/xbox.jpg");
+}
+
+.layer-1 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(87, 84, 236, 0.7);
+}
+
+.layer-2 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(43, 43, 43, 0.8);
+}
+
+.center-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 54px;
+  font-weight: 500;
+}
+
+.button-buy {
+  margin-top: 32px;
+  max-width: 250px;
+  width: 100%;
+  padding: 16px 75px;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #fff;
+  border: 3px solid #fff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.button-buy:hover {
+  background-color: rgb(87, 84, 236);
+  border-color: rgb(87, 84, 236);
+}
+
+.button-buy.x-box:hover {
+  background-color: rgba(28, 122, 28, 1);
+  border-color: rgba(28, 122, 28, 1);
+}
+
+.button-buy:active,
+.button-buy.x-box:active {
+  background-color: #111111a1;
+  border-color: #111111a1;
+}
+
+@media screen and (min-width: 1024px) {
+  .row {
+    flex-wrap: nowrap;
+  }
+
+  .center-text {
+    padding-bottom: 240px;
+  }
+
+  .column {
+    height: 100%;
+    transition-duration: 800ms;
+    transition-property: width;
+  }
+
+  .width-25-percent {
+    width: 35%;
+  }
+
+  .width-75-percent {
+    width: 65%;
+  }
+}
