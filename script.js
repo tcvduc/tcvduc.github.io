@@ -28,6 +28,8 @@
     translateXNegative100vw: "translateXNegative100vw",
     translateX100vw: "translateX100vw",
     translateX0: "translateX0",
+
+    iframeIntroduction: "iframe-introduction",
   };
 
   const animationDurationMillisecondUnit = 800;
@@ -43,6 +45,7 @@
       title: "Introduction",
       content: `
         <iframe
+          class="iframe-introduction"
           src="./introduction/index.html"
           height="100%"
           width="100%"
@@ -349,7 +352,25 @@
 
       layerSidebarNavigation.style.color =
         webPageColor.dark.layerSideBarNavigation.color;
+
+      // change iframe color
+      const iframe = document.getElementsByTagName("iframe")[0];
+
+      const allElements = document.all;
+
+      iframeManipulation(iframe);
     };
+  }
+
+  /**
+   *
+   * @param {HTMLIFrameElement} iframe
+   */
+  function iframeManipulation(iframe) {
+    console.log(iframe);
+    const iframeDocument = iframe.getElementsByClassName("*");
+
+    console.log(iframeDocument);
   }
 
   /**

@@ -226,6 +226,8 @@
     )[0];
 
     handleContactOnclick(contacts, iconCopies, sectionContact);
+
+    // console.log(document);
   }
 
   main();

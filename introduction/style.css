@@ -12,13 +12,16 @@
   --color-copy-success-clipboard: #57ab5a;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 img {
   width: 100%;
 }
 
 .avatar {
   width: 100%;
-  max-width: 300px;
 }
 
 .title {
@@ -84,10 +87,17 @@ img {
   width: var(--size);
   height: var(--size);
   margin-left: 12px;
+  padding: 6px;
+  border-radius: var(--border-radius-value);
+  cursor: pointer;
 }
 
 .social-network-icon:nth-of-type(1) {
   margin-left: 0;
+}
+
+.social-network-icon:hover {
+  background-color: rgba(17, 17, 17, 0.081);
 }
 
 .svg-icon {
@@ -180,7 +190,18 @@ img {
   margin-top: 0;
 }
 
-@media screen and (min-width: 768px) {
+/*
+   The html is a iframe
+   + Device Width: 768px
+   + Sidebar width: k-px
+   -> Responsive number = device width - k
+
+   + can't get k 
+     -> circa k ~ 500px
+
+*/
+
+@media screen and (min-width: 500px) {
   .contact {
     width: 400px;
   }
@@ -196,5 +217,14 @@ img {
 
   .row {
     flex-wrap: nowrap;
+  }
+
+  .column {
+    margin-top: 0;
+    margin-left: 18px;
+  }
+
+  .column:nth-of-type(1) {
+    margin-left: 0;
   }
 }

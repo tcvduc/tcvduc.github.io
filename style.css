@@ -355,6 +355,10 @@ iframe {
   color: var(--color-stroke);
 }
 
+.layer.active-dark iframe .section {
+  color: var(--active-dark-stroke-color);
+}
+
 /* Responsive for device width from 768px  */
 
 @media screen and (min-width: 768px) {
