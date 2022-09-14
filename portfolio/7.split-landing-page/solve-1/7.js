@@ -70,15 +70,11 @@
     }
 
     if (flag1 && flag2) {
-      console.log(1);
-      document.getElementsByClassName("layer-1")[0].style.border =
-        "10px solid #fafafa";
-      return;
+      return true;
     }
 
     if (!(flag1 && flag2)) {
-      document.getElementsByClassName("layer-1")[0].style.border = "";
-      return;
+      return false;
     }
   }
 
@@ -116,14 +112,24 @@
     }
 
     if (flag1 && flag2) {
-      document.getElementsByClassName("layer-2")[0].style.border =
-        "10px solid #fff";
-      return;
+      return true;
     }
 
     if (!(flag1 && flag2)) {
-      document.getElementsByClassName("layer-2")[0].style.border = "";
+      return false;
     }
+  }
+
+  /**
+   *
+   * @param {HTMLElement} element
+   * @param {string} zIndex
+   */
+  function updateElementZIndex(element, zIndexClass) {
+    element.classList.remove(classes.zIndex10);
+    element.classList.remove(classes.zIndex15);
+
+    element.classList.add(zIndexClass);
   }
 
   /**
@@ -170,9 +176,38 @@
 
         // console.log(mouseCoordinate);
 
-        detectWasMouseInColumn1Area(column1, mouseCoordinate);
+        const mouseInColumn1Area = detectWasMouseInColumn1Area(
+          column1,
+          mouseCoordinate
+        );
 
-        detectWasMouseInColumn2Area(column2, mouseCoordinate);
+        const mouseInColumn2Area = detectWasMouseInColumn2Area(
+          column2,
+          mouseCoordinate
+        );
+
+        if (mouseInColumn1Area) {
+          column1.classList.remove(classes.width40Percent);
+          column1.classList.add(classes.width80Percent);
+          updateElementZIndex(column1, classes.zIndex15);
+
+          column2.classList.add(classes.width40Percent);
+          column2.classList.remove(classes.width80Percent);
+          updateElementZIndex(column2, classes.zIndex10);
+
+          return;
+        }
+
+        if (mouseInColumn2Area) {
+          column1.classList.remove(classes.width80Percent);
+          column1.classList.add(classes.width40Percent);
+          updateElementZIndex(column1, classes.zIndex10);
+
+          column2.classList.add(classes.width80Percent);
+          column2.classList.add(classes.zIndex15);
+          column2.classList.remove(classes.width40Percent);
+          column2.classList.remove(classes.zIndex10);
+        }
       };
   }
 
