@@ -189,24 +189,26 @@
         if (mouseInColumn1Area) {
           column1.classList.remove(classes.width40Percent);
           column1.classList.add(classes.width80Percent);
-          updateElementZIndex(column1, classes.zIndex15);
 
           column2.classList.add(classes.width40Percent);
           column2.classList.remove(classes.width80Percent);
+
+          updateElementZIndex(column1, classes.zIndex15);
           updateElementZIndex(column2, classes.zIndex10);
 
           return;
         }
 
         if (mouseInColumn2Area) {
+          console.log(1);
           column1.classList.remove(classes.width80Percent);
           column1.classList.add(classes.width40Percent);
-          updateElementZIndex(column1, classes.zIndex10);
 
           column2.classList.add(classes.width80Percent);
-          column2.classList.add(classes.zIndex15);
           column2.classList.remove(classes.width40Percent);
-          column2.classList.remove(classes.zIndex10);
+
+          updateElementZIndex(column1, classes.zIndex10);
+          updateElementZIndex(column2, classes.zIndex15);
         }
       };
   }
