@@ -21,28 +21,46 @@
   width: 100%;
   height: 50%;
   width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.layer-background-1 {
+  background-image: url("https://50projects50days.com/projects/split-landing-page/ps.jpg");
+  position: absolute;
+  inset: 0;
+  z-index: 5;
   background-size: cover;
   background-repeat: no-repeat;
+  transform-origin: 80% 80% 0;
+  transition: 800ms;
 }
 
-.column:nth-child(1) {
-  background-image: url("https://50projects50days.com/projects/split-landing-page/ps.jpg");
-}
-
-.column:nth-child(2) {
+.layer-background-2 {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-image: url("https://50projects50days.com/projects/split-landing-page/xbox.jpg");
+  transform-origin: 80% 80% 0;
+  transition: 800ms;
 }
 
 .layer-1 {
+  position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(87, 84, 236, 0.7);
+  z-index: 10;
 }
 
 .layer-2 {
+  position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(43, 43, 43, 0.8);
+  z-index: 10;
 }
 
 .center-text {
@@ -93,6 +111,10 @@
   border-color: #111111a1;
 }
 
+.scale-1dot2 {
+  transform: scale(1.2);
+}
+
 @media screen and (min-width: 1024px) {
   .row {
     flex-wrap: nowrap;
@@ -105,14 +127,18 @@
   .column {
     height: 100%;
     transition-duration: 800ms;
-    transition-property: width;
+    transition-property: all;
   }
 
   .width-25-percent {
+    position: relative;
     width: 35%;
+    z-index: 12;
   }
 
   .width-75-percent {
-    width: 65%;
+    position: relative;
+    width: 80%;
+    z-index: 15;
   }
 }
