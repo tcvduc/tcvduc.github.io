@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --color-blur: #111111cd;
+
+  --left-bg-color: rgba(87, 84, 236, 0.7);
+  --right-bg-color: rgba(43, 43, 43, 0.8);
+  --left-btn-hover-color: rgba(87, 84, 236, 1);
+  --right-btn-hover-color: rgba(28, 122, 28, 1);
+  --hover-width: 75%;
+  --other-width: 25%;
+  --speed: 1000ms;
+}
+
+body {
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.split {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: var(--speed);
+  overflow: hidden;
+}
+
+h3 {
+  position: absolute;
+  z-index: 10;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 65px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.buttonBuyNow {
+  position: absolute;
+  z-index: 10;
+  top: 32%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 0;
+  background-color: transparent;
+  color: #fff;
+  border: 3px solid #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 18px;
+  margin-top: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  width: 240px;
+}
+
+.left .buttonBuyNow:hover {
+  background-color: var(--left-bg-color);
+  border-color: var(--left-bg-color);
+}
+
+.left .buttonBuyNow:active {
+  background-color: #111111d0;
+
+  border-color: #111111d0;
+}
+
+.right .buttonBuyNow:hover {
+  background-color: var(--right-btn-hover-color);
+  border-color: var(--right-btn-hover-color);
+}
+
+.right .buttonBuyNow:active {
+  background-color: #111111d0;
+  border-color: #111111d0;
+}
+
+.left {
+  top: 0;
+  left: 0;
+  background-image: url("https://50projects50days.com/projects/split-landing-page/ps.jpg");
+}
+
+.left::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--left-bg-color);
+  z-index: 5;
+}
+
+.right {
+  top: 50%;
+  background-image: url("https://50projects50days.com/projects/split-landing-page/xbox.jpg");
+}
+
+.right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--right-bg-color);
+}
+
+.leftHover .left {
+  width: var(--hover-width);
+}
+
+.leftHover .right {
+  width: var(--other-width);
+}
+
+.rightHover .right {
+  width: var(--hover-width);
+}
+
+.rightHover .left {
+  width: var(--other-width);
+}
+
+@media screen and (min-width: 768px) {
+  .split {
+    width: 50%;
+    height: 100%;
+  }
+
+  .right {
+    top: 0;
+    right: 0;
+  }
+}
