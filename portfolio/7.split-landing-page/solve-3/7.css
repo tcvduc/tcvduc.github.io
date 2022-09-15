@@ -43,10 +43,10 @@ body {
 h3 {
   position: absolute;
   z-index: 10;
-  top: 20%;
+  top: 30%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 65px;
+  font-size: 32px;
   color: #fff;
   white-space: nowrap;
 }
@@ -54,7 +54,7 @@ h3 {
 .buttonBuyNow {
   position: absolute;
   z-index: 10;
-  top: 32%;
+  top: 45%;
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 0;
@@ -142,5 +142,14 @@ h3 {
   .right {
     top: 0;
     right: 0;
+  }
+
+  h3 {
+    top: 20%;
+    font-size: 65px;
+  }
+
+  .buttonBuyNow {
+    top: 32%;
   }
 }
