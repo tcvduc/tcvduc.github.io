@@ -356,8 +356,6 @@
       // change iframe color
       const iframe = document.getElementsByTagName("iframe")[0];
 
-      const allElements = document.all;
-
       iframeManipulation(iframe);
     };
   }
@@ -367,8 +365,7 @@
    * @param {HTMLIFrameElement} iframe
    */
   function iframeManipulation(iframe) {
-    console.log(iframe);
-    const iframeDocument = iframe.getElementsByClassName("*");
+    const iframeDocument = iframe.contentWindow.top.document;
 
     console.log(iframeDocument);
   }

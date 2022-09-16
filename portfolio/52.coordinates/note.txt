@@ -1,7 +1,0 @@
-Problem: 
-+ vertical line, horizontal line move corresponding the cursor
-+ limit in an rectangle
-+ x: 0 -> 400
-+ y: 0 -> 300
-
-
