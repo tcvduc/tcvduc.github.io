@@ -207,17 +207,23 @@
             if (j !== i) {
               iconCopies[j].classList.remove(classes.copySuccessClipboard);
               iconCopies[j].innerHTML = svgCopyToClipboardIcon;
-
               contacts[j].classList.remove(classes.active);
             }
           }
-
           contacts[i].classList.add(classes.active);
-
           const contactInformation = contacts[i].children[0].textContent;
 
           // copy text to clipboard
-          navigator.clipboard.writeText(contactInformation);
+          window.setTimeout(async function () {
+            const copyToClipboardRet = await navigator.clipboard.writeText(
+              contactInformation
+            );
+
+            contacts[i].children[0].select();
+            document.execCommand("copy");
+
+            console.log(copyToClipboardRet);
+          }, 300);
 
           // change color copy icon
           iconCopies[i].classList.add(classes.copySuccessClipboard);
