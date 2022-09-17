@@ -214,16 +214,7 @@
           const contactInformation = contacts[i].children[0].textContent;
 
           // copy text to clipboard
-          window.setTimeout(async function () {
-            const copyToClipboardRet = await navigator.clipboard.writeText(
-              contactInformation
-            );
-
-            contacts[i].children[0].select();
-            document.execCommand("copy");
-
-            console.log(copyToClipboardRet);
-          }, 300);
+          navigator.clipboard.writeText(contactInformation);
 
           // change color copy icon
           iconCopies[i].classList.add(classes.copySuccessClipboard);
