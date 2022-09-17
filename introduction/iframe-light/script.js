@@ -6,6 +6,12 @@
     iconCopy: "icon-copy",
     copySuccessClipboard: "copy-success-clipboard",
     sectionContact: "section-contact",
+    buttonOpenNetworks: "buttonOpenNetworks",
+    socialNetworkIcon: "social-network-icon",
+  };
+
+  const responsiveNumber = {
+    width768px: 768,
   };
 
   function getDefaultContactSectionCode() {
@@ -192,30 +198,81 @@
   function handleContactOnclick(contacts, iconCopies, sectionContact) {
     const svgSuccessCheckIcon = createAnSuccessCheckSVG();
     const svgCopyToClipboardIcon = createAnCopyToClipboardSVG();
+    const screenWidth = window.innerWidth;
 
-    for (let i = contacts.length - 1; i >= 0; --i) {
-      contacts[i].onclick = function () {
-        for (let j = contacts.length - 1; j >= 0; --j) {
-          if (j !== i) {
-            iconCopies[j].classList.remove(classes.copySuccessClipboard);
-            iconCopies[j].innerHTML = svgCopyToClipboardIcon;
+    if (screenWidth < responsiveNumber.width768px) {
+      for (let i = contacts.length - 1; i >= 0; --i) {
+        contacts[i].ontouchstart = function () {
+          for (let j = contacts.length - 1; j >= 0; --j) {
+            if (j !== i) {
+              iconCopies[j].classList.remove(classes.copySuccessClipboard);
+              iconCopies[j].innerHTML = svgCopyToClipboardIcon;
 
-            contacts[j].classList.remove(classes.active);
+              contacts[j].classList.remove(classes.active);
+            }
           }
-        }
 
-        contacts[i].classList.add(classes.active);
+          contacts[i].classList.add(classes.active);
 
-        const contactInformation = contacts[i].children[0].textContent;
+          const contactInformation = contacts[i].children[0].textContent;
 
-        // copy text to clipboard
-        navigator.clipboard.writeText(contactInformation);
+          // copy text to clipboard
+          navigator.clipboard.writeText(contactInformation);
 
-        // change color copy icon
-        iconCopies[i].classList.add(classes.copySuccessClipboard);
-        iconCopies[i].innerHTML = svgSuccessCheckIcon;
-      };
+          // change color copy icon
+          iconCopies[i].classList.add(classes.copySuccessClipboard);
+          iconCopies[i].innerHTML = svgSuccessCheckIcon;
+        };
+      }
+      return;
     }
+
+    if (screenWidth >= responsiveNumber.width768px) {
+      for (let i = contacts.length - 1; i >= 0; --i) {
+        contacts[i].onclick = function () {
+          for (let j = contacts.length - 1; j >= 0; --j) {
+            if (j !== i) {
+              iconCopies[j].classList.remove(classes.copySuccessClipboard);
+              iconCopies[j].innerHTML = svgCopyToClipboardIcon;
+
+              contacts[j].classList.remove(classes.active);
+            }
+          }
+
+          contacts[i].classList.add(classes.active);
+
+          const contactInformation = contacts[i].children[0].textContent;
+
+          // copy text to clipboard
+          navigator.clipboard.writeText(contactInformation);
+
+          // change color copy icon
+          iconCopies[i].classList.add(classes.copySuccessClipboard);
+          iconCopies[i].innerHTML = svgSuccessCheckIcon;
+        };
+      }
+    }
+  }
+
+  /**
+   *
+   * @param {HTMLElement} buttonOpenNetworks
+   * @param {HTMLElement[]} socialNetworkIcons
+   *
+   *
+   */
+  function handleButtonOpenNetworksOnclick(
+    buttonOpenNetworks,
+    socialNetworkIcons
+  ) {
+    buttonOpenNetworks.onclick = function () {
+      for (let i = socialNetworkIcons.length - 1; i >= 0; --i) {
+        const aTag =
+          socialNetworkIcons[socialNetworkIcons.length - i - 1].children[0];
+
+        aTag.click();
+      }
+    };
   }
 
   function main() {
@@ -224,10 +281,16 @@
     const sectionContact = document.getElementsByClassName(
       classes.sectionContact
     )[0];
+    const buttonOpenNetworks = document.getElementsByClassName(
+      classes.buttonOpenNetworks
+    )[0];
+    const socialNetworkIcons = document.getElementsByClassName(
+      classes.socialNetworkIcon
+    );
 
     handleContactOnclick(contacts, iconCopies, sectionContact);
 
-    // console.log(document);
+    handleButtonOpenNetworksOnclick(buttonOpenNetworks, socialNetworkIcons);
   }
 
   main();

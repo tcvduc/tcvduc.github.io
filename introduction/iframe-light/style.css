@@ -7,8 +7,11 @@
 }
 
 :root {
+  --color-hover: rgba(165, 165, 165, 0.398);
+
   --color-stroke: #747474;
   --border-radius-value: 2px;
+  --border-width-value: 2px;
   --color-copy-success-clipboard: #57ab5a;
 }
 
@@ -114,6 +117,25 @@ img {
   color: #111;
 }
 
+.buttonOpenNetworks {
+  margin-top: 12px;
+  padding: 12px;
+  border: var(--border-width-value) solid var(--color-stroke);
+  border-radius: var(--border-radius-value);
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.buttonOpenNetworks:hover {
+  background-color: var(--color-hover);
+}
+
+.buttonOpenNetworks:active {
+  background-color: #11111150;
+}
+
 .contact {
   padding: 12px;
   margin-top: 12px;
@@ -164,8 +186,12 @@ img {
   --size: 30px;
   width: var(--size);
   height: var(--size);
-  border: 1px solid var(--color-stroke);
+  border: var(--border-width-value) solid var(--color-stroke);
   border-radius: var(--border-radius-value);
+}
+
+polyline {
+  stroke-width: 9px !important;
 }
 
 .copy-success-clipboard {
@@ -188,6 +214,10 @@ img {
 
 .column:nth-of-type(1) {
   margin-top: 0;
+}
+
+polygon {
+  stroke-width: 5px;
 }
 
 /*

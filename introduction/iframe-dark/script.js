@@ -194,29 +194,59 @@
   function handleContactOnclick(contacts, iconCopies, sectionContact) {
     const svgSuccessCheckIcon = createAnSuccessCheckSVG();
     const svgCopyToClipboardIcon = createAnCopyToClipboardSVG();
+    const screenWidth = window.innerWidth;
 
-    for (let i = contacts.length - 1; i >= 0; --i) {
-      contacts[i].onclick = function () {
-        for (let j = contacts.length - 1; j >= 0; --j) {
-          if (j !== i) {
-            iconCopies[j].classList.remove(classes.copySuccessClipboard);
-            iconCopies[j].innerHTML = svgCopyToClipboardIcon;
+    if (screenWidth < responsiveNumber.width768px) {
+      for (let i = contacts.length - 1; i >= 0; --i) {
+        contacts[i].ontouchstart = function () {
+          for (let j = contacts.length - 1; j >= 0; --j) {
+            if (j !== i) {
+              iconCopies[j].classList.remove(classes.copySuccessClipboard);
+              iconCopies[j].innerHTML = svgCopyToClipboardIcon;
 
-            contacts[j].classList.remove(classes.active);
+              contacts[j].classList.remove(classes.active);
+            }
           }
-        }
 
-        contacts[i].classList.add(classes.active);
+          contacts[i].classList.add(classes.active);
 
-        const contactInformation = contacts[i].children[0].textContent;
+          const contactInformation = contacts[i].children[0].textContent;
 
-        // copy text to clipboard
-        navigator.clipboard.writeText(contactInformation);
+          // copy text to clipboard
+          navigator.clipboard.writeText(contactInformation);
 
-        // change color copy icon
-        iconCopies[i].classList.add(classes.copySuccessClipboard);
-        iconCopies[i].innerHTML = svgSuccessCheckIcon;
-      };
+          // change color copy icon
+          iconCopies[i].classList.add(classes.copySuccessClipboard);
+          iconCopies[i].innerHTML = svgSuccessCheckIcon;
+        };
+      }
+      return;
+    }
+
+    if (screenWidth >= responsiveNumber.width768px) {
+      for (let i = contacts.length - 1; i >= 0; --i) {
+        contacts[i].onclick = function () {
+          for (let j = contacts.length - 1; j >= 0; --j) {
+            if (j !== i) {
+              iconCopies[j].classList.remove(classes.copySuccessClipboard);
+              iconCopies[j].innerHTML = svgCopyToClipboardIcon;
+
+              contacts[j].classList.remove(classes.active);
+            }
+          }
+
+          contacts[i].classList.add(classes.active);
+
+          const contactInformation = contacts[i].children[0].textContent;
+
+          // copy text to clipboard
+          navigator.clipboard.writeText(contactInformation);
+
+          // change color copy icon
+          iconCopies[i].classList.add(classes.copySuccessClipboard);
+          iconCopies[i].innerHTML = svgSuccessCheckIcon;
+        };
+      }
     }
   }
 
@@ -259,8 +289,6 @@
     handleContactOnclick(contacts, iconCopies, sectionContact);
 
     handleButtonOpenNetworksOnclick(buttonOpenNetworks, socialNetworkIcons);
-
-    // console.log(document);
   }
 
   main();

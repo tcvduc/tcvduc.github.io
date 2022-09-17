@@ -419,6 +419,8 @@
    * @param {HTMLElement} layerBrushContent
    * @param {HTMLElement} layer
    * @param {HTMLElement} layerSidebarNavigation
+   * @param {HTMLElement} contentElement
+   *
    *
    *
    *
@@ -438,7 +440,8 @@
     inputSearchPortfolio,
     layerBrushContent,
     layer,
-    layerSidebarNavigation
+    layerSidebarNavigation,
+    contentElement
   ) {
     buttonLightPage.onclick = function () {
       /**
@@ -510,6 +513,12 @@
       // 8.
       layer.classList.remove(classes.activeDark);
       layer.classList.add(classes.activeLight);
+
+      // change content color
+      displayCaseIndexContent(
+        contentElement,
+        sidebarNavigateIndexNote.index0.content.light
+      );
     };
   }
 
@@ -725,7 +734,8 @@
       inputSearchPortfolio,
       layerBrushContent,
       layer,
-      layerSidebarNavigation
+      layerSidebarNavigation,
+      content
     );
 
     handleCloseSearchOnclick(closeSearch, inputSearchPortfolio);
