@@ -32,6 +32,8 @@
     iframeIntroduction: "iframe-introduction",
   };
 
+  const sessionSideBarKey = "SIDE_BAR_INDEX";
+
   const animationDurationMillisecondUnit = 800;
 
   const responsiveNumber = {
@@ -43,16 +45,29 @@
     index0: {
       value: 0,
       title: "Introduction",
-      content: `
+
+      content: {
+        light: `
         <iframe
-          class="iframe-introduction"
-          src="./introduction/index.html"
+          class="iframe-light-introduction"
+          src="./introduction/iframe-light/index.html"
           height="100%"
           width="100%"
         >
         
         </iframe>
       `,
+        dark: `
+        <iframe
+        class="iframe-light-introduction"
+        src="./introduction/iframe-dark/index.html"
+        height="100%"
+        width="100%"
+      >
+      
+      </iframe>
+        `,
+      },
     },
     index1: {
       value: 1,
@@ -261,6 +276,8 @@
    * @param {HTMLElement} layerSidebarNavigation
    * @param {HTMLElement} layer
    * @param {HTMLElement} layerBrushContent
+   * @param {HTMLElement} contentElement
+   *
    *
    *
    *
@@ -278,7 +295,8 @@
     inputSearchPortfolio,
     layerSidebarNavigation,
     layer,
-    layerBrushContent
+    layerBrushContent,
+    contentElement
   ) {
     buttonDarkPage.onclick = function () {
       // hide layerBrushContent
@@ -354,9 +372,23 @@
         webPageColor.dark.layerSideBarNavigation.color;
 
       // change iframe color
-      const iframe = document.getElementsByTagName("iframe")[0];
+      const sidebarIndex = +window.sessionStorage.getItem(sessionSideBarKey);
 
-      iframeManipulation(iframe);
+      switch (sidebarIndex) {
+        case 0:
+          console.log(1);
+          displayCaseIndexContent(
+            contentElement,
+            sidebarNavigateIndexNote.index0.content.dark
+          );
+          break;
+
+        case 1:
+          break;
+
+        default:
+          break;
+      }
     };
   }
 
@@ -365,6 +397,8 @@
    * @param {HTMLIFrameElement} iframe
    */
   function iframeManipulation(iframe) {
+    iframe.onload = function () {};
+
     const iframeDocument = iframe.contentWindow.top.document;
 
     console.log(iframeDocument);
@@ -514,6 +548,9 @@
 
         sidebarNavigates[i].classList.add(classes.active);
 
+        // save side bar index feature to session storage
+        window.sessionStorage.setItem(sessionSideBarKey, i);
+
         switch (i) {
           case 0:
             displayCaseIndexContent(
@@ -573,7 +610,10 @@
         });
       }
 
-      displayCaseIndexContent(content, sidebarNavigateIndexNote.index0.content);
+      displayCaseIndexContent(
+        content,
+        sidebarNavigateIndexNote.index0.content.light
+      );
     };
   }
 
@@ -667,7 +707,8 @@
       inputSearchPortfolio,
       layerSidebarNavigation,
       layer,
-      layerBrushContent
+      layerBrushContent,
+      content
     );
 
     // w

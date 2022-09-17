@@ -1,0 +1,258 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 25px;
+}
+
+:root {
+  --color-hover: #2e3239;
+  --color-stroke: #cdd9e5;
+  --border-width-value: 2px;
+  --border-radius-value: 2px;
+  --color-copy-success-clipboard: #57ab5a;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+img {
+  width: 100%;
+}
+
+.avatar {
+  width: 100%;
+}
+
+.title {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.section {
+  margin: 12px 0;
+  color: var(--color-stroke);
+}
+
+.section:nth-of-type(2) {
+  margin-top: 0;
+}
+
+.layer-company-and-year {
+  display: flex;
+}
+
+.minus {
+  margin: 0 6px;
+  font-weight: 500;
+}
+
+.year {
+  font-weight: 500;
+}
+
+.company-name a {
+  text-decoration: none;
+  color: var(--color-stroke);
+  font-weight: 500;
+}
+
+.experience {
+  margin-top: 12px;
+}
+
+.layer-institute-and-year {
+  display: flex;
+}
+
+.institute-name {
+  font-weight: 500;
+}
+
+.institute-name a {
+  color: var(--color-stroke);
+  text-decoration: none;
+}
+
+.education {
+  margin-top: 12px;
+}
+
+.layer-social-network-icons {
+  display: flex;
+}
+
+.social-network-icon {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  margin-left: 12px;
+  padding: 6px;
+  border-radius: var(--border-radius-value);
+  cursor: pointer;
+}
+
+.social-network-icon:nth-of-type(1) {
+  margin-left: 0;
+}
+
+.social-network-icon:hover {
+  background-color: rgba(17, 17, 17, 0.081);
+}
+
+.social-network-icon:not(.github-icon):hover {
+  background-color: #2e3239;
+}
+
+.svg-icon {
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+.contact a {
+  text-decoration: none;
+  color: #111;
+}
+
+.contact {
+  padding: 12px;
+  margin-top: 12px;
+  cursor: pointer;
+  border-radius: var(--border-radius-value);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  position: relative;
+}
+
+.contact::after {
+  content: "Copied!";
+  position: absolute;
+  left: calc(100% + 12px + 7px);
+  padding: 6px 12px;
+  border: 1px solid #eaeaea;
+  border-radius: var(--border-radius-value);
+  background-color: #eaeaea;
+  font-size: 14px;
+  display: none;
+}
+
+.contact::before {
+  content: "";
+  --size: 9px;
+  position: absolute;
+  left: calc(100% + 2px);
+  border-top: var(--size) solid transparent;
+  border-bottom: var(--size) solid transparent;
+  border-left: var(--size) solid transparent;
+  border-right: calc(var(--size)) solid #eaeaea;
+  border-radius: var(--border-radius-value);
+  z-index: 5;
+  display: none;
+}
+
+.contact:hover {
+  background-color: #11111115;
+}
+
+.contact:active {
+  background-color: #1111114d;
+}
+
+.icon-copy {
+  --size: 30px;
+  width: var(--size);
+  height: var(--size);
+  border: var(--border-width-value) solid var(--color-stroke);
+  border-radius: var(--border-radius-value);
+}
+
+.copy-success-clipboard {
+  border-color: var(--color-copy-success-clipboard);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #000;
+  padding: 18px;
+}
+
+.column {
+  width: 100%;
+  min-height: 300px;
+  border: 1px solid #000;
+  margin-top: 18px;
+}
+
+.column:nth-of-type(1) {
+  margin-top: 0;
+}
+
+.github-icon {
+  filter: invert(1);
+}
+
+.buttonOpenNetworks {
+  margin-top: 12px;
+  padding: 12px;
+  border: var(--border-width-value) solid var(--color-stroke);
+  border-radius: var(--border-radius-value);
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.buttonOpenNetworks:hover {
+  background-color: var(--color-hover);
+}
+
+.buttonOpenNetworks:active {
+  background-color: #11111115;
+}
+
+polygon {
+  stroke: var(--color-stroke) !important;
+  stroke-width: 7px;
+}
+
+polyline {
+  stroke-width: 10px !important;
+}
+
+@media screen and (min-width: 500px) {
+  .contact {
+    width: 400px;
+  }
+
+  .contact.active::after,
+  .contact.active::before {
+    display: initial;
+  }
+
+  .avatar {
+    width: 200px;
+  }
+
+  .row {
+    flex-wrap: nowrap;
+  }
+
+  .column {
+    margin-top: 0;
+    margin-left: 18px;
+  }
+
+  .column:nth-of-type(1) {
+    margin-left: 0;
+  }
+}
