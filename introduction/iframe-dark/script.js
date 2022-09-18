@@ -202,55 +202,45 @@
 
     if (screenWidth < responsiveNumber.width768px) {
       for (let i = contacts.length - 1; i >= 0; --i) {
-        console.log(i);
-        // contacts[i].ontouchstart = function () {
-        //   for (let j = contacts.length - 1; j >= 0; --j) {
-        //     if (j !== i) {
-        //       iconCopies[j].classList.remove(classes.copySuccessClipboard);
-        //       iconCopies[j].innerHTML = svgCopyToClipboardIcon;
+        contacts[i].ontouchstart = function () {
+          for (let j = contacts.length - 1; j >= 0; --j) {
+            if (j !== i) {
+              iconCopies[j].classList.remove(classes.copySuccessClipboard);
+              iconCopies[j].innerHTML = svgCopyToClipboardIcon;
+              contacts[j].classList.remove(classes.active);
+            }
+          }
+          contacts[i].classList.add(classes.active);
+          const contactInformation = contacts[i].children[0].textContent;
+          // copy text to clipboard
+          navigator.clipboard.writeText(contactInformation);
 
-        //       contacts[j].classList.remove(classes.active);
-        //     }
-        //   }
-
-        //   contacts[i].classList.add(classes.active);
-
-        //   const contactInformation = contacts[i].children[0].textContent;
-
-        //   // copy text to clipboard
-        //   // const copyToClipboardRet =
-        //   //   navigator.clipboard.writeText(contactInformation);
-        //   // console.log(copyToClipboardRet);
-
-        //   // change color copy icon
-        //   iconCopies[i].classList.add(classes.copySuccessClipboard);
-        //   iconCopies[i].innerHTML = svgSuccessCheckIcon;
-        // };
+          // change color copy icon
+          iconCopies[i].classList.add(classes.copySuccessClipboard);
+          iconCopies[i].innerHTML = svgSuccessCheckIcon;
+        };
       }
       return;
     }
 
     if (screenWidth >= responsiveNumber.width768px) {
       for (let i = contacts.length - 1; i >= 0; --i) {
-        console.log(i);
         contacts[i].onclick = function () {
-          console.log(1);
-          // for (let j = contacts.length - 1; j >= 0; --j) {
-          //   if (j !== i) {
-          //     iconCopies[j].classList.remove(classes.copySuccessClipboard);
-          //     iconCopies[j].innerHTML = svgCopyToClipboardIcon;
-          //     contacts[j].classList.remove(classes.active);
-          //   }
-          // }
-          // contacts[i].classList.add(classes.active);
-          // const contactInformation = contacts[i].children[0].textContent;
-          // // copy text to clipboard
-          // // const copyToClipboardRet =
-          // //   navigator.clipboard.writeText(contactInformation);
-          // // console.log(copyToClipboardRet);
-          // // change color copy icon
-          // iconCopies[i].classList.add(classes.copySuccessClipboard);
-          // iconCopies[i].innerHTML = svgSuccessCheckIcon;
+          for (let j = contacts.length - 1; j >= 0; --j) {
+            if (j !== i) {
+              iconCopies[j].classList.remove(classes.copySuccessClipboard);
+              iconCopies[j].innerHTML = svgCopyToClipboardIcon;
+              contacts[j].classList.remove(classes.active);
+            }
+          }
+          contacts[i].classList.add(classes.active);
+          const contactInformation = contacts[i].children[0].textContent;
+          // copy text to clipboard
+          navigator.clipboard.writeText(contactInformation);
+
+          // change color copy icon
+          iconCopies[i].classList.add(classes.copySuccessClipboard);
+          iconCopies[i].innerHTML = svgSuccessCheckIcon;
         };
       }
     }

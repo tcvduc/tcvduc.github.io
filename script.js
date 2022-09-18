@@ -33,6 +33,13 @@
   };
 
   const sessionSideBarKey = "SIDE_BAR_INDEX";
+  const sessionCurrentAppColor = {
+    key: "CURRENT_APPLICATION_COLOR",
+    value: {
+      light: "LIGHT",
+      dark: "DARK",
+    },
+  };
 
   const animationDurationMillisecondUnit = 800;
 
@@ -72,7 +79,12 @@
     index1: {
       value: 1,
       title: "Portfolio",
-      content: "Portfolio",
+      content: {
+        light: ` <iframe src="./portfolio/iframe-light/1.html" frameborder="0"        height="100%"
+        width="100%" ></iframe> `,
+        dark: ` <iframe src="./portfolio/iframe-light/1.html" frameborder="0"        height="100%"
+        width="100%" ></iframe>`,
+      },
     },
     index2: {
       value: 2,
@@ -263,6 +275,18 @@
 
   /**
    *
+   * @param {string} value
+   */
+  function setSessionCurrentAppColor(value) {
+    return window.sessionStorage.setItem(sessionCurrentAppColor.key, value);
+  }
+
+  function getSessionCurrentAppColor() {
+    return window.sessionStorage.getItem(sessionCurrentAppColor.key);
+  }
+
+  /**
+   *
    * @param {HTMLElement} buttonDarkPage
    * @param {HTMLElement} layerContent
    * @param {HTMLElement[]} bars
@@ -299,6 +323,9 @@
     contentElement
   ) {
     buttonDarkPage.onclick = function () {
+      // set session app color to dark
+      setSessionCurrentAppColor(sessionCurrentAppColor.value.dark);
+
       // hide layerBrushContent
       layerBrushContent.classList.add(classes.displayNone);
 
@@ -376,7 +403,6 @@
 
       switch (sidebarIndex) {
         case 0:
-          console.log(1);
           displayCaseIndexContent(
             contentElement,
             sidebarNavigateIndexNote.index0.content.dark
@@ -457,6 +483,9 @@
        * 8. layer remove all color active, active light color
        *
        */
+
+      // set session app color to light
+      setSessionCurrentAppColor(sessionCurrentAppColor.value.light);
 
       // 0.
       layerContent.classList.remove(classes.activeDark);
@@ -560,19 +589,47 @@
         // save side bar index feature to session storage
         window.sessionStorage.setItem(sessionSideBarKey, i);
 
+        const currentAppColor = getSessionCurrentAppColor();
+
         switch (i) {
           case 0:
-            displayCaseIndexContent(
-              content,
-              sidebarNavigateIndexNote.index0.content
-            );
+            // if dark color then display dark content
+            if (currentAppColor === sessionCurrentAppColor.value.dark) {
+              displayCaseIndexContent(
+                content,
+                sidebarNavigateIndexNote.index0.content.dark
+              );
+              return;
+            }
+
+            // if  light color then display light content
+            if (currentAppColor === sessionCurrentAppColor.value.light) {
+              displayCaseIndexContent(
+                content,
+                sidebarNavigateIndexNote.index0.content.light
+              );
+            }
+
             break;
 
           case 1:
-            displayCaseIndexContent(
-              content,
-              sidebarNavigateIndexNote.index1.content
-            );
+            // if dark color then display dark content
+            if (currentAppColor === sessionCurrentAppColor.value.dark) {
+              displayCaseIndexContent(
+                content,
+                sidebarNavigateIndexNote.index1.content.dark
+              );
+              return;
+            }
+
+            // if  light color then display light content
+            if (currentAppColor === sessionCurrentAppColor.value.light) {
+              displayCaseIndexContent(
+                content,
+                sidebarNavigateIndexNote.index1.content.light
+              );
+            }
+
             break;
 
           case 2:
@@ -611,6 +668,12 @@
    */
   function handleMobileFirstTimeLoad(layer, layerWrapForMobile, content) {
     window.onload = function () {
+      // set session current app color
+      window.sessionStorage.setItem(
+        sessionCurrentAppColor.key,
+        sessionCurrentAppColor.value.light
+      );
+
       const screenWidth = screen.width;
       if (screenWidth < responsiveNumber.widthFrom768) {
         layer.scrollBy({
