@@ -28,7 +28,7 @@
     translateXNegative100vw: "translateXNegative100vw",
     translateX100vw: "translateX100vw",
     translateX0: "translateX0",
-
+    navigate: "navigate",
     iframeIntroduction: "iframe-introduction",
   };
 
@@ -668,6 +668,12 @@
    */
   function handleMobileFirstTimeLoad(layer, layerWrapForMobile, content) {
     window.onload = function () {
+      // cw
+      window.setTimeout(function () {
+        const navigate = document.getElementsByClassName(classes.navigate);
+        navigate[1].click();
+      }, 1);
+
       // set session current app color
       window.sessionStorage.setItem(
         sessionCurrentAppColor.key,
