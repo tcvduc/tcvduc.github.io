@@ -7,6 +7,12 @@
     colorClickBar: "color-click-bar",
   };
 
+  const elementAttributes = {
+    dataSideBarIndex: "data-side-bar-index",
+  };
+
+  const localStorageKeyProjectSideBarIndex = "PROJECT_SIDE_BAR_INDEX";
+
   /**
    *
    * @param {HTMLElement[]} hashtags
@@ -46,6 +52,22 @@
 
       projects[j].onmousedown = function () {
         projects[j].classList.add(classes.colorClickBar);
+
+        // get attribute data side bar index value
+        const dataSidebarIndex = projects[j].getAttribute(
+          elementAttributes.dataSideBarIndex
+        );
+
+        const localStorageValue = {
+          dataSidebarIndex: dataSidebarIndex,
+          project: projects[j].children[0].textContent,
+        };
+
+        // set to local storage
+        window.localStorage.setItem(
+          localStorageKeyProjectSideBarIndex,
+          JSON.stringify(localStorageValue)
+        );
 
         window.onmouseup = function () {
           projects[j].classList.remove(classes.colorClickBar);

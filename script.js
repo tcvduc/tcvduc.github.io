@@ -662,7 +662,7 @@
    */
   function handleMobileFirstTimeLoad(layer, layerWrapForMobile, content) {
     window.onload = function () {
-      // cw
+      // cw: portfolio sidebar
       window.setTimeout(function () {
         const navigate = document.getElementsByClassName(classes.navigate);
         navigate[1].click();
@@ -706,6 +706,27 @@
         });
       }
     };
+  }
+
+  /**
+   *
+   * @param {HTMLElement} sidebarNavigates
+   * @param {HTMLElement} content
+   */
+  function detectProjectSideBarIndexSessionChange(sidebarNavigates, content) {
+    window.onstorage =
+      /**
+       *
+       * @param {StorageEvent} event
+       */
+      function (event) {
+        const localStorageValueProjectSideBar = JSON.parse(event.newValue);
+        const sidebarIndex = +localStorageValueProjectSideBar.dataSidebarIndex;
+
+        sidebarNavigates[sidebarIndex].click();
+        //cw portfolio sidebar index
+        console.log(sidebarIndex);
+      };
   }
 
   function main() {
@@ -810,6 +831,9 @@
 
     // web page first time on load
     handleMobileFirstTimeLoad(layer, layerWrapForMobile, content);
+
+    // detect Project Side Bar Index Session Change
+    detectProjectSideBarIndexSessionChange(sidebarNavigates, content);
   }
 
   main();

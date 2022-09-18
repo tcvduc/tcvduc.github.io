@@ -113,3 +113,13 @@ III. Stands For
 + w: work
 + cw: current working
   + the code that current coding
+
+IV. Problem Note
++ live demo href:
+  + "/portfolio-shred/1.expanding-cards/live-demo"
+    + live-demo/index.html
+
++ data-side-bar-index = hashtag + 1
+  + 01 + 1 = 02 = 2
+
+    
