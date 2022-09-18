@@ -1,0 +1,28 @@
+1. img links
+
+https://50projects50days.com/projects/split-landing-page/ps.jpg
+
+https://50projects50days.com/projects/split-landing-page/xbox.jpg
+
+
+2. Problems
++ Detect column-1 element area
++ Detect column-2 element area
+
+The Ret
++ When the mouse move into either column-1
+or column-2. 
++ Alert Notification
+  + Change CSS
+
+
+Analyze
++ mouse coordinate   : (x,y)
++ min area coordinate: (x1,y1)
++ max area coordinate: (x2,y2)
++ The Mouse inside column-i area when
+  + x >= x1 && x <= x2
+  + y >= y1 && y <= y2
+
+
+

@@ -107,7 +107,10 @@ a {
   font-size: 16px;
 }
 
-/* Responsive for device width from 768px  */
+/* Responsive for device   width from 500px  */
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 500px) {
+  .layer {
+    max-width: 450px;
+  }
 }

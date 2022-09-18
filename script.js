@@ -89,13 +89,7 @@
     index2: {
       value: 2,
       title: "Expanding Cards",
-      content: `
-        <iframe 
-          src="./portfolio/1.expanding-cards/solve-3/1.html"
-          height="100%"
-          width="100%" >
-        </iframe>
-      `,
+      content: ``,
     },
     index3: {
       value: 3,

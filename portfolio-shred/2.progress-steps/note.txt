@@ -1,0 +1,6 @@
+I. The Result
++ total records: 13
+
++ Mình muốn hiển thị trên
+màn hình 2 record 1 lần bấm
+

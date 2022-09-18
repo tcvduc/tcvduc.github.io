@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(150, 187, 255);
+}
+
+.layer {
+  --size:200px;
+  width: var(--size);
+  height: var(--size);
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.square {
+  --size:120px;
+  width: var(--size);
+  height: var(--size);
+  background-color: rgb(255, 202, 105);
+  border-radius: 2px;
+
+
+  transform-origin: bottom right;
+  animation-duration: 800ms;
+}
+
+.square:active {
+  background-color: rgb(255, 219, 152);
+
+}
+
+.buttonToggleAnimation {
+  padding:6px ;
+  width: 120px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.animationRotateClockWise45Deg {
+  animation-name: animationRotateClockWise45Deg;
+  animation-duration: 800ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes animationRotateClockWise45Deg {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(45deg);
+  }
+  
+}
+
+
+
+.animationRotateCounterClockWise45Deg {
+  animation-name: animationRotateCounterClockWise45Deg;
+  animation-duration: 800ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes animationRotateCounterClockWise45Deg {
+  from {
+    transform: rotate(45deg);
+  }
+  
+  to {
+    transform: rotate(0);
+  }
+  
+}
