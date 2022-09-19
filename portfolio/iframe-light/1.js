@@ -53,23 +53,25 @@
       projects[j].onmousedown = function () {
         projects[j].classList.add(classes.colorClickBar);
 
-        // get attribute data side bar index value
-        const dataSidebarIndex = projects[j].getAttribute(
-          elementAttributes.dataSideBarIndex
-        );
+        if (projects[j].children[0]?.textContent) {
+          // get attribute data side bar index value
+          const dataSidebarIndex = projects[j].getAttribute(
+            elementAttributes.dataSideBarIndex
+          );
 
-        const localStorageValue = {
-          dataSidebarIndex: dataSidebarIndex,
-          project: projects[j].children[0].textContent,
-        };
+          const localStorageValue = {
+            dataSidebarIndex: dataSidebarIndex,
+            project: projects[j].children[0].textContent,
+          };
 
-        // set to local storage
-        window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
+          // set to local storage
+          window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
 
-        window.localStorage.setItem(
-          localStorageKeyProjectSideBarIndex,
-          JSON.stringify(localStorageValue)
-        );
+          window.localStorage.setItem(
+            localStorageKeyProjectSideBarIndex,
+            JSON.stringify(localStorageValue)
+          );
+        }
 
         window.onmouseup = function () {
           projects[j].classList.remove(classes.colorClickBar);
