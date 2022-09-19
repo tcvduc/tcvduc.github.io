@@ -13,3 +13,7 @@
   --border-radius-value: 2px;
   --color-copy-success-clipboard: #57ab5a;
 }
+
+.layer {
+  color: var(--color-stroke);
+}

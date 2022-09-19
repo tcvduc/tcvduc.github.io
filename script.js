@@ -80,16 +80,21 @@
       value: 1,
       title: "Portfolio",
       content: {
-        light: ` <iframe src="./portfolio/iframe-light/1.html" frameborder="0"        height="100%"
+        light: ` <iframe src="./portfolio/iframe-light/1.html" frameborder="0"
+         height="100%"
         width="100%" ></iframe> `,
-        dark: ` <iframe src="./portfolio/iframe-light/1.html" frameborder="0"        height="100%"
+        dark: ` <iframe src="./portfolio/iframe-dark/1.html" frameborder="0" 
+        height="100%"
         width="100%" ></iframe>`,
       },
     },
     index2: {
       value: 2,
       title: "Expanding Cards",
-      content: ``,
+      content: {
+        light: `<iframe width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-light/1.html" /> `,
+        dark: `<iframe  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/1.html" />`,
+      },
     },
     index3: {
       value: 3,
@@ -394,21 +399,14 @@
 
       // change iframe color
       const sidebarIndex = +window.sessionStorage.getItem(sessionSideBarKey);
-
-      switch (sidebarIndex) {
-        case 0:
-          displayCaseIndexContent(
-            contentElement,
-            sidebarNavigateIndexNote.index0.content.dark
-          );
-          break;
-
-        case 1:
-          break;
-
-        default:
-          break;
-      }
+      const currentAppColor = window.sessionStorage.getItem(
+        sessionCurrentAppColor.key
+      );
+      switchIndexDisplayCaseIndexContentCorrespondingAppColor(
+        sidebarIndex,
+        currentAppColor,
+        contentElement
+      );
     };
   }
 
@@ -422,6 +420,10 @@
     const iframeDocument = iframe.contentWindow.top.document;
 
     console.log(iframeDocument);
+  }
+
+  function getSessionCurrentSideBarIndex() {
+    return window.sessionStorage.getItem(sessionSideBarKey);
   }
 
   /**
@@ -538,9 +540,13 @@
       layer.classList.add(classes.activeLight);
 
       // change content color
-      displayCaseIndexContent(
-        contentElement,
-        sidebarNavigateIndexNote.index0.content.light
+      const currentSideBarIndex = getSessionCurrentSideBarIndex();
+      const currentAppColor = getSessionCurrentAppColor();
+
+      switchIndexDisplayCaseIndexContentCorrespondingAppColor(
+        +currentSideBarIndex,
+        currentAppColor,
+        contentElement
       );
     };
   }
@@ -568,6 +574,101 @@
 
   /**
    *
+   * @param {number} i
+   * @param {string} currentAppColor
+   * @param {HTMLElement} contentElement
+   *
+   *
+   *
+   *
+   */
+  function switchIndexDisplayCaseIndexContentCorrespondingAppColor(
+    i,
+    currentAppColor,
+    contentElement
+  ) {
+    switch (i) {
+      case 0:
+        // if dark color then display dark content
+        if (currentAppColor === sessionCurrentAppColor.value.dark) {
+          displayCaseIndexContent(
+            contentElement,
+            sidebarNavigateIndexNote.index0.content.dark
+          );
+          return;
+        }
+
+        // if  light color then display light content
+        if (currentAppColor === sessionCurrentAppColor.value.light) {
+          displayCaseIndexContent(
+            contentElement,
+            sidebarNavigateIndexNote.index0.content.light
+          );
+        }
+
+        break;
+
+      case 1:
+        // if dark color then display dark content
+        if (currentAppColor === sessionCurrentAppColor.value.dark) {
+          displayCaseIndexContent(
+            contentElement,
+            sidebarNavigateIndexNote.index1.content.dark
+          );
+          return;
+        }
+
+        // if  light color then display light content
+        if (currentAppColor === sessionCurrentAppColor.value.light) {
+          displayCaseIndexContent(
+            contentElement,
+            sidebarNavigateIndexNote.index1.content.light
+          );
+        }
+
+        break;
+
+      case 2:
+        // if dark color then display dark content
+        if (currentAppColor === sessionCurrentAppColor.value.dark) {
+          displayCaseIndexContent(
+            contentElement,
+            sidebarNavigateIndexNote.index2.content.dark
+          );
+          return;
+        }
+
+        // if  light color then display light content
+        if (currentAppColor === sessionCurrentAppColor.value.light) {
+          displayCaseIndexContent(
+            contentElement,
+            sidebarNavigateIndexNote.index2.content.light
+          );
+        }
+
+        break;
+
+      case 3:
+        displayCaseIndexContent(
+          contentElement,
+          sidebarNavigateIndexNote.index3.content
+        );
+        break;
+
+      case 4:
+        displayCaseIndexContent(
+          contentElement,
+          sidebarNavigateIndexNote.index4.content
+        );
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  /**
+   *
    * @param {NodeList} sidebarNavigates
    * @param {HTMLElement} content
    *
@@ -585,71 +686,11 @@
 
         const currentAppColor = getSessionCurrentAppColor();
 
-        switch (i) {
-          case 0:
-            // if dark color then display dark content
-            if (currentAppColor === sessionCurrentAppColor.value.dark) {
-              displayCaseIndexContent(
-                content,
-                sidebarNavigateIndexNote.index0.content.dark
-              );
-              return;
-            }
-
-            // if  light color then display light content
-            if (currentAppColor === sessionCurrentAppColor.value.light) {
-              displayCaseIndexContent(
-                content,
-                sidebarNavigateIndexNote.index0.content.light
-              );
-            }
-
-            break;
-
-          case 1:
-            // if dark color then display dark content
-            if (currentAppColor === sessionCurrentAppColor.value.dark) {
-              displayCaseIndexContent(
-                content,
-                sidebarNavigateIndexNote.index1.content.dark
-              );
-              return;
-            }
-
-            // if  light color then display light content
-            if (currentAppColor === sessionCurrentAppColor.value.light) {
-              displayCaseIndexContent(
-                content,
-                sidebarNavigateIndexNote.index1.content.light
-              );
-            }
-
-            break;
-
-          case 2:
-            displayCaseIndexContent(
-              content,
-              sidebarNavigateIndexNote.index2.content
-            );
-            break;
-
-          case 3:
-            displayCaseIndexContent(
-              content,
-              sidebarNavigateIndexNote.index3.content
-            );
-            break;
-
-          case 4:
-            displayCaseIndexContent(
-              content,
-              sidebarNavigateIndexNote.index4.content
-            );
-            break;
-
-          default:
-            break;
-        }
+        switchIndexDisplayCaseIndexContentCorrespondingAppColor(
+          i,
+          currentAppColor,
+          content
+        );
       });
     }
   }
@@ -720,12 +761,15 @@
        * @param {StorageEvent} event
        */
       function (event) {
-        const localStorageValueProjectSideBar = JSON.parse(event.newValue);
-        const sidebarIndex = +localStorageValueProjectSideBar.dataSidebarIndex;
+        if (event.newValue !== null) {
+          const localStorageValueProjectSideBar = JSON.parse(event.newValue);
 
-        sidebarNavigates[sidebarIndex].click();
-        //cw portfolio sidebar index
-        console.log(sidebarIndex);
+          const sidebarIndex =
+            +localStorageValueProjectSideBar.dataSidebarIndex;
+          sidebarNavigates[sidebarIndex].click();
+
+          //cw portfolio sidebar index
+        }
       };
   }
 

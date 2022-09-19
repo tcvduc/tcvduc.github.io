@@ -64,6 +64,8 @@
         };
 
         // set to local storage
+        window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
+
         window.localStorage.setItem(
           localStorageKeyProjectSideBarIndex,
           JSON.stringify(localStorageValue)
