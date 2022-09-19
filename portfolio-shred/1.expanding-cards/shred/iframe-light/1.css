@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --color-shred-background: #eaeaea;
+  --color-symbol-tag-html: #596467;
+  --color-tag-name-html: #0066b8;
+  --color-technical-shred: #c7254e;
+  --border-radius-value: 4px;
+}
+
+.technicalShred {
+  color: var(--color-technical-shred);
+  width: fit-content;
+  border-radius: var(--border-radius-value);
+  background-color: var(--color-shred-background);
+  padding: 5px 6px;
+}
+
+.layerTechnicalShred {
+  padding: 18px;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.shredHTML {
+  border-radius: var(--border-radius-value);
+  width: fit-content;
+  font-size: 90%;
+  margin-top: 18px;
+  display: flex;
+  padding: 2px 4px;
+  background-color: var(--color-shred-background);
+}
+
+.openTag {
+  display: flex;
+  align-items: center;
+}
+
+.closeTag {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.symbolLessThan {
+  color: var(--color-symbol-tag-html);
+  font-weight: 500;
+}
+
+.tagName {
+  color: var(--color-tag-name-html);
+}
+
+.symbolGreaterThan {
+  color: var(--color-symbol-tag-html);
+  font-weight: 500;
+}
+
+.textNormal {
+  margin-top: 18px;
+}

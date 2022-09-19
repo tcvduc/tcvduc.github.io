@@ -335,6 +335,8 @@
       // change layer content background color
       layerContent.style.backgroundColor =
         webPageColor.dark.layerContent.backgroundColor;
+
+      layerContent.classList.remove(classes.activeLight);
       layerContent.classList.add(classes.activeDark);
 
       /**
@@ -776,6 +778,30 @@
       };
   }
 
+  function detectDOMChange() {
+    const mutationObserve = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.attributeName === "class") {
+          const changes = {
+            oldValue: mutation.oldValue,
+            newValue: mutation.target.classList.value,
+            element: mutation.target,
+          };
+          console.log(changes);
+        }
+      });
+    });
+
+    mutationObserve.observe(document.documentElement, {
+      attributes: true,
+      characterData: true,
+      childList: true,
+      subtree: true,
+      attributeOldValue: true,
+      characterDataOldValue: true,
+    });
+  }
+
   function main() {
     const rub = document.getElementsByClassName(classes.rub)[0];
     const layerBrushContent = document.getElementsByClassName(
@@ -881,6 +907,9 @@
 
     // detect Project Side Bar Index Session Change
     detectProjectSideBarIndexSessionChange(sidebarNavigates, content);
+
+    // detect DOM Change
+    detectDOMChange();
   }
 
   main();
