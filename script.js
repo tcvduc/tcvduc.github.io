@@ -509,6 +509,9 @@
       buttonLightPage.style.color =
         webPageColor.light.layerContent.layerBrushContent.buttonLightPage.color;
 
+      buttonLightPage.style.borderLeft = `1px solid ${webPageColor.light.layerContent.layerBrushContent.buttonLightPage.backgroundColor}`;
+      buttonLightPage.style.borderRight = `1px solid ${webPageColor.light.layerContent.layerBrushContent.buttonLightPage.backgroundColor}`;
+
       buttonDarkPage.style.backgroundColor =
         webPageColor.light.layerContent.layerBrushContent.buttonDarkPage.backgroundColor;
 

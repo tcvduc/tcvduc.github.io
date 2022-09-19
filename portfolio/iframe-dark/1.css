@@ -22,6 +22,7 @@
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 18px;
+  color: var(--color-dark-stroke);
 }
 
 .layer-portfolio {
