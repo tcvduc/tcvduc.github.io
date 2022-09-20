@@ -65,6 +65,7 @@
    */
   function innerHTMLPortfolioBars(layerBars) {
     portfolioProjects.forEach(function (project) {
+      console.log(project);
       const portfolioBarElement = createAnPortfolioBarElement(
         project.hashtag,
         project.dataSideBarIndex,
