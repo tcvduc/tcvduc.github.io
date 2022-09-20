@@ -2,8 +2,10 @@
   const classes = {
     shredHTML: "shredHTML",
     shredCSS: "shredCSS",
+    shredJS: "shredJS",
     layerHtmlShred: "layerHtmlShred",
     layerCSSShred: "layerCSSShred",
+    layerJSShred: "layerJSShred",
   };
 
   const cssShred = [
@@ -20,12 +22,6 @@
 
     {
       index: 2,
-      attributeName: "padding",
-      attributeValue: "0px",
-    },
-
-    {
-      index: 3,
       attributeName: "padding",
       attributeValue: "0px",
     },
@@ -163,7 +159,26 @@
     },
   ];
 
-  const jsShred = [{}];
+  const jsShred = [
+    {
+      concept: "object",
+    },
+    {
+      concept: "variable",
+    },
+    {
+      concept: "function",
+    },
+    {
+      concept: "loop",
+    },
+    {
+      concept: "condition",
+    },
+    {
+      concept: "JS DOM - document.getElementsByClassName()",
+    },
+  ];
 
   /**
    *
@@ -208,6 +223,20 @@
 
   /**
    *
+   * @param {string} concept
+   */
+  function createAnShredJSElement(concept) {
+    const htmlCode = `
+      <div class="jsConcept">${concept}</div>
+    `;
+    const ret = document.createElement("code");
+    ret.classList.add(classes.shredJS);
+    ret.innerHTML = htmlCode;
+    return ret;
+  }
+
+  /**
+   *
    * @param {HTMLElement} layerHtmlShred
    */
   function innerHTMLTagShred(layerHtmlShred) {
@@ -220,6 +249,18 @@
     layerHtmlShred.appendChild(scriptTagElement);
     layerHtmlShred.appendChild(linkTagElement);
     layerHtmlShred.appendChild(titleTagElement);
+  }
+
+  /**
+   *
+   * @param {HTMLElement} layerJSShred
+   */
+  function innerJSShred(layerJSShred) {
+    jsShred.forEach(function (js) {
+      const jsShredElement = createAnShredJSElement(js.concept);
+
+      layerJSShred.appendChild(jsShredElement);
+    });
   }
 
   /**
@@ -246,8 +287,13 @@
       classes.layerCSSShred
     )[0];
 
+    const layerJSShred = document.getElementsByClassName(
+      classes.layerJSShred
+    )[0];
+
     innerHTMLTagShred(layerHtmlShred);
     innerCSSCodeShred(layerCSSShred);
+    innerJSShred(layerJSShred);
   }
 
   main();
