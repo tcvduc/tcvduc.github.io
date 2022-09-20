@@ -3,17 +3,110 @@
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 25px;
 }
 
 :root {
-  --color-hover: #2e3239;
   --color-stroke: #cdd9e5;
-  --border-width-value: 2px;
-  --border-radius-value: 2px;
-  --color-copy-success-clipboard: #57ab5a;
+
+  --color-shred-background: #cdd9e5;
+  --color-shred-hover: #bcd1e6;
+  --color-symbol-tag-html: #596467;
+  --color-tag-name-html: #0066b8;
+  --color-technical-shred: #c7254e;
+
+  --color-css-attribute-name: #0066b8;
+  --color-css-colon-semicolon: #fff;
+  --color-css-attribute-value: #b15f36;
+
+  --border-radius-value: 4px;
+
+  --color-a-tag: #539bf5;
 }
 
-.layer {
+.technicalShred {
+  color: var(--color-technical-shred);
+  width: fit-content;
+  border-radius: var(--border-radius-value);
+  background-color: var(--color-shred-background);
+  padding: 5px 6px;
+}
+
+.technicalShred:hover,
+.shredHTML:hover,
+.shredCSS:hover,
+.shredJS:hover {
+  background-color: var(--color-shred-hover);
+}
+
+.layerTechnicalShred {
+  margin-top: 18px;
+}
+
+.title {
+  font-weight: 500;
   color: var(--color-stroke);
+}
+
+.shredHTML,
+.shredCSS,
+.shredJS {
+  border-radius: var(--border-radius-value);
+  width: fit-content;
+  font-size: 90%;
+  margin-top: 18px;
+  display: flex;
+  padding: 2px 4px;
+  background-color: var(--color-shred-background);
+}
+
+.openTag {
+  display: flex;
+  align-items: center;
+}
+
+.closeTag {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.symbolLessThan {
+  color: var(--color-symbol-tag-html);
+  font-weight: 500;
+}
+
+.tagName,
+.jsConcept {
+  color: var(--color-tag-name-html);
+}
+
+.symbolGreaterThan {
+  color: var(--color-symbol-tag-html);
+  font-weight: 500;
+}
+
+.textNormal {
+  margin-top: 18px;
+}
+
+.cssAttributeName {
+  color: var(--color-css-attribute-name);
+}
+
+.colon,
+.semicolon {
+  font-weight: 400;
+}
+
+.cssValue {
+  color: var(--color-css-attribute-value);
+}
+
+.layerSourceCode a {
+  color: var(--color-a-tag);
+}
+
+.demo,
+.githubSourceCode {
+  margin-top: 18px;
 }

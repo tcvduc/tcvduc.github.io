@@ -5,6 +5,9 @@
     liveDemo: "live-demo",
     colorHoverBar: "color-hover-bar",
     colorClickBar: "color-click-bar",
+    bar: "bar",
+    projectInformation: "project-information",
+    layerBars: "layerBars",
   };
 
   const elementAttributes = {
@@ -12,6 +15,66 @@
   };
 
   const localStorageKeyProjectSideBarIndex = "PROJECT_SIDE_BAR_INDEX";
+
+  const portfolioProjects = [
+    {
+      hashtag: "01",
+      dataSideBarIndex: 2,
+      projectName: "Expanding Cards",
+      liveDemoHref: `"/portfolio-shred/1.expanding-cards/live-demo"`,
+    },
+  ];
+
+  /**
+   *
+   * @param {string} hashtag
+   * @param {number} dataSideBarIndex
+   * @param {string} projectName
+   * @param {string} liveDemoHref
+   *
+   */
+  function createAnPortfolioBarElement(
+    hashtag,
+    dataSideBarIndex,
+    projectName,
+    liveDemoHref
+  ) {
+    const htmlCode = `
+    <div class="hashtag">${hashtag}</div>
+    <div class="project" data-side-bar-index="${dataSideBarIndex}">
+      <a href="">${projectName}</a>
+    </div>
+    <div class="live-demo">
+      <a
+        target="_blank"
+        href=${liveDemoHref}
+        >Live Demo</a
+      >
+    </div>
+    `;
+    const ret = document.createElement("div");
+    ret.classList.add(classes.bar);
+    ret.classList.add(classes.projectInformation);
+    ret.innerHTML = htmlCode;
+    return ret;
+  }
+
+  /**
+   *
+   * @param {HTMLElement} layerBars
+   */
+  function innerHTMLPortfolioBars(layerBars) {
+    portfolioProjects.forEach(function (project) {
+      const portfolioBarElement = createAnPortfolioBarElement(
+        project.hashtag,
+        project.dataSideBarIndex,
+        project.projectName,
+        project.liveDemoHref
+      );
+
+      layerBars.appendChild(portfolioBarElement);
+    });
+  }
 
   /**
    *
@@ -53,12 +116,12 @@
       projects[j].onmousedown = function () {
         projects[j].classList.add(classes.colorClickBar);
 
-        // get attribute data side bar index value
-        const dataSidebarIndex = projects[j].getAttribute(
-          elementAttributes.dataSideBarIndex
-        );
-
         if (projects[j].children[0]?.textContent) {
+          // get attribute data side bar index value
+          const dataSidebarIndex = projects[j].getAttribute(
+            elementAttributes.dataSideBarIndex
+          );
+
           const localStorageValue = {
             dataSidebarIndex: dataSidebarIndex,
             project: projects[j].children[0].textContent,
@@ -101,7 +164,9 @@
     const hashtags = document.getElementsByClassName(classes.hashtag);
     const projects = document.getElementsByClassName(classes.project);
     const liveDemos = document.getElementsByClassName(classes.liveDemo);
+    const layerBars = document.getElementsByClassName(classes.layerBars)[0];
 
+    innerHTMLPortfolioBars(layerBars);
     barShredElementOnMouseOverAndOnMouseLeave(hashtags, projects, liveDemos);
   }
 
