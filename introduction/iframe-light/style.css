@@ -25,11 +25,16 @@ img {
 
 .avatar {
   width: 100%;
+  margin-top: 18px;
 }
 
 .title {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
+}
+
+.paragraph {
+  font-size: 18px;
 }
 
 .section {
@@ -51,16 +56,18 @@ img {
 
 .year {
   font-weight: 500;
+  color: var(--color-stroke);
 }
 
 .company-name a {
   text-decoration: none;
-  color: #111;
+  color: var(--color-stroke);
   font-weight: 500;
 }
 
 .experience {
   margin-top: 12px;
+  font-size: 18px;
 }
 
 .layer-institute-and-year {
@@ -72,12 +79,13 @@ img {
 }
 
 .institute-name a {
-  color: #111;
+  color: var(--color-stroke);
   text-decoration: none;
 }
 
 .education {
   margin-top: 12px;
+  font-size: 18px;
 }
 
 .layer-social-network-icons {
@@ -125,6 +133,7 @@ img {
   text-align: center;
   cursor: pointer;
   user-select: none;
+  font-size: 18px;
 }
 
 .buttonOpenNetworks:hover {
@@ -136,6 +145,7 @@ img {
 }
 
 .contact {
+  font-size: 18px;
   padding: 12px;
   margin-top: 12px;
   cursor: pointer;
@@ -155,7 +165,7 @@ img {
   border: 1px solid #eaeaea;
   border-radius: var(--border-radius-value);
   background-color: #eaeaea;
-  font-size: 14px;
+  font-size: 16px;
   display: none;
 }
 
@@ -217,6 +227,10 @@ polyline {
 
 polygon {
   stroke-width: 5px;
+}
+
+.title-network {
+  margin-bottom: 12px;
 }
 
 /*

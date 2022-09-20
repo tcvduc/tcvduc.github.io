@@ -27,7 +27,7 @@ img {
 }
 
 .title {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 12px;
   font-weight: 500;
   color: var(--color-stroke);
@@ -61,8 +61,13 @@ img {
   font-weight: 500;
 }
 
+.paragraph {
+  font-size: 18px;
+}
+
 .experience {
   margin-top: 12px;
+  font-size: 18px;
 }
 
 .layer-institute-and-year {
@@ -80,6 +85,7 @@ img {
 
 .education {
   margin-top: 12px;
+  font-size: 18px;
 }
 
 .layer-social-network-icons {
@@ -132,6 +138,7 @@ img {
   align-items: center;
   user-select: none;
   position: relative;
+  font-size: 18px;
 }
 
 .contact::after {
@@ -142,7 +149,7 @@ img {
   border: 1px solid rgb(46, 54, 65);
   border-radius: var(--border-radius-value);
   background-color: rgb(46, 54, 65) !important;
-  font-size: 14px;
+  font-size: 16px;
   display: none;
 }
 
@@ -207,6 +214,7 @@ img {
 }
 
 .buttonOpenNetworks {
+  font-size: 18px;
   margin-top: 12px;
   padding: 12px;
   border: var(--border-width-value) solid var(--color-stroke);
