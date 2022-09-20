@@ -7,9 +7,15 @@
 
 :root {
   --color-shred-background: #eaeaea;
+  --color-shred-hover: #d0d0d0;
   --color-symbol-tag-html: #596467;
   --color-tag-name-html: #0066b8;
   --color-technical-shred: #c7254e;
+
+  --color-css-attribute-name: #0066b8;
+  --color-css-colon-semicolon: #fff;
+  --color-css-attribute-value: #b15f36;
+
   --border-radius-value: 4px;
 }
 
@@ -21,15 +27,24 @@
   padding: 5px 6px;
 }
 
+.technicalShred:hover,
+.shredHTML:hover,
+.shredCSS:hover,
+.shredJS:hover {
+  background-color: var(--color-shred-hover);
+}
+
 .layerTechnicalShred {
-  padding: 18px;
+  margin-top: 18px;
 }
 
 .title {
   font-weight: 500;
 }
 
-.shredHTML {
+.shredHTML,
+.shredCSS,
+.shredJS {
   border-radius: var(--border-radius-value);
   width: fit-content;
   font-size: 90%;
@@ -66,4 +81,21 @@
 
 .textNormal {
   margin-top: 18px;
+}
+
+.cssAttributeName {
+  color: var(--color-css-attribute-name);
+}
+
+.colon,
+.semicolon {
+  font-weight: 400;
+}
+
+.cssValue {
+  color: var(--color-css-attribute-value);
+}
+
+.mediaColor {
+  color: red;
 }
