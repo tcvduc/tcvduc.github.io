@@ -16,32 +16,41 @@
 
   const localStorageKeyProjectSideBarIndex = "PROJECT_SIDE_BAR_INDEX";
 
-  const portfolioProjects = [
+  const portfolioHtmlCssJsProjects = [
     {
-      hashtag: "01",
-      dataSideBarIndex: 2,
+      projectHashtag: "01",
       projectName: "Expanding Cards",
       liveDemoHref: `"/portfolio-shred/1.expanding-cards/live-demo"`,
     },
   ];
 
+  const portfolioReactJSProject = [
+    {
+      projectHashtag: "01",
+      projectName: "To Do List",
+      content: {
+        light: `<iframe width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-light/1.html" /> `,
+        dark: `<iframe  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/1.html" />`,
+      },
+      liveDemoHref: `https://tcvduc.github.io/train-reactjs/`,
+    },
+  ];
+
   /**
    *
-   * @param {string} hashtag
-   * @param {number} dataSideBarIndex
+   * @param {string} projectHashtag
    * @param {string} projectName
    * @param {string} liveDemoHref
    *
    */
   function createAnPortfolioBarElement(
-    hashtag,
-    dataSideBarIndex,
+    projectHashtag,
     projectName,
     liveDemoHref
   ) {
     const htmlCode = `
-    <div class="hashtag">${hashtag}</div>
-    <div class="project" data-side-bar-index="${dataSideBarIndex}">
+    <div class="hashtag">${projectHashtag}</div>
+    <div class="project" >
       <a href="">${projectName}</a>
     </div>
     <div class="live-demo">
@@ -64,10 +73,9 @@
    * @param {HTMLElement} layerBars
    */
   function innerHTMLPortfolioBars(layerBars) {
-    portfolioProjects.forEach(function (project) {
+    portfolioHtmlCssJsProjects.forEach(function (project) {
       const portfolioBarElement = createAnPortfolioBarElement(
-        project.hashtag,
-        project.dataSideBarIndex,
+        project.projectHashtag,
         project.projectName,
         project.liveDemoHref
       );
@@ -160,13 +168,33 @@
     }
   }
 
+  /**
+   *
+   * @param {HTMLElement} layerReactJsBars
+   */
+  function innerHTMLPortfolioReactJSBars(layerReactJsBars) {
+    portfolioReactJSProject.forEach(function (project) {
+      const portfolioBarElement = createAnPortfolioBarElement(
+        project.projectHashtag,
+        project.projectName,
+        project.liveDemoHref
+      );
+
+      layerReactJsBars.appendChild(portfolioBarElement);
+    });
+  }
+
   function main() {
     const hashtags = document.getElementsByClassName(classes.hashtag);
     const projects = document.getElementsByClassName(classes.project);
     const liveDemos = document.getElementsByClassName(classes.liveDemo);
     const layerBars = document.getElementsByClassName(classes.layerBars)[0];
+    const layerReactJsBars = document.getElementsByClassName(
+      classes.layerBars
+    )[1];
 
     innerHTMLPortfolioBars(layerBars);
+    innerHTMLPortfolioReactJSBars(layerReactJsBars);
     barShredElementOnMouseOverAndOnMouseLeave(hashtags, projects, liveDemos);
   }
 
