@@ -1,0 +1,46 @@
+ReactJS Tutorial
+
+1. Install ReactJS
++ npx create-react-app my-app
++ cd my-app
++ npm start
+
+2. The Code
+2.1. JSX 
+
+const element = <div> This is JSX </div>
+
+const ToDoList = () => {
+  const element = <div>This is JSX </div>;
+
+  return (
+    <div className="layer">
+      <div className="title">To Do List</div>
+      <div className="layerInputTaskAndListTask">
+        {element} // use right there
+        <InputTask />
+        <ListTask />
+      </div>
+    </div>
+  );
+};
+
+
+2.2. Component
+2.2.1. Functional Component
+import InputTask from "./InputTask";
+
+// functional component 
+const ToDoList = () => {
+
+  return (
+    <div className="layer">
+      <div className="title">To Do List</div>
+      <div className="layerInputTaskAndListTask">
+        {element}
+        <InputTask /> // Use component right there
+        <ListTask /> // This is a component
+      </div>
+    </div>
+  );
+};

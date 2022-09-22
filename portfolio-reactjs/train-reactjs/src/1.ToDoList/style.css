@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --color-bg: #333333;
+  --color-add-button: #ff9900;
+  --color-delete-text: #dc7277;
+  --color-complete-text: #8cc6a3;
+  --color-item-text: #f38b18;
+  --color-item-description: #e3ebf0;
+  --color-item-bg: #444444;
+  --border-radius-value: 2px;
+  --spacing-value: 24px;
+}
+
+.layer {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.title {
+  color: var(--color-item-description);
+  font-size: 24px;
+  margin: 0 auto;
+  font-weight: 500;
+  text-align: center;
+  padding: 24px;
+}
+
+.layerInputTaskAndListTask {
+  width: 700px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.inputTask {
+  width: 100%;
+  background-color: var(--color-item-bg);
+  border-radius: var(--border-radius-value);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.layerTaskNameAndDescription {
+  width: 200px;
+  height: 100%;
+  display: flex;
+}
+
+.buttonAddTask {
+  color: #fff;
+  background-color: var(--color-add-button);
+  width: 100px;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-value);
+  cursor: pointer;
+  font-weight: 500;
+  user-select: none;
+  font-size: 16px;
+  border-radius: 50px;
+}
+
+.buttonAddTask:hover {
+  background-color: #fba523;
+}
+
+.buttonAddTask:active {
+  background-color: #ff9900d9;
+}
+
+.taskName {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.labelTaskName {
+  color: var(--color-item-description);
+  font-weight: 500;
+}
+
+.inputTaskName {
+  padding: 6px 12px;
+  border-radius: var(--border-radius-value);
+  outline: none;
+  border: none;
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.taskDescription {
+  margin-left: var(--spacing-value);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.labelTaskDescription {
+  color: var(--color-item-description);
+}
+
+.inputTaskDescription {
+  padding: 6px 12px;
+  border-radius: var(--border-radius-value);
+  outline: none;
+  border: none;
+  margin-top: 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}

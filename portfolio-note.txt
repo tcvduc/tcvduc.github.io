@@ -135,4 +135,3 @@ V. Source URI
 + Train 50 Projects:
   + Github Source Code:  https://github.com/bradtraversy/50projects50days
 
-  
