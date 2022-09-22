@@ -13,6 +13,7 @@ function generateTaskData(n) {
 
   for (let i = n; i >= 1; --i) {
     let task = {
+      taskId: i,
       taskName: `task ${i}`,
       taskDescription: `description ${i}`,
       taskStatus: Math.random() >= 0.5,
@@ -24,17 +25,41 @@ function generateTaskData(n) {
   return ret;
 }
 
+function updateLocalStorageTaskData(taskData) {
+  window.localStorage.setItem("taskData", JSON.stringify(taskData));
+}
+
 const ToDoList = () => {
   const [tasks, setTasks] = React.useState([]);
 
   const addTaskProcess = function (task) {
+    console.log(task);
     const newTaskData = [task, ...tasks];
     setTasks(newTaskData);
+
+    updateLocalStorageTaskData(newTaskData);
+  };
+
+  const deleteTaskProcess = function (taskId) {
+    const newTaskData = tasks.filter(function (task) {
+      return task.taskId !== taskId;
+    });
+
+    setTasks(newTaskData);
+
+    // update local storage task data
+    updateLocalStorageTaskData(newTaskData);
   };
 
   React.useEffect(function () {
-    // const generate10Task = generateTaskData(10);
-    // setTasks(generate10Task);
+    // save data to local storage to close browser it still exist
+
+    const taskDataJSON = window.localStorage.getItem("taskData");
+    const taskData = JSON.parse(taskDataJSON);
+
+    if (taskData) {
+      setTasks(taskData);
+    }
   }, []);
 
   return (
@@ -45,7 +70,13 @@ const ToDoList = () => {
 
         <ListTask>
           {tasks.map(function (task, index) {
-            return <ItemTask {...task} key={index} />;
+            return (
+              <ItemTask
+                deleteTaskProcess={deleteTaskProcess}
+                {...task}
+                key={index}
+              />
+            );
           })}
         </ListTask>
       </div>

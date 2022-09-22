@@ -1,7 +1,12 @@
 import React from "react";
 
 const ItemTask = (props) => {
-  const { taskName, taskDescription, taskStatus } = props;
+  const { taskId, taskName, taskDescription, taskStatus, deleteTaskProcess } =
+    props;
+
+  const handleButtonDeleteOnclick = function () {
+    deleteTaskProcess(taskId);
+  };
 
   return (
     <div className="itemTask">
@@ -16,7 +21,9 @@ const ItemTask = (props) => {
           <div className="buttonStatus working">Working</div>
         )}
 
-        <div className="buttonDelete">Delete</div>
+        <div onClick={handleButtonDeleteOnclick} className="buttonDelete">
+          Delete
+        </div>
       </div>
     </div>
   );

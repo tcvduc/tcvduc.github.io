@@ -1,12 +1,15 @@
 import React from "react";
 
 const taskObject = {
+  taskId: 0,
   taskName: "",
   taskDescription: "",
+  taskStatus: false,
 };
 
 const classes = {
   displayNone: "displayNone",
+  inputTaskName: "inputTaskName",
 };
 
 const InputTask = (props) => {
@@ -51,8 +54,10 @@ const InputTask = (props) => {
 
       if (wasAllowToAdd) {
         const taskData = {
+          taskId: Math.floor(Math.random() * 1000),
           taskName: taskName,
           taskDescription: taskDescription,
+          taskStatus: false,
         };
 
         // add task
@@ -61,6 +66,7 @@ const InputTask = (props) => {
         // refresh input
         setTaskName("");
         setTaskDescription("");
+        document.getElementsByClassName(classes.inputTaskName)[0].focus();
 
         return;
       }
@@ -68,8 +74,10 @@ const InputTask = (props) => {
 
   const wasAllowToAddTask = function () {
     const taskData = {
+      taskId: Math.floor(Math.random() * 1000),
       taskName: taskName,
       taskDescription: taskDescription,
+      taskStatus: false,
     };
 
     const layerValidateForm =
@@ -102,8 +110,10 @@ const InputTask = (props) => {
 
         if (wasAllowToAdd) {
           const taskData = {
+            taskId: Math.floor(Math.random() * 1000),
             taskName: taskName,
             taskDescription: taskDescription,
+            taskStatus: false,
           };
 
           // add task
@@ -112,6 +122,8 @@ const InputTask = (props) => {
           // refresh input
           setTaskName("");
           setTaskDescription("");
+
+          document.getElementsByClassName(classes.inputTaskName)[0].focus();
 
           return;
         }
