@@ -1,14 +1,21 @@
 import React from "react";
 
-const ItemTask = () => {
+const ItemTask = (props) => {
+  const { taskName, taskDescription, taskStatus } = props;
+
   return (
     <div className="itemTask">
       <div className="layerItemTaskNameAndDescription">
-        <div className="itemTaskName">Task Name</div>
-        <div className="itemTaskDescription">Task Description</div>
+        <div className="itemTaskName">{taskName}</div>
+        <div className="itemTaskDescription">{taskDescription}</div>
       </div>
       <div className="layerTaskStatusAndDeleteButton">
-        <div className="buttonStatus working">Status Button</div>
+        {taskStatus === true ? (
+          <div className="buttonStatus completed">Completed</div>
+        ) : (
+          <div className="buttonStatus working">Working</div>
+        )}
+
         <div className="buttonDelete">Delete</div>
       </div>
     </div>

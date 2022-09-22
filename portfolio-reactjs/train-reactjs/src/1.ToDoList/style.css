@@ -33,7 +33,6 @@
 }
 
 .layerInputTaskAndListTask {
-  width: 700px;
   margin: 0 auto;
 }
 
@@ -44,19 +43,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding: 24px;
 }
 
-.layerTaskNameAndDescription {
-  width: 200px;
-  height: 100%;
+.layerValidateForm {
+  width: 100%;
+  margin-top: var(--spacing-value);
+}
+
+.displayNone {
+  display: none;
+}
+
+.validateValue {
+  font-weight: 500;
+}
+
+.validateValue.error {
+  color: #c65a5f;
+}
+
+.validateValue.valid {
+  color: #14b856;
+}
+
+.layerTaskNameAndDescriptionAndButton {
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .buttonAddTask {
   color: #fff;
   background-color: var(--color-add-button);
-  width: 100px;
+  width: 100%;
   padding: 6px 12px;
   display: flex;
   justify-content: center;
@@ -66,7 +87,8 @@
   font-weight: 500;
   user-select: none;
   font-size: 16px;
-  border-radius: 50px;
+  margin-top: var(--spacing-value);
+  border-radius: var(--border-radius-value);
 }
 
 .buttonAddTask:hover {
@@ -82,6 +104,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
 }
 
 .labelTaskName {
@@ -99,9 +122,10 @@
 }
 
 .taskDescription {
-  margin-left: var(--spacing-value);
   font-weight: 500;
   font-size: 16px;
+  width: 100%;
+  margin-top: var(--spacing-value);
 }
 
 .labelTaskDescription {
@@ -117,6 +141,7 @@
   font-size: 16px;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .listTask {
@@ -182,6 +207,7 @@
   font-weight: 500;
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
 }
 
 .buttonDelete {
@@ -233,4 +259,33 @@
 
 .completed {
   inset: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .layerInputTaskAndListTask {
+    width: 700px;
+  }
+
+  .layerTaskNameAndDescriptionAndButton {
+    flex-wrap: nowrap;
+  }
+
+  .layerTaskNameAndDescriptionAndButton {
+    width: 100%;
+    align-items: center;
+  }
+
+  .taskDescription {
+    margin-top: 0;
+    margin-left: var(--spacing-value);
+  }
+
+  .buttonAddTask {
+    height: fit-content;
+    min-width: 100px;
+    width: 100px;
+    border-radius: 50px;
+    margin-left: var(--spacing-value);
+    margin-top: 0;
+  }
 }

@@ -52,6 +52,11 @@ const ToDoList = () => {
 use by the parameter props.
 
 2.3.1. props.variable
+- pass props
+<InputTask addTaskProcess={addTaskProcess} />
+
+- use props
+props.addTaskProcess
 
 2.3.2. props.children
 

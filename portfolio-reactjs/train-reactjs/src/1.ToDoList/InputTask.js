@@ -1,31 +1,151 @@
 import React from "react";
 
-const InputTask = () => {
+const taskObject = {
+  taskName: "",
+  taskDescription: "",
+};
+
+const classes = {
+  displayNone: "displayNone",
+};
+
+const InputTask = (props) => {
+  const { addTaskProcess } = props;
+
+  const [taskName, setTaskName] = React.useState("");
+  const [taskDescription, setTaskDescription] = React.useState("");
+
   const handleInputTaskNameChange =
     /**
      *
      * @param {React.ChangeEvent} event
      */
     function (event) {
-      console.log(event);
+      const taskName = event.target.value;
+
+      setTaskName(taskName);
+    };
+
+  const validateForm =
+    /**
+     *
+     * @param {taskObject} taskData
+     */
+    function (taskData) {
+      if (
+        taskData.taskName.length === 0 ||
+        taskData.taskDescription.length === 0
+      ) {
+        return false;
+      }
+      return true;
+    };
+
+  const handleButtonAddTaskOnclick =
+    /**
+     *
+     * @param {React.MouseEvent} event
+     */
+    function (event) {
+      const wasAllowToAdd = wasAllowToAddTask();
+
+      if (wasAllowToAdd) {
+        const taskData = {
+          taskName: taskName,
+          taskDescription: taskDescription,
+        };
+
+        // add task
+        addTaskProcess(taskData);
+
+        // refresh input
+        setTaskName("");
+        setTaskDescription("");
+
+        return;
+      }
+    };
+
+  const wasAllowToAddTask = function () {
+    const taskData = {
+      taskName: taskName,
+      taskDescription: taskDescription,
+    };
+
+    const layerValidateForm =
+      document.getElementsByClassName("layerValidateForm")[0];
+
+    const wasFormValid = validateForm(taskData);
+
+    if (wasFormValid) {
+      layerValidateForm.classList.add(classes.displayNone);
+
+      return true;
+    }
+
+    if (!wasFormValid) {
+      layerValidateForm.classList.remove(classes.displayNone);
+      return false;
+    }
+  };
+
+  const handleInputTaskOnkeydown =
+    /**
+     *
+     * @param {React.KeyboardEvent} event
+     */
+    function (event) {
+      const key = event.key;
+
+      if (key === "Enter") {
+        const wasAllowToAdd = wasAllowToAddTask();
+
+        if (wasAllowToAdd) {
+          const taskData = {
+            taskName: taskName,
+            taskDescription: taskDescription,
+          };
+
+          // add task
+          addTaskProcess(taskData);
+
+          // refresh input
+          setTaskName("");
+          setTaskDescription("");
+
+          return;
+        }
+      }
     };
 
   return (
-    <div className="inputTask">
-      <div className="layerTaskNameAndDescription">
+    <div className="inputTask" onKeyDown={handleInputTaskOnkeydown}>
+      <div className="layerTaskNameAndDescriptionAndButton">
         <div className="taskName">
           <label className="labelTaskName">Name</label>
           <input
+            value={taskName}
             onChange={handleInputTaskNameChange}
             className="inputTaskName"
           />
         </div>
         <div className="taskDescription">
           <label className="labelTaskDescription">Description</label>
-          <input className="inputTaskDescription" />
+          <input
+            value={taskDescription}
+            onChange={(event) => setTaskDescription(event.target.value)}
+            className="inputTaskDescription"
+          />
+        </div>
+
+        <div onClick={handleButtonAddTaskOnclick} className="buttonAddTask">
+          Add Task
         </div>
       </div>
-      <div className="buttonAddTask">Add Task</div>
+
+      <div className="layerValidateForm displayNone">
+        <div className="validateValue error">Form Invalid</div>
+      </div>
     </div>
   );
 };
