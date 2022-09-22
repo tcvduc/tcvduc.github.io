@@ -30,6 +30,13 @@
     translateX0: "translateX0",
     navigate: "navigate",
     iframeIntroduction: "iframe-introduction",
+    technologyName: "technologyName",
+    layerListProjects: "layerListProjects",
+    htmlCssJs: "html-css-js",
+    reactjs: "reactjs",
+    introductionTab: "introductionTab",
+    portfolioTab: "portfolioTab",
+    sidebarSubSubNavigate: "sidebar-sub-sub-navigate",
   };
 
   const sessionSideBarKey = "SIDE_BAR_INDEX";
@@ -49,7 +56,7 @@
   };
 
   const sidebarNavigateIndexNote = {
-    index0: {
+    introductionTab: {
       value: 0,
       title: "Introduction",
 
@@ -76,7 +83,7 @@
         `,
       },
     },
-    index1: {
+    portfolioTab: {
       value: 1,
       title: "Portfolio",
       content: {
@@ -88,25 +95,27 @@
         width="100%" ></iframe>`,
       },
     },
-    index2: {
-      value: 2,
-      title: "Expanding Cards",
-      content: {
-        light: `<iframe width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-light/1.html" /> `,
-        dark: `<iframe  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/1.html" />`,
+
+    technologyHtmlCssJsProjects: [
+      {
+        projectHashtag: "01",
+        projectName: "Expanding Cards",
+        content: {
+          light: `<iframe width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-light/1.html" /> `,
+          dark: `<iframe  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/1.html" />`,
+        },
       },
-    },
-    index3: {
-      value: 3,
-      title: "Progress Steps",
-      content: `
-      <iframe 
-        src="./portfolio/2.progress-steps/solve-7/2.html"
-         height="100%"
-        width="100%" >
-      </iframe>
-      `,
-    },
+
+      {
+        projectHashtag: "02",
+        projectName: "Progress Steps",
+        content: {
+          light: `<iframe width="100%" height="100%" src="./portfolio-shred/2.progress-steps/shred/iframe-light/2.html" /> `,
+          dark: `<iframe  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/2.html" />`,
+        },
+      },
+    ],
+
     index4: {
       value: 4,
       title: "Rotating Navigation",
@@ -598,7 +607,7 @@
         if (currentAppColor === sessionCurrentAppColor.value.dark) {
           displayCaseIndexContent(
             contentElement,
-            sidebarNavigateIndexNote.index0.content.dark
+            sidebarNavigateIndexNote.introductionTab.content.dark
           );
           return;
         }
@@ -607,7 +616,7 @@
         if (currentAppColor === sessionCurrentAppColor.value.light) {
           displayCaseIndexContent(
             contentElement,
-            sidebarNavigateIndexNote.index0.content.light
+            sidebarNavigateIndexNote.introductionTab.content.light
           );
         }
 
@@ -618,7 +627,7 @@
         if (currentAppColor === sessionCurrentAppColor.value.dark) {
           displayCaseIndexContent(
             contentElement,
-            sidebarNavigateIndexNote.index1.content.dark
+            sidebarNavigateIndexNote.portfolioTab.content.dark
           );
           return;
         }
@@ -627,7 +636,7 @@
         if (currentAppColor === sessionCurrentAppColor.value.light) {
           displayCaseIndexContent(
             contentElement,
-            sidebarNavigateIndexNote.index1.content.light
+            sidebarNavigateIndexNote.portfolioTab.content.light
           );
         }
 
@@ -730,7 +739,7 @@
 
       displayCaseIndexContent(
         content,
-        sidebarNavigateIndexNote.index0.content.light
+        sidebarNavigateIndexNote.introductionTab.content.light
       );
     };
   }
@@ -778,6 +787,21 @@
       };
   }
 
+  /**
+   *
+   * @param {HTMLElement[]} technologyNames
+   * @param {HTMLElement[]} layerListProjects
+   *
+   *
+   */
+  function handleTechnologyNameOnclick(technologyNames, layerListProjects) {
+    for (let i = technologyNames.length - 1; i >= 0; --i) {
+      technologyNames[i].onclick = function () {
+        layerListProjects[i].classList.toggle(classes.displayNone);
+      };
+    }
+  }
+
   function detectDOMChange() {
     const mutationObserve = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
@@ -787,7 +811,7 @@
             newValue: mutation.target.classList.value,
             element: mutation.target,
           };
-          console.log(changes);
+          // console.log(changes);
         }
       });
     });
@@ -800,6 +824,132 @@
       attributeOldValue: true,
       characterDataOldValue: true,
     });
+  }
+
+  /**
+   *
+   * @param {HTMLElement} introductionTab
+   * @param {HTMLElement} contentElement
+   * @param {HTMLElement[]} sidebarNavigates
+   *
+   *
+   */
+  function handleSidebarIntroductionTabOnclick(
+    introductionTab,
+    contentElement,
+    sidebarNavigates
+  ) {
+    introductionTab.onclick = function () {
+      // remove active color navigate
+      for (let i = sidebarNavigates.length - 1; i >= 0; --i) {
+        sidebarNavigates[i].classList.remove(classes.active);
+      }
+
+      // active sidebar navigate
+      sidebarNavigates[0].classList.add(classes.active);
+
+      // display content
+      const currentAppColor = getSessionCurrentAppColor();
+
+      switchIndexDisplayCaseIndexContentCorrespondingAppColor(
+        0,
+        currentAppColor,
+        contentElement
+      );
+    };
+  }
+
+  /**
+   *
+   * @param {HTMLElement} portfolioTab
+   * @param {HTMLElement} contentElement
+   * @param {HTMLElement[]} sidebarNavigates
+   *
+   *
+   */
+  function handleSidebarPortfolioTabOnclick(
+    portfolioTab,
+    contentElement,
+    sidebarNavigates
+  ) {
+    portfolioTab.onclick = function () {
+      // remove active color navigate
+      for (let i = sidebarNavigates.length - 1; i >= 0; --i) {
+        sidebarNavigates[i].classList.remove(classes.active);
+      }
+
+      // add active color
+      sidebarNavigates[1].classList.add(classes.active);
+
+      // display content
+      const currentAppColor = getSessionCurrentAppColor();
+
+      switchIndexDisplayCaseIndexContentCorrespondingAppColor(
+        1,
+        currentAppColor,
+        contentElement
+      );
+    };
+  }
+
+  /**
+   *
+   * @param {HTMLElement[]} sidebarHtmlCssJsProjectIndex
+   * @param {HTMLElement} contentElement
+   *
+   */
+  function handleTechnologyHtmlCssJsSidebarIndexOnclick(
+    sidebarHtmlCssJsProjectIndex,
+    contentElement
+  ) {
+    for (let i = sidebarHtmlCssJsProjectIndex.length - 1; i >= 0; --i) {
+      sidebarHtmlCssJsProjectIndex[i].onclick = function () {
+        console.log(i);
+      };
+    }
+  }
+
+  /**
+   *
+   * @param {string} projectHashTag
+   * @param {string} projectName
+   *
+   */
+  function createAnSidebarNavigateSubSubNavigateElement(
+    projectHashTag,
+    projectName
+  ) {
+    const htmlCode = `
+    <div class="navigate sidebar-sub-sub-navigate">
+                ${projectHashTag}. ${projectName}
+    </div>
+    `;
+
+    const ret = document.createElement("div");
+    ret.classList.add(classes.navigate);
+    ret.classList.add(classes.sidebarSubSubNavigate);
+
+    const textContent = `${projectHashTag}. ${projectName}`;
+    ret.innerHTML = textContent;
+    return ret;
+  }
+
+  /**
+   *
+   * @param {HTMLElement[]} sidebarHtmlCssJsProjectLayer
+   */
+  function displaySidebarHtmlCssJsProject(sidebarHtmlCssJsProjectLayer) {
+    const projectLengthMinus1 =
+      sidebarNavigateIndexNote.technologyHtmlCssJsProjects.length - 1;
+
+    for (let i = 0; i <= projectLengthMinus1; ++i) {
+      const sidebarSubSubElement = createAnSidebarNavigateSubSubNavigateElement(
+        sidebarNavigateIndexNote.technologyHtmlCssJsProjects[i].projectHashtag,
+        sidebarNavigateIndexNote.technologyHtmlCssJsProjects[i].projectName
+      );
+
+      sidebarHtmlCssJsProjectLayer[0].appendChild(sidebarSubSubElement);
+    }
   }
 
   function main() {
@@ -836,7 +986,7 @@
     )[0];
     const faFaPrint = document.getElementsByClassName(classes.faFaPrint)[0];
 
-    const content = document.getElementsByClassName(classes.content)[0];
+    const contentElement = document.getElementsByClassName(classes.content)[0];
 
     const sidebarNavigates = document.querySelectorAll(
       classes.sidebarNavigates
@@ -854,12 +1004,72 @@
       classes.layerWrapForMobile
     )[0];
 
+    const technologyNames = document.getElementsByClassName(
+      classes.technologyName
+    );
+
+    const layerListProjects = document.getElementsByClassName(
+      classes.layerListProjects
+    );
+
+    const sidebarReactJsProjectIndex = document.querySelectorAll(
+      `.${classes.reactjs}~.${classes.layerListProjects} .${classes.navigate}`
+    );
+
+    const sidebarHtmlCssJsProjectIndex = document.querySelectorAll(
+      `.${classes.htmlCssJs}~.${classes.layerListProjects} .${classes.navigate}`
+    );
+
+    const introductionTab = document.getElementsByClassName(
+      classes.introductionTab
+    )[0];
+
+    const portfolioTab = document.getElementsByClassName(
+      classes.portfolioTab
+    )[0];
+
+    const sidebarHtmlCssJsProjectLayer = document.querySelectorAll(
+      `.${classes.htmlCssJs}~.${classes.layerListProjects}`
+    );
+
+    handleTechnologyNameOnclick(technologyNames, layerListProjects);
+
     handleHamburgerOnclick(hamburger, layer);
 
-    // w
-    handleSidebarNavigatesOnclick(sidebarNavigates, content);
+    displaySidebarHtmlCssJsProject(sidebarHtmlCssJsProjectLayer);
+    /**
+     * Sidebar navigation on click
+     * + Introduction Tab - done
+     * + Portfolio Tab - done
+     *
+     * + HTML / CSS / JS
+     *   + active tab
+     *   + display content
+     *
+     * + ReactJS
+     *   + active tab
+     *   + display content
+     *
+     */
 
-    // w
+    handleSidebarIntroductionTabOnclick(
+      introductionTab,
+      contentElement,
+      sidebarNavigates
+    );
+
+    handleSidebarPortfolioTabOnclick(
+      portfolioTab,
+      contentElement,
+      sidebarNavigates
+    );
+
+    handleTechnologyHtmlCssJsSidebarIndexOnclick(
+      sidebarHtmlCssJsProjectIndex,
+      contentElement
+    );
+
+    // dark mode
     handleButtonDarkPageOnclick(
       buttonDarkPage,
       layerContent,
@@ -874,10 +1084,10 @@
       layerSidebarNavigation,
       layer,
       layerBrushContent,
-      content
+      contentElement
     );
 
-    // w
+    // light mode
     handleButtonLightPageOnclick(
       buttonLightPage,
       layerContent,
@@ -892,21 +1102,20 @@
       layerBrushContent,
       layer,
       layerSidebarNavigation,
-      content
+      contentElement
     );
 
     handleCloseSearchOnclick(closeSearch, inputSearchPortfolio);
 
-    // W
-    handleSearchOnclick(search, layerSearchPortfolio, content);
+    handleSearchOnclick(search, layerSearchPortfolio, contentElement);
 
     handleRubOnclick(rub, layerBrushContent);
 
     // web page first time on load
-    handleMobileFirstTimeLoad(layer, layerWrapForMobile, content);
+    handleMobileFirstTimeLoad(layer, layerWrapForMobile, contentElement);
 
     // detect Project Side Bar Index Session Change
-    detectProjectSideBarIndexSessionChange(sidebarNavigates, content);
+    detectProjectSideBarIndexSessionChange(sidebarNavigates, contentElement);
 
     // detect DOM Change
     detectDOMChange();

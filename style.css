@@ -358,6 +358,23 @@ iframe {
   color: var(--active-dark-stroke-color);
 }
 
+.sidebar-sub-sub-navigate {
+  margin-top: 18px;
+  margin-left: 18px;
+}
+
+.technologyName {
+  color: var(--color-stroke);
+}
+
+.displayNone {
+  display: none;
+}
+
+.layer.active-dark .technologyName {
+  color: var(--active-dark-stroke-color);
+}
+
 /* Responsive for device width from 768px  */
 
 @media screen and (min-width: 768px) {
@@ -368,9 +385,14 @@ iframe {
 
   .layer-sidebar-navigation {
     width: 20vw;
+    font-size: 20px;
   }
 
   .layer-content {
     width: 80vw;
+  }
+
+  .layer {
+    overflow-x: hidden;
   }
 }

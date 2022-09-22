@@ -8,6 +8,7 @@
     bar: "bar",
     projectInformation: "project-information",
     layerBars: "layerBars",
+    reactjs: "reactjs",
   };
 
   const elementAttributes = {
@@ -21,6 +22,15 @@
       hashtag: "01",
       dataSideBarIndex: 2,
       projectName: "Expanding Cards",
+      liveDemoHref: `"/portfolio-shred/1.expanding-cards/live-demo"`,
+    },
+  ];
+
+  const portfolioReactJSProject = [
+    {
+      hashtag: "01",
+      dataSideBarIndex: 2,
+      projectName: "To Do List",
       liveDemoHref: `"/portfolio-shred/1.expanding-cards/live-demo"`,
     },
   ];
@@ -65,7 +75,6 @@
    */
   function innerHTMLPortfolioBars(layerBars) {
     portfolioProjects.forEach(function (project) {
-      console.log(project);
       const portfolioBarElement = createAnPortfolioBarElement(
         project.hashtag,
         project.dataSideBarIndex,

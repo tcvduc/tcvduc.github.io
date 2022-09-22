@@ -45,6 +45,7 @@
 .title {
   font-weight: 500;
   color: var(--color-stroke);
+  font-size: 20px;
 }
 
 .shredHTML,
@@ -57,6 +58,7 @@
   display: flex;
   padding: 2px 4px;
   background-color: var(--color-shred-background);
+  font-size: 18px;
 }
 
 .openTag {
@@ -104,6 +106,7 @@
 
 .layerSourceCode a {
   color: var(--color-a-tag);
+  font-size: 18px;
 }
 
 .demo,
