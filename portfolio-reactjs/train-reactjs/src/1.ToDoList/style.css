@@ -161,12 +161,14 @@
   color: var(--color-add-button);
   font-size: 24px;
   font-weight: 500;
+  user-select: none;
 }
 
 .itemTaskDescription {
   color: var(--color-item-description);
   font-weight: 500;
   margin-top: 12px;
+  user-select: none;
 }
 
 .buttonDelete,
