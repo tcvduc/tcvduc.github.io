@@ -51,6 +51,23 @@ const ToDoList = () => {
     updateLocalStorageTaskData(newTaskData);
   };
 
+  const updateTaskProcess = function (task) {
+    console.log(task);
+    let newTaskData = [...tasks];
+
+    for (let i = newTaskData.length - 1; i >= 0; --i) {
+      if (newTaskData[i].taskId === task.taskId) {
+        newTaskData[i] = task;
+      }
+    }
+
+    // set new task data
+    setTasks(newTaskData);
+
+    // update local storage task data
+    updateLocalStorageTaskData(newTaskData);
+  };
+
   React.useEffect(function () {
     // save data to local storage to close browser it still exist
 
@@ -72,6 +89,7 @@ const ToDoList = () => {
           {tasks.map(function (task, index) {
             return (
               <ItemTask
+                updateTaskProcess={updateTaskProcess}
                 deleteTaskProcess={deleteTaskProcess}
                 {...task}
                 key={index}

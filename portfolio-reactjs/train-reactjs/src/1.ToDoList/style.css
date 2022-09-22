@@ -9,12 +9,26 @@
   --color-bg: #333333;
   --color-add-button: #ff9900;
   --color-delete-text: #dc3942;
-  --color-complete-text: #14b856;
+  --color-complete-text: #178b46;
   --color-item-text: #f38b18;
   --color-item-description: #e3ebf0;
   --color-item-bg: #444444;
   --border-radius-value: 2px;
   --spacing-value: 24px;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--color-item-bg);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-item-bg);
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-add-button);
+  border-radius: 15px;
 }
 
 .layer {
@@ -167,7 +181,6 @@
 }
 
 .layerItemTaskNameAndDescription {
-  width: 200px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -175,6 +188,7 @@
 }
 
 .layerTaskStatusAndDeleteButton {
+  margin-left: 24px;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -187,6 +201,7 @@
   font-size: 24px;
   font-weight: 500;
   user-select: none;
+  word-break: break-all;
 }
 
 .itemTaskDescription {
@@ -194,6 +209,7 @@
   font-weight: 500;
   margin-top: 12px;
   user-select: none;
+  word-break: break-all;
 }
 
 .buttonDelete,
