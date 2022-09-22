@@ -8,8 +8,8 @@
 :root {
   --color-bg: #333333;
   --color-add-button: #ff9900;
-  --color-delete-text: #dc7277;
-  --color-complete-text: #8cc6a3;
+  --color-delete-text: #dc3942;
+  --color-complete-text: #14b856;
   --color-item-text: #f38b18;
   --color-item-description: #e3ebf0;
   --color-item-bg: #444444;
@@ -19,7 +19,7 @@
 
 .layer {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--color-bg);
 }
 
@@ -34,7 +34,6 @@
 
 .layerInputTaskAndListTask {
   width: 700px;
-  height: 200px;
   margin: 0 auto;
 }
 
@@ -75,7 +74,7 @@
 }
 
 .buttonAddTask:active {
-  background-color: #ff9900d9;
+  background-color: #ffc368;
 }
 
 .taskName {
@@ -118,4 +117,118 @@
   font-size: 16px;
   display: flex;
   align-items: center;
+}
+
+.listTask {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.itemTask {
+  width: 100%;
+  background-color: var(--color-item-bg);
+  margin-bottom: 24px;
+  border-radius: var(--border-radius-value);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.itemTask:last-child {
+  margin-bottom: 0;
+}
+
+.layerItemTaskNameAndDescription {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.layerTaskStatusAndDeleteButton {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemTaskName {
+  color: var(--color-add-button);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.itemTaskDescription {
+  color: var(--color-item-description);
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.buttonDelete,
+.buttonStatus {
+  padding: 6px 12px;
+  border-radius: 50px;
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+.buttonDelete {
+  margin-left: 24px;
+  background-color: #e0cccc;
+  color: var(--color-delete-text);
+  border: 1px solid var(--color-delete-text);
+}
+
+.buttonDelete:hover {
+  background-color: #ffdede;
+}
+
+.buttonDelete:active {
+  background-color: #ffbebe;
+}
+
+.buttonStatus.completed {
+  background-color: #d9e4de;
+  color: var(--color-complete-text);
+  border: 1px solid var(--color-complete-text);
+}
+
+.buttonStatus.completed:hover {
+  background-color: #e3ffee;
+}
+
+.buttonStatus.completed:active {
+  background-color: #a2f9c5;
+}
+
+.buttonStatus.working {
+  color: #3791ff;
+  background-color: #cbe2fe;
+  border: 1px solid #3791ff;
+}
+
+.buttonStatus.working:hover {
+  background-color: #e3f0ff;
+}
+
+.buttonStatus.working:active {
+  background-color: #b6d8ff;
+}
+
+.working {
+  inset: 0;
+}
+
+.completed {
+  inset: 0;
 }

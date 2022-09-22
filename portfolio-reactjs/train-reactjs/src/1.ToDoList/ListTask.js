@@ -1,7 +1,12 @@
 import React from "react";
 
-const ListTask = () => {
-  return <div>List Task</div>;
-};
+const ListTask =
+  /**
+   *
+   * @param {React.PropsWithChildren} props
+   */
+  (props) => {
+    return <div className="listTask">{props.children}</div>;
+  };
 
 export default ListTask;

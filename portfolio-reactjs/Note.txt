@@ -44,3 +44,42 @@ const ToDoList = () => {
     </div>
   );
 };
+
+
+2.3. Props
+- Pass variable from a component to another
+- Another component which has passed variable
+use by the parameter props.
+
+2.3.1. props.variable
+
+2.3.2. props.children
+
+
+const ToDoList = () => {
+  return (
+    <div className="layer">
+      <div className="title">To Do List</div>
+      <div className="layerInputTaskAndListTask">
+        <InputTask />
+
+        <ListTask>
+          <ItemTask />
+          <ItemTask />
+          <ItemTask />
+        </ListTask>
+      </div>
+    </div>
+  );
+};
+
+
+
+const ListTask =
+  /**
+   *
+   * @param {React.PropsWithChildren} props
+   */
+  (props) => {
+    return <div className="listTask">{props.children}</div>;
+  };
