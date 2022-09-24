@@ -180,7 +180,7 @@
         project.liveDemoHref
       );
 
-      layerReactJsBars.appendChild(portfolioBarElement);
+      // layerReactJsBars.appendChild(portfolioBarElement);
     });
   }
 

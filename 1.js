@@ -1,21 +1,17 @@
-function f2() {
-  console.log("f2");
+/**
+ *
+ * @param {string} s
+ */
+function f(s) {
+  const regexMiddleSPacings = / +/g;
+  const regexLeftSpacing = /^ +/g;
+  const regexRightSpacing = / +$/g;
+
+  return s
+    .replace(regexMiddleSPacings, " ")
+    .replace(regexLeftSpacing, "")
+    .replace(regexRightSpacing, "");
 }
 
-function f3() {
-  console.log("f3");
-}
-
-function f1() {
-  let n = 1;
-
-  if (n >= 1) {
-    f2();
-  }
-
-  if (n < 1) {
-    f3();
-  }
-}
-
-f1(f2, f3);
+const s = "    abc        def    ";
+console.log(f(s));
