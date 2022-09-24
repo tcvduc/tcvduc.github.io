@@ -1,0 +1,16 @@
+name: deployment-environment-test-site
+
+on:
+  push:
+    branches:
+      - test-branch
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment:
+      name: test-site
+      url: https://github.com
+    steps:
+      - name: deploy
+        # ... deployment specific steps
