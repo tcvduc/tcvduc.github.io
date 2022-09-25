@@ -31,6 +31,14 @@
 
   /**
    *
+   * @param {HTMLIFrameElement} iframe
+   */
+  function f(iframe) {
+    console.log(iframe.contentWindow.document);
+  }
+
+  /**
+   *
    * @param {HTMLElement} inputSearchPortfolio
    * @param {HTMLElement[]} titles
    *
@@ -48,6 +56,11 @@
 
         if (key === "Enter") {
           const currentSidebarTabActive = detectSideBarActiveTab();
+          const iframe = document.getElementsByTagName("iframe")[0];
+
+          const titles2 = document.getElementsByClassName("title");
+
+          f(iframe);
 
           switch (currentSidebarTabActive) {
             case sideBarTabName.Introduction:
