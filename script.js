@@ -248,7 +248,7 @@
         const layerSearchPortfolioHeight =
           layerSearchPortfolio.getBoundingClientRect().height;
 
-        const paddingValue = 10;
+        const paddingValue = 12;
 
         const k = layerSearchPortfolioHeight + paddingValue;
 
@@ -419,18 +419,6 @@
         contentElement
       );
     };
-  }
-
-  /**
-   *
-   * @param {HTMLIFrameElement} iframe
-   */
-  function iframeManipulation(iframe) {
-    iframe.onload = function () {};
-
-    const iframeDocument = iframe.contentWindow.top.document;
-
-    console.log(iframeDocument);
   }
 
   function getSessionCurrentSideBarIndex() {
