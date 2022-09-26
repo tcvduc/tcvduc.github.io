@@ -60,6 +60,8 @@
 
           const titles2 = document.getElementsByClassName("title");
 
+          console.log(inputValue);
+
           f(iframe);
 
           switch (currentSidebarTabActive) {
