@@ -12,9 +12,19 @@
    * + step 2: advance regex trim step 1 - done
    * + step 3: from parent html send a message string to children iframe - done
    * + step 4: from parent html send step 2 ret to children iframe - done
-   * + step 5: define an array of strings which allow to search, ["brief", "introduction", "experience", "education", "contact"]
-   * + step 6: detect search keyword whether it is equal to step 5 or not, ignore computer case sensitive
+   * + step 5: define an array of strings which allow to search,
+   *   ["brief", "introduction", "experience", "education", "contact"] - done
+   * + step 6: detect search keyword whether it is equal to step 5 or not,
+   *   ignore computer case sensitive - done
    * + step 7: if step 6 was true, scroll the web site to the keyword element position
+   *   + step 7.1: detect mouse coordinate
+   *   + step 7.2: find a coordinate, y-number to define where
+   *   the web page should scroll to
+   *   + step 7.3: get element keyword offset top
+   *   + step 7.4: calculate delta = step 7.3 - step 7.2
+   *   + step 7.5: scroll to delta
+   *
+   *
    * + step 8: hight light element contains keyword
    *
    *

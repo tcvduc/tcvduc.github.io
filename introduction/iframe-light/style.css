@@ -8,7 +8,7 @@
 
 :root {
   --color-hover: rgba(165, 165, 165, 0.398);
-
+  --background-color-found-search-keyword: rgb(128, 162, 255);
   --color-stroke: #747474;
   --border-radius-value: 2px;
   --border-width-value: 2px;
@@ -231,6 +231,11 @@ polygon {
 
 .title-network {
   margin-bottom: 12px;
+}
+
+.foundSearchKeyword {
+  width: fit-content;
+  background-color: var(--background-color-found-search-keyword);
 }
 
 /*
