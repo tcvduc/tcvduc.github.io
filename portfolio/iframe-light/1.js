@@ -185,6 +185,18 @@
     }
   }
 
+  function thisIsPortfolioIframeLightGetPostMessageFromParent() {
+    window.onmessage =
+      /**
+       *
+       * @param {MessageEvent} event
+       */
+      function (event) {
+        const { data: message } = event;
+        console.log(message);
+      };
+  }
+
   function main() {
     const hashtags = document.getElementsByClassName(classes.hashtag);
     const projects = document.getElementsByClassName(classes.project);
@@ -198,6 +210,8 @@
     innerHTMLPortfolioReactJSBars(layerReactJsBars);
 
     barShredElementOnMouseOverAndOnMouseLeave(hashtags, projects, liveDemos);
+
+    thisIsPortfolioIframeLightGetPostMessageFromParent();
   }
 
   main();

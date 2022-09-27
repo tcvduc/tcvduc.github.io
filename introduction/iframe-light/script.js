@@ -272,6 +272,18 @@
     };
   }
 
+  function thisIsIntroductionIframeLightGetPostMessageFromHtmlParent() {
+    window.onmessage =
+      /**
+       *
+       * @param {MessageEvent} event
+       */
+      function (event) {
+        const { data: message } = event;
+        console.log(message);
+      };
+  }
+
   function main() {
     const contacts = document.getElementsByClassName(classes.contact);
     const iconCopies = document.getElementsByClassName(classes.iconCopy);
@@ -288,6 +300,8 @@
     handleContactOnclick(contacts, iconCopies, sectionContact);
 
     handleButtonOpenNetworksOnclick(buttonOpenNetworks, socialNetworkIcons);
+
+    thisIsIntroductionIframeLightGetPostMessageFromHtmlParent();
   }
 
   main();
