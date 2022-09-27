@@ -1,5 +1,6 @@
 (function () {
   const classes = {
+    title: "title",
     contact: "contact",
     contactContent: "contact-content",
     active: "active",
@@ -8,7 +9,16 @@
     sectionContact: "section-contact",
     buttonOpenNetworks: "buttonOpenNetworks",
     socialNetworkIcon: "social-network-icon",
+    foundSearchKeyword: "foundSearchKeyword",
   };
+
+  const allowSearchKeyword = [
+    "introduction",
+    "brief",
+    "experience",
+    "education",
+    "contact",
+  ];
 
   const responsiveNumber = {
     width768px: 768,
@@ -169,6 +179,19 @@
     return ret;
   }
 
+  /**
+   *
+   * @param {string} searchKeyword
+   */
+  function wasFoundKeywordInAllowList(searchKeyword) {
+    for (let i = allowSearchKeyword.length - 1; i >= 0; --i) {
+      if (allowSearchKeyword[i].toLowerCase() === searchKeyword.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function createAnSuccessCheckSVG() {
     const ret = `
     <svg height="100%" width="100%" viewBox="0 0 100 100">
@@ -272,15 +295,54 @@
     };
   }
 
-  function thisIsIntroductionIframeLightGetPostMessageFromHtmlParent() {
+  /**
+   *
+   * @param {HTMLElement[]} titles
+   */
+  function thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(titles) {
     window.onmessage =
       /**
        *
        * @param {MessageEvent} event
        */
       function (event) {
-        const { data: message } = event;
-        console.log(message);
+        const { data: searchKeyword } = event;
+        // console.log(window.innerHeight);
+        const searchKeywordLowercased = searchKeyword.toLowerCase();
+
+        for (let j = titles.length - 1; j >= 0; --j) {
+          titles[j].classList.remove(classes.foundSearchKeyword);
+        }
+
+        for (let i = titles.length - 1; i >= 0; --i) {
+          const titleText = titles[i].textContent.toLowerCase();
+
+          if (titleText.includes(searchKeywordLowercased)) {
+            const element = titles[i];
+            const y1 = element.getBoundingClientRect().y;
+
+            const y2 = element.getBoundingClientRect().top;
+
+            element.classList.add(classes.foundSearchKeyword);
+
+            console.log(y1);
+            console.log(y2);
+
+            if (y1 < 0 && i === 0) {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }
+
+            if (y1 < 0 && i !== 0) {
+              // window.scrollTo({
+              //   top: 100,
+              //   behavior: "smooth",
+              // });
+            }
+          }
+        }
       };
   }
 
@@ -296,12 +358,17 @@
     const socialNetworkIcons = document.getElementsByClassName(
       classes.socialNetworkIcon
     );
+    const titles = document.getElementsByClassName(classes.title);
 
     handleContactOnclick(contacts, iconCopies, sectionContact);
 
     handleButtonOpenNetworksOnclick(buttonOpenNetworks, socialNetworkIcons);
 
-    thisIsIntroductionIframeLightGetPostMessageFromHtmlParent();
+    thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(titles);
+
+    console.log(
+      window.document.getElementsByClassName("input-search-portfolio")[0]
+    );
   }
 
   main();
