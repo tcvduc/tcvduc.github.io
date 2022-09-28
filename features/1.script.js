@@ -62,7 +62,7 @@
 
       content: {
         light: `
-        <iframe sandbox="allow-same-origin allow-scripts"
+        <iframe sandbox=" allow-popups allow-same-origin allow-scripts"
           class="iframe-light-introduction"
           src="./introduction/iframe-light/index.html"
           height="100%"
@@ -72,7 +72,7 @@
         </iframe>
       `,
         dark: `
-        <iframe sandbox="allow-same-origin allow-scripts"
+        <iframe sandbox=" allow-popups allow-same-origin allow-scripts"
         class="iframe-light-introduction"
         src="./introduction/iframe-dark/index.html"
         height="100%"
@@ -87,10 +87,10 @@
       value: 1,
       title: "Portfolio",
       content: {
-        light: ` <iframe sandbox="allow-same-origin allow-scripts" src="./portfolio/iframe-light/1.html" frameborder="0"
+        light: ` <iframe sandbox=" allow-popups allow-same-origin allow-scripts" src="./portfolio/iframe-light/1.html" frameborder="0"
          height="100%"
         width="100%" ></iframe> `,
-        dark: ` <iframe sandbox="allow-same-origin allow-scripts" src="./portfolio/iframe-dark/1.html" frameborder="0" 
+        dark: ` <iframe sandbox=" allow-popups allow-same-origin allow-scripts" src="./portfolio/iframe-dark/1.html" frameborder="0" 
         height="100%"
         width="100%" ></iframe>`,
       },
@@ -101,8 +101,8 @@
         projectHashtag: "01",
         projectName: "Expanding Cards",
         content: {
-          light: `<iframe sandbox="allow-same-origin allow-scripts" width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-light/1.html" /> `,
-          dark: `<iframe sandbox="allow-same-origin allow-scripts"  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/1.html" />`,
+          light: `<iframe sandbox=" allow-popups allow-same-origin allow-scripts" width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-light/1.html" /> `,
+          dark: `<iframe sandbox=" allow-popups allow-same-origin allow-scripts"  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/1.html" />`,
         },
       },
 
@@ -110,8 +110,8 @@
         projectHashtag: "02",
         projectName: "Progress Steps",
         content: {
-          light: `<iframe sandbox="allow-same-origin allow-scripts" width="100%" height="100%" src="./portfolio-shred/2.progress-steps/shred/iframe-light/2.html" /> `,
-          dark: `<iframe sandbox="allow-same-origin allow-scripts"  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/2.html" />`,
+          light: `<iframe sandbox=" allow-popups allow-same-origin allow-scripts" width="100%" height="100%" src="./portfolio-shred/2.progress-steps/shred/iframe-light/2.html" /> `,
+          dark: `<iframe sandbox=" allow-popups allow-same-origin allow-scripts"  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/2.html" />`,
         },
       },
     ],
@@ -120,7 +120,7 @@
       value: 4,
       title: "Rotating Navigation",
       content: `
-      <iframe sandbox="allow-same-origin allow-scripts" 
+      <iframe sandbox=" allow-popups allow-same-origin allow-scripts" 
         src="./portfolio/3.rotating-navigation/solve-2/3.html"
         height="100%"
         width="100%" >
