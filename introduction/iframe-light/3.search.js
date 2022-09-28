@@ -1,7 +1,33 @@
 (function () {
   const classes = {
     title: "title",
+    foundSearchKeyword: "foundSearchKeyword",
   };
+
+  /**
+   *
+   * @param {HTMLElement} element
+   */
+  function getElementOffset(element) {
+    let offsetTop = 0;
+    let offsetLeft = 0;
+
+    while (
+      element &&
+      !window.isNaN(element.offsetLeft) &&
+      !window.isNaN(element.offsetTop)
+    ) {
+      offsetTop += element.offsetTop;
+      offsetLeft += element.offsetLeft;
+
+      element = element.offsetParent;
+    }
+
+    return {
+      offsetTop,
+      offsetLeft,
+    };
+  }
 
   /**
    *
@@ -27,13 +53,10 @@
           if (titleText.includes(searchKeywordLowercased)) {
             const element = titles[i];
             const y1 = element.getBoundingClientRect().y;
-
-            const y2 = element.getBoundingClientRect().top;
+            const elementOffset = getElementOffset(element);
+            const windowInnerHeight = window.innerHeight;
 
             element.classList.add(classes.foundSearchKeyword);
-
-            console.log(y1);
-            console.log(y2);
 
             if (y1 < 0 && i === 0) {
               window.scrollTo({
@@ -43,6 +66,17 @@
             }
 
             if (y1 < 0 && i !== 0) {
+              window.scrollTo({
+                top: elementOffset.offsetTop,
+                behavior: "smooth",
+              });
+            }
+
+            if (y1 > windowInnerHeight) {
+              window.scrollTo({
+                top: elementOffset.offsetTop,
+                behavior: "smooth",
+              });
             }
           }
         }

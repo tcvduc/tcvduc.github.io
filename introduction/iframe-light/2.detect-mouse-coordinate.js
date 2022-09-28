@@ -11,7 +11,7 @@
        */
       function (event) {
         const { pageX: x, pageY: y } = event;
-        console.log(`(${x},${y})`);
+        // console.log(`(${x},${y})`);
       };
   }
 
