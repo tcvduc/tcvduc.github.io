@@ -53,6 +53,8 @@
           const titleText = titles[i].textContent.toLowerCase();
 
           if (titleText.includes(searchKeywordLowercased)) {
+            console.log(1);
+
             const element = titles[i];
             const y1 = element.getBoundingClientRect().y;
             const elementOffset = getElementOffset(element);
