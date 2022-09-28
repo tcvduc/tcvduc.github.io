@@ -1,5 +1,7 @@
 (function () {
-  const classes = {};
+  const classes = {
+    title: "title",
+  };
 
   function detectMouseCoordinate() {
     window.onmousemove =
@@ -9,7 +11,7 @@
        */
       function (event) {
         const { pageX: x, pageY: y } = event;
-        console.log(`(${x},${y})`);
+        // console.log(`(${x},${y})`);
       };
   }
 

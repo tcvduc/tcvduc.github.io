@@ -1,5 +1,6 @@
 (function () {
   const classes = {
+    title: "title",
     contact: "contact",
     contactContent: "contact-content",
     active: "active",
@@ -8,7 +9,16 @@
     sectionContact: "section-contact",
     buttonOpenNetworks: "buttonOpenNetworks",
     socialNetworkIcon: "social-network-icon",
+    foundSearchKeyword: "foundSearchKeyword",
   };
+
+  const allowSearchKeyword = [
+    "introduction",
+    "brief",
+    "experience",
+    "education",
+    "contact",
+  ];
 
   const responsiveNumber = {
     width768px: 768,
@@ -167,6 +177,19 @@
   </svg>
     `;
     return ret;
+  }
+
+  /**
+   *
+   * @param {string} searchKeyword
+   */
+  function wasFoundKeywordInAllowList(searchKeyword) {
+    for (let i = allowSearchKeyword.length - 1; i >= 0; --i) {
+      if (allowSearchKeyword[i].toLowerCase() === searchKeyword.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
   }
 
   function createAnSuccessCheckSVG() {
