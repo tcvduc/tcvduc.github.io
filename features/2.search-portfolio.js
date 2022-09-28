@@ -33,13 +33,10 @@
    *
    */
 
-  const tags = {
-    iframe: "iframe",
-  };
-
   const classes = {
-    inputSearchPortfolio: "input-search-portfolio",
     title: "title",
+    closeSearch: "close-search",
+    inputSearchPortfolio: "input-search-portfolio",
   };
 
   const sideBarTabName = {
@@ -144,6 +141,7 @@
               // Default Tab Active: Introduction
               console.log("Tab Active: Introduction");
 
+              // from parent html send keyword to children iframe
               fromParentHtmlSendSearchKeywordToIframe(iframe, searchKeyword);
 
               break;
@@ -152,14 +150,40 @@
       };
   }
 
+  /**
+   *
+   * @param {HTMLElement} closeSearch
+   * @param {HTMLElement} inputSearchPortfolio
+   *
+   */
+  function handleCloseSearchOnclick(closeSearch, inputSearchPortfolio) {
+    closeSearch.onclick = function () {
+      inputSearchPortfolio.value = "";
+      inputSearchPortfolio.focus();
+
+      const iframe = document.getElementsByTagName("iframe")[0];
+
+      // from parent html send keyword to children iframe
+      // to remove hight light search result
+      const searchKeyword = "";
+      fromParentHtmlSendSearchKeywordToIframe(iframe, searchKeyword);
+    };
+  }
+
   function main() {
     const inputSearchPortfolio = document.getElementsByClassName(
       classes.inputSearchPortfolio
     )[0];
 
+    const closeSearch = document.getElementsByClassName(classes.closeSearch)[0];
+
     const titles = document.getElementsByClassName(classes.title);
 
+    // input search on keydown
     handleInputSearchPortfolioOnkeydown(inputSearchPortfolio, titles);
+
+    // close search on click
+    handleCloseSearchOnclick(closeSearch, inputSearchPortfolio);
   }
 
   main();

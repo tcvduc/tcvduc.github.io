@@ -1,6 +1,7 @@
 (function () {
   const classes = {
     title: "title",
+    section: "section",
     foundSearchKeyword: "foundSearchKeyword",
   };
 
@@ -8,24 +9,17 @@
    *
    * @param {HTMLElement} element
    */
-  function getElementOffset(element) {
+  function getElementOffsetTop(element) {
     let offsetTop = 0;
-    let offsetLeft = 0;
 
-    while (
-      element &&
-      !window.isNaN(element.offsetLeft) &&
-      !window.isNaN(element.offsetTop)
-    ) {
+    while (element && !window.isNaN(element.offsetTop)) {
       offsetTop += element.offsetTop;
-      offsetLeft += element.offsetLeft;
 
       element = element.offsetParent;
     }
 
     return {
       offsetTop,
-      offsetLeft,
     };
   }
 
@@ -60,9 +54,57 @@
 
   /**
    *
-   * @param {HTMLElement[]} titles
+   * @param {HTMLElement} element
    */
-  function thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(titles) {
+  function wasDivTagElementContainsClassSection(element) {
+    const regex = /DIV/g;
+    const flag1 = regex.test(element.tagName);
+    const flag2 = element.classList.contains(classes.section);
+    return flag1 && flag2;
+  }
+
+  /**
+   *
+   * @param {HTMLElement} element
+   */
+  function wasBodyTagElement(element) {
+    const regex = /BODY/g;
+    return regex.test(element.tagName);
+  }
+
+  /**
+   *
+   * @param {HTMLElement} element
+   */
+  function wasHtmlTagElement(element) {
+    const regex = /HTML/g;
+    return regex.test(element.tagName);
+  }
+
+  /**
+   *
+   * @param {HTMLElement} element
+   */
+  function wasSuitableElementForSearch(element) {
+    /**
+     * + Suitable element for search
+     *   + if element is not a html tag - done
+     *   + if element is not a body tag - done
+     *   + if element is not a div tag contains class section - done
+     *
+     */
+    const flag1 = !wasHtmlTagElement(element);
+    const flag2 = !wasBodyTagElement(element);
+    const flag3 = !wasDivTagElementContainsClassSection(element);
+    const ret = flag1 && flag2 && flag3;
+    return ret;
+  }
+
+  /**
+   *
+   * @param {HTMLElement[]} elements
+   */
+  function thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(elements) {
     window.onmessage =
       /**
        *
@@ -73,35 +115,25 @@
         const searchKeywordLowercased = searchKeyword.toLowerCase();
         const searchKeywordTrimmed = advanceRegexTrim(searchKeywordLowercased);
 
+        for (let i = elements.length - 1; i >= 0; --i) {
+          elements[i].classList.remove(classes.foundSearchKeyword);
+        }
+
         if (searchKeyword !== "") {
-          for (let i = titles.length - 1; i >= 0; --i) {
-            const titleText = titles[i].textContent.toLowerCase();
+          for (let i = elements.length - 1; i >= 0; --i) {
+            const titleText = elements[i].textContent.toLowerCase();
             const titleTextAdvanceTrimmed = advanceRegexTrim(titleText);
             if (titleTextAdvanceTrimmed.includes(searchKeywordTrimmed)) {
-              const element = titles[i];
-              const y1 = element.getBoundingClientRect().y;
-              const elementOffset = getElementOffset(element);
-              const windowInnerHeight = window.innerHeight;
+              const element = elements[i];
 
-              element.classList.add(classes.foundSearchKeyword);
+              const wsefs = wasSuitableElementForSearch(element);
 
-              if (y1 < 0 && i === 0) {
+              if (wsefs) {
+                element.classList.add(classes.foundSearchKeyword);
+                const elementOffsetTop = getElementOffsetTop(element).offsetTop;
+
                 window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                });
-              }
-
-              if (y1 < 0 && i !== 0) {
-                window.scrollTo({
-                  top: elementOffset.offsetTop,
-                  behavior: "smooth",
-                });
-              }
-
-              if (y1 > windowInnerHeight) {
-                window.scrollTo({
-                  top: elementOffset.offsetTop,
+                  top: elementOffsetTop,
                   behavior: "smooth",
                 });
               }
@@ -109,16 +141,12 @@
           }
         }
       };
-
-    for (let i = titles.length - 1; i >= 0; --i) {
-      titles[i].classList.remove(classes.foundSearchKeyword);
-    }
   }
 
   function main() {
-    const titles = document.getElementsByClassName(classes.title);
+    const elements = window.document.querySelectorAll("*");
 
-    thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(titles);
+    thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(elements);
   }
 
   main();
