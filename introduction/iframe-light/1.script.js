@@ -295,57 +295,6 @@
     };
   }
 
-  /**
-   *
-   * @param {HTMLElement[]} titles
-   */
-  function thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(titles) {
-    window.onmessage =
-      /**
-       *
-       * @param {MessageEvent} event
-       */
-      function (event) {
-        const { data: searchKeyword } = event;
-        // console.log(window.innerHeight);
-        const searchKeywordLowercased = searchKeyword.toLowerCase();
-
-        for (let j = titles.length - 1; j >= 0; --j) {
-          titles[j].classList.remove(classes.foundSearchKeyword);
-        }
-
-        for (let i = titles.length - 1; i >= 0; --i) {
-          const titleText = titles[i].textContent.toLowerCase();
-
-          if (titleText.includes(searchKeywordLowercased)) {
-            const element = titles[i];
-            const y1 = element.getBoundingClientRect().y;
-
-            const y2 = element.getBoundingClientRect().top;
-
-            element.classList.add(classes.foundSearchKeyword);
-
-            console.log(y1);
-            console.log(y2);
-
-            if (y1 < 0 && i === 0) {
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              });
-            }
-
-            if (y1 < 0 && i !== 0) {
-              // window.scrollTo({
-              //   top: 100,
-              //   behavior: "smooth",
-              // });
-            }
-          }
-        }
-      };
-  }
-
   function main() {
     const contacts = document.getElementsByClassName(classes.contact);
     const iconCopies = document.getElementsByClassName(classes.iconCopy);
@@ -358,17 +307,10 @@
     const socialNetworkIcons = document.getElementsByClassName(
       classes.socialNetworkIcon
     );
-    const titles = document.getElementsByClassName(classes.title);
 
     handleContactOnclick(contacts, iconCopies, sectionContact);
 
     handleButtonOpenNetworksOnclick(buttonOpenNetworks, socialNetworkIcons);
-
-    thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(titles);
-
-    console.log(
-      window.document.getElementsByClassName("input-search-portfolio")[0]
-    );
   }
 
   main();

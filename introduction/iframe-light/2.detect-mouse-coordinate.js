@@ -1,5 +1,7 @@
 (function () {
-  const classes = {};
+  const classes = {
+    title: "title",
+  };
 
   function detectMouseCoordinate() {
     window.onmousemove =
