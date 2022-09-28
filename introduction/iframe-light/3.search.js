@@ -73,36 +73,39 @@
         const searchKeywordLowercased = searchKeyword.toLowerCase();
         const searchKeywordTrimmed = advanceRegexTrim(searchKeywordLowercased);
 
-        for (let i = titles.length - 1; i >= 0; --i) {
-          const titleText = titles[i].textContent.toLowerCase();
-          const titleTextAdvanceTrimmed = advanceRegexTrim(titleText);
-          if (titleTextAdvanceTrimmed.includes(searchKeywordTrimmed)) {
-            const element = titles[i];
-            const y1 = element.getBoundingClientRect().y;
-            const elementOffset = getElementOffset(element);
-            const windowInnerHeight = window.innerHeight;
+        if (searchKeyword !== "") {
+          console.log(searchKeyword);
+          for (let i = titles.length - 1; i >= 0; --i) {
+            const titleText = titles[i].textContent.toLowerCase();
+            const titleTextAdvanceTrimmed = advanceRegexTrim(titleText);
+            if (titleTextAdvanceTrimmed.includes(searchKeywordTrimmed)) {
+              const element = titles[i];
+              const y1 = element.getBoundingClientRect().y;
+              const elementOffset = getElementOffset(element);
+              const windowInnerHeight = window.innerHeight;
 
-            element.classList.add(classes.foundSearchKeyword);
+              element.classList.add(classes.foundSearchKeyword);
 
-            if (y1 < 0 && i === 0) {
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              });
-            }
+              if (y1 < 0 && i === 0) {
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+              }
 
-            if (y1 < 0 && i !== 0) {
-              window.scrollTo({
-                top: elementOffset.offsetTop,
-                behavior: "smooth",
-              });
-            }
+              if (y1 < 0 && i !== 0) {
+                window.scrollTo({
+                  top: elementOffset.offsetTop,
+                  behavior: "smooth",
+                });
+              }
 
-            if (y1 > windowInnerHeight) {
-              window.scrollTo({
-                top: elementOffset.offsetTop,
-                behavior: "smooth",
-              });
+              if (y1 > windowInnerHeight) {
+                window.scrollTo({
+                  top: elementOffset.offsetTop,
+                  behavior: "smooth",
+                });
+              }
             }
           }
         }
