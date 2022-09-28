@@ -43,7 +43,7 @@
         const { data: searchKeyword } = event;
         const searchKeywordLowercased = searchKeyword.toLowerCase();
 
-        console.log("Was on message first time on load: tcvduc.github.io");
+        console.log("searchKeywordLowercased: ", searchKeywordLowercased);
 
         for (let j = titles.length - 1; j >= 0; --j) {
           titles[j].classList.remove(classes.foundSearchKeyword);
