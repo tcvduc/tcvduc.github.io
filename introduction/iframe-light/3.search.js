@@ -31,6 +31,35 @@
 
   /**
    *
+   * @param {string} s
+   */
+  function advanceRegexTrim(s) {
+    /**
+     * + s = "
+     *    abc     def
+     * "
+     * + s = "   abc   def   "
+     * + s = " abc def "
+     * + s = "abc def"
+     *
+     *
+     *
+     *
+     */
+    const regexDownLine = /\n+/g;
+    const regexMultipleSpacing = / +/g;
+    const regexBeginSpacing = /^ +/g;
+    const regexEndSpacing = / +$/g;
+
+    return s
+      .replace(regexDownLine, "")
+      .replace(regexMultipleSpacing, " ")
+      .replace(regexBeginSpacing, "")
+      .replace(regexEndSpacing, "");
+  }
+
+  /**
+   *
    * @param {HTMLElement[]} titles
    */
   function thisIsIntroductionIframeLightGetPostMessageFromHtmlParent(titles) {
@@ -42,19 +71,12 @@
       function (event) {
         const { data: searchKeyword } = event;
         const searchKeywordLowercased = searchKeyword.toLowerCase();
-
-        console.log("searchKeywordLowercased: ", searchKeywordLowercased);
-
-        for (let j = titles.length - 1; j >= 0; --j) {
-          titles[j].classList.remove(classes.foundSearchKeyword);
-        }
+        const searchKeywordTrimmed = advanceRegexTrim(searchKeywordLowercased);
 
         for (let i = titles.length - 1; i >= 0; --i) {
           const titleText = titles[i].textContent.toLowerCase();
-
-          if (titleText.includes(searchKeywordLowercased)) {
-            console.log(1);
-
+          const titleTextAdvanceTrimmed = advanceRegexTrim(titleText);
+          if (titleTextAdvanceTrimmed.includes(searchKeywordTrimmed)) {
             const element = titles[i];
             const y1 = element.getBoundingClientRect().y;
             const elementOffset = getElementOffset(element);
@@ -85,6 +107,10 @@
           }
         }
       };
+
+    for (let i = titles.length - 1; i >= 0; --i) {
+      titles[i].classList.remove(classes.foundSearchKeyword);
+    }
   }
 
   function main() {
