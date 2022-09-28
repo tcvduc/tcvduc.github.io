@@ -74,7 +74,6 @@
         const searchKeywordTrimmed = advanceRegexTrim(searchKeywordLowercased);
 
         if (searchKeyword !== "") {
-          console.log(searchKeyword);
           for (let i = titles.length - 1; i >= 0; --i) {
             const titleText = titles[i].textContent.toLowerCase();
             const titleTextAdvanceTrimmed = advanceRegexTrim(titleText);
