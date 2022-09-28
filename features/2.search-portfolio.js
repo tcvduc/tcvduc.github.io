@@ -127,7 +127,6 @@
           const currentSidebarTabActive = detectSideBarActiveTab();
 
           const iframe = document.getElementsByTagName("iframe")[0];
-          const titles2 = document.getElementsByClassName("title");
 
           const advanceTrimInputValueRet = advanceRegexTrim(inputValue);
           const searchKeyword = advanceTrimInputValueRet;

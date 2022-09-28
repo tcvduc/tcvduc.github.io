@@ -242,6 +242,12 @@ polyline {
   stroke-width: 10px !important;
 }
 
+.foundSearchKeyword {
+  color: #fff;
+  background-color: #398cff;
+  width: fit-content;
+}
+
 @media screen and (min-width: 500px) {
   .contact {
     width: 400px;
