@@ -16,7 +16,7 @@
     layerBrushContent: "layer-brush-content",
     layerSearchPortfolio: "layer-search-portfolio",
     layerSidebarNavigation: "layer-sidebar-navigation",
-    closeSearch: "close-search",
+
     inputSearchPortfolio: "input-search-portfolio",
     active: "active",
     activeLight: "active-light",
@@ -265,19 +265,6 @@
   function handleRubOnclick(rub, layerBrushContent) {
     rub.onclick = function () {
       layerBrushContent.classList.toggle(classes.displayNone);
-    };
-  }
-
-  /**
-   *
-   * @param {HTMLElement} closeSearch
-   * @param {HTMLElement} inputSearchPortfolio
-   *
-   */
-  function handleCloseSearchOnclick(closeSearch, inputSearchPortfolio) {
-    closeSearch.onclick = function () {
-      inputSearchPortfolio.value = "";
-      inputSearchPortfolio.focus();
     };
   }
 
@@ -949,7 +936,6 @@
     const layerSearchPortfolio = document.getElementsByClassName(
       classes.layerSearchPortfolio
     )[0];
-    const closeSearch = document.getElementsByClassName(classes.closeSearch)[0];
     const inputSearchPortfolio = document.getElementsByClassName(
       classes.inputSearchPortfolio
     )[0];
@@ -1092,8 +1078,6 @@
       layerSidebarNavigation,
       contentElement
     );
-
-    handleCloseSearchOnclick(closeSearch, inputSearchPortfolio);
 
     handleSearchOnclick(search, layerSearchPortfolio, contentElement);
 
