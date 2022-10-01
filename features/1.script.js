@@ -39,6 +39,8 @@
     sidebarSubSubNavigate: "sidebar-sub-sub-navigate",
   };
 
+  const localStorageKeySideBarActive = "SIDEBAR_ACTIVE";
+
   const sessionSideBarKey = "SIDE_BAR_INDEX";
   const sessionCurrentAppColor = {
     key: "CURRENT_APPLICATION_COLOR",
@@ -55,11 +57,9 @@
     widthFrom768: 768,
   };
 
-  const sidebarNavigateIndexNote = {
+  const sidebarNavigateNote = {
     introductionTab: {
-      value: 0,
-      title: "Introduction",
-
+      tabValue: "Introduction",
       content: {
         light: `
         <iframe sandbox=" allow-popups allow-same-origin allow-scripts"
@@ -84,8 +84,7 @@
       },
     },
     portfolioTab: {
-      value: 1,
-      title: "Portfolio",
+      tabValue: "Portfolio",
       content: {
         light: ` <iframe sandbox=" allow-popups allow-same-origin allow-scripts" src="./portfolio/iframe-light/1.html" frameborder="0"
          height="100%"
@@ -116,17 +115,25 @@
       },
     ],
 
-    index4: {
-      value: 4,
-      title: "Rotating Navigation",
-      content: `
-      <iframe sandbox=" allow-popups allow-same-origin allow-scripts" 
-        src="./portfolio/3.rotating-navigation/solve-2/3.html"
-        height="100%"
-        width="100%" >
-      </iframe>
-      `,
-    },
+    technologyReactJsProjects: [
+      {
+        projectHashtag: "01",
+        projectName: "Expanding Cards",
+        content: {
+          light: `<iframe width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-light/1.html" /> `,
+          dark: `<iframe  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/1.html" />`,
+        },
+      },
+
+      {
+        projectHashtag: "02",
+        projectName: "Progress Steps",
+        content: {
+          light: `<iframe width="100%" height="100%" src="./portfolio-shred/2.progress-steps/shred/iframe-light/2.html" /> `,
+          dark: `<iframe  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/2.html" />`,
+        },
+      },
+    ],
   };
 
   const webPageColor = {
@@ -396,12 +403,16 @@
         webPageColor.dark.layerSideBarNavigation.color;
 
       // change iframe color
-      const sidebarIndex = +window.sessionStorage.getItem(sessionSideBarKey);
       const currentAppColor = window.sessionStorage.getItem(
         sessionCurrentAppColor.key
       );
-      switchIndexDisplayCaseIndexContentCorrespondingAppColor(
-        sidebarIndex,
+
+      const sidebarTabName = window.localStorage.getItem(
+        localStorageKeySideBarActive
+      );
+
+      switchSidebarTabToDisplayContentCorrespondingAppColor(
+        sidebarTabName,
         currentAppColor,
         contentElement
       );
@@ -529,11 +540,13 @@
       layer.classList.add(classes.activeLight);
 
       // change content color
-      const currentSideBarIndex = getSessionCurrentSideBarIndex();
       const currentAppColor = getSessionCurrentAppColor();
+      const sidebarTabName = window.localStorage.getItem(
+        localStorageKeySideBarActive
+      );
 
-      switchIndexDisplayCaseIndexContentCorrespondingAppColor(
-        +currentSideBarIndex,
+      switchSidebarTabToDisplayContentCorrespondingAppColor(
+        sidebarTabName,
         currentAppColor,
         contentElement
       );
@@ -563,7 +576,7 @@
 
   /**
    *
-   * @param {number} i
+   * @param {string} sidebarTabName
    * @param {string} currentAppColor
    * @param {HTMLElement} contentElement
    *
@@ -571,18 +584,18 @@
    *
    *
    */
-  function switchIndexDisplayCaseIndexContentCorrespondingAppColor(
-    i,
+  function switchSidebarTabToDisplayContentCorrespondingAppColor(
+    sidebarTabName,
     currentAppColor,
     contentElement
   ) {
-    switch (i) {
-      case 0:
+    switch (sidebarTabName) {
+      case sidebarNavigateNote.introductionTab.tabValue:
         // if dark color then display dark content
         if (currentAppColor === sessionCurrentAppColor.value.dark) {
           displayCaseIndexContent(
             contentElement,
-            sidebarNavigateIndexNote.introductionTab.content.dark
+            sidebarNavigateNote.introductionTab.content.dark
           );
           return;
         }
@@ -591,18 +604,18 @@
         if (currentAppColor === sessionCurrentAppColor.value.light) {
           displayCaseIndexContent(
             contentElement,
-            sidebarNavigateIndexNote.introductionTab.content.light
+            sidebarNavigateNote.introductionTab.content.light
           );
         }
 
         break;
 
-      case 1:
+      case sidebarNavigateNote.portfolioTab.tabValue:
         // if dark color then display dark content
         if (currentAppColor === sessionCurrentAppColor.value.dark) {
           displayCaseIndexContent(
             contentElement,
-            sidebarNavigateIndexNote.portfolioTab.content.dark
+            sidebarNavigateNote.portfolioTab.content.dark
           );
           return;
         }
@@ -611,44 +624,18 @@
         if (currentAppColor === sessionCurrentAppColor.value.light) {
           displayCaseIndexContent(
             contentElement,
-            sidebarNavigateIndexNote.portfolioTab.content.light
-          );
-        }
-
-        break;
-
-      case 2:
-        // if dark color then display dark content
-        if (currentAppColor === sessionCurrentAppColor.value.dark) {
-          displayCaseIndexContent(
-            contentElement,
-            sidebarNavigateIndexNote.index2.content.dark
-          );
-          return;
-        }
-
-        // if  light color then display light content
-        if (currentAppColor === sessionCurrentAppColor.value.light) {
-          displayCaseIndexContent(
-            contentElement,
-            sidebarNavigateIndexNote.index2.content.light
+            sidebarNavigateNote.portfolioTab.content.light
           );
         }
 
         break;
 
       case 3:
-        displayCaseIndexContent(
-          contentElement,
-          sidebarNavigateIndexNote.index3.content
-        );
+        // html / css / js tech case
         break;
 
       case 4:
-        displayCaseIndexContent(
-          contentElement,
-          sidebarNavigateIndexNote.index4.content
-        );
+        // react js tech case
         break;
 
       default:
@@ -675,7 +662,7 @@
 
         const currentAppColor = getSessionCurrentAppColor();
 
-        switchIndexDisplayCaseIndexContentCorrespondingAppColor(
+        switchSidebarTabToDisplayContentCorrespondingAppColor(
           i,
           currentAppColor,
           content
@@ -687,16 +674,15 @@
   /**
    *
    * @param {HTMLElement} layer
-   * @param {HTMLElement} layerWrapForMobile
-   * @param {HTMLElement} content
+   * @param {HTMLElement} contentElement
    */
-  function handleMobileFirstTimeLoad(layer, layerWrapForMobile, content) {
+  function handleMobileFirstTimeLoad(layer, contentElement) {
     window.onload = function () {
       // cw: portfolio sidebar
-      window.setTimeout(function () {
-        const navigate = document.getElementsByClassName(classes.navigate);
-        navigate[1].click();
-      }, 1);
+      // window.setTimeout(function () {
+      //   const navigate = document.getElementsByClassName(classes.navigate);
+      //   navigate[1].click();
+      // }, 1);
 
       // set session current app color
       window.sessionStorage.setItem(
@@ -712,9 +698,16 @@
         });
       }
 
-      displayCaseIndexContent(
-        content,
-        sidebarNavigateIndexNote.introductionTab.content.light
+      // first time onload
+      const currentAppColor = "light".toUpperCase();
+      const sidebarTabName = "Introduction";
+
+      window.localStorage.setItem(localStorageKeySideBarActive, sidebarTabName);
+
+      switchSidebarTabToDisplayContentCorrespondingAppColor(
+        sidebarTabName,
+        currentAppColor,
+        contentElement
       );
     };
   }
@@ -823,15 +816,94 @@
       // active sidebar navigate
       sidebarNavigates[0].classList.add(classes.active);
 
+      // save to local storage active sidebar
+      const sidebarTextContent = advanceRegexTrimString(
+        sidebarNavigates[0].textContent
+      );
+
+      window.localStorage.setItem(
+        localStorageKeySideBarActive,
+        sidebarTextContent
+      );
+
       // display content
       const currentAppColor = getSessionCurrentAppColor();
+      const sidebarTabName = window.localStorage.getItem(
+        localStorageKeySideBarActive
+      );
 
-      switchIndexDisplayCaseIndexContentCorrespondingAppColor(
-        0,
+      switchSidebarTabToDisplayContentCorrespondingAppColor(
+        sidebarTabName,
         currentAppColor,
         contentElement
       );
     };
+  }
+
+  /**
+   *
+   * @param {string} s
+   */
+  function regexTrimString(s) {
+    /**
+     * Problem
+     * + Remove unnecessary space character
+     *   + s = "  abc": left spacing
+     *   + s = "abc    def": middle spacing
+     *   + s = "abc def    ": right spacing
+     *
+     *
+     * + Remove unnecessary space character
+     *   + s = "   abc     def    ": multiple spacing
+     *   + s = " abc def ": 1 spacing
+     *   + s = "abc def ": left spacing
+     *   + s = "abc def": right spacing
+     *
+     *
+     *
+     *
+     *
+     */
+    const regexMiddleSpacing = / +/g;
+    const regexLeftSpacing = /^ +/g;
+    const regexRightSpacing = / +$/g;
+
+    return s
+      .replace(regexMiddleSpacing, " ")
+      .replace(regexLeftSpacing, "")
+      .replace(regexRightSpacing, "");
+  }
+
+  /**
+   *
+   * @param {string} s
+   */
+  function advanceRegexTrimString(s) {
+    /**
+     * - s = "
+     *    abc    def
+     * "
+     * + step 1: regex to catch down line, replace it by ""
+     * + step 2: regex to catch multiple spacing, replace it by " "
+     * + step 3: regex to catch left spacing, replace it by ""
+     * + step 4: regex to catch right spacing, replace it by ""
+     *
+     *
+     *
+     */
+    const emptyString = "";
+    const oneSpacingString = " ";
+
+    const regexCatchMultipleDownLine = /\n+/g;
+    const regexCatchMultipleSpacing = / +/g;
+    const regexCatchLeftSpacing = /^ +/g;
+    const regexCatchRightSpacing = / +$/g;
+
+    return s
+      .replace(regexCatchMultipleDownLine, emptyString)
+      .replace(regexCatchMultipleSpacing, oneSpacingString)
+      .replace(regexCatchLeftSpacing, emptyString)
+      .replace(regexCatchRightSpacing, emptyString);
   }
 
   /**
@@ -856,11 +928,24 @@
       // add active color
       sidebarNavigates[1].classList.add(classes.active);
 
+      // save to local storage active sidebar
+      const sidebarTextContent = advanceRegexTrimString(
+        sidebarNavigates[1].textContent
+      );
+
+      window.localStorage.setItem(
+        localStorageKeySideBarActive,
+        sidebarTextContent
+      );
+
       // display content
       const currentAppColor = getSessionCurrentAppColor();
+      const sidebarTabName = window.localStorage.getItem(
+        localStorageKeySideBarActive
+      );
 
-      switchIndexDisplayCaseIndexContentCorrespondingAppColor(
-        1,
+      switchSidebarTabToDisplayContentCorrespondingAppColor(
+        sidebarTabName,
         currentAppColor,
         contentElement
       );
@@ -915,15 +1000,15 @@
    */
   function displaySidebarHtmlCssJsProject(sidebarHtmlCssJsProjectLayer) {
     const projectLengthMinus1 =
-      sidebarNavigateIndexNote.technologyHtmlCssJsProjects.length - 1;
+      sidebarNavigateNote.technologyHtmlCssJsProjects.length - 1;
 
     for (let i = 0; i <= projectLengthMinus1; ++i) {
       const sidebarSubSubElement = createAnSidebarNavigateSubSubNavigateElement(
-        sidebarNavigateIndexNote.technologyHtmlCssJsProjects[i].projectHashtag,
-        sidebarNavigateIndexNote.technologyHtmlCssJsProjects[i].projectName
+        sidebarNavigateNote.technologyHtmlCssJsProjects[i].projectHashtag,
+        sidebarNavigateNote.technologyHtmlCssJsProjects[i].projectName
       );
 
-      sidebarHtmlCssJsProjectLayer[0].appendChild(sidebarSubSubElement);
+      // sidebarHtmlCssJsProjectLayer[0].appendChild(sidebarSubSubElement);
     }
   }
 
@@ -1084,7 +1169,7 @@
     handleRubOnclick(rub, layerBrushContent);
 
     // web page first time on load
-    handleMobileFirstTimeLoad(layer, layerWrapForMobile, contentElement);
+    handleMobileFirstTimeLoad(layer, contentElement);
 
     // detect Project Side Bar Index Session Change
     detectProjectSideBarIndexSessionChange(sidebarNavigates, contentElement);
