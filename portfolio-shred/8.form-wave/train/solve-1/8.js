@@ -3,6 +3,7 @@
     layer: "layer",
     titleForm: "titleForm",
     layerForm: "layerForm",
+    inputEmail: "inputEmail",
   };
 
   function getFormElement() {
@@ -39,12 +40,11 @@
 
   /**
    *
-   * @param {HTMLElement} titleForm
    * @param {HTMLElement} layer
    *
    *
    */
-  async function asyncTitleFormOnload(titleForm, layer) {
+  async function asyncTitleFormOnload(layer) {
     const fontFaceMulish = new FontFace(
       "Mulish",
       "url(Mulish-bold.ttf)",
@@ -60,14 +60,40 @@
     window.setTimeout(function () {
       layer.innerHTML = "";
       layer.appendChild(formElement);
+
+      const inputEmail = window.document.getElementsByClassName(
+        classes.inputEmail
+      )[0];
+
+      console.log(inputEmail);
     }, 500);
   }
 
-  async function main() {
-    const titleForm = document.getElementsByClassName(classes.titleForm)[0];
-    const layer = window.document.getElementsByClassName(classes.layer)[0];
+  /**
+   *
+   * @param {HTMLElement} inputEmail
+   */
+  function inputEmailOnfocus(inputEmail) {
+    console.log(inputEmail);
+    console.log(1);
+  }
 
-    await asyncTitleFormOnload(titleForm, layer);
+  function detectDOMElements() {
+    const elements = window.document.querySelectorAll("*");
+    console.log(elements);
+  }
+
+  async function main() {
+    const layer = window.document.getElementsByClassName(classes.layer)[0];
+    await asyncTitleFormOnload(layer);
+
+    detectDOMElements();
+
+    // input email exists after the function above completed
+    const inputEmail = window.document.getElementsByClassName(
+      classes.inputEmail
+    )[0];
+    // inputEmailOnfocus(inputEmail);
   }
 
   main();
