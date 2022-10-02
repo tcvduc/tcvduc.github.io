@@ -240,6 +240,7 @@ a {
 
 .print {
   margin-left: auto;
+  opacity: 0;
 }
 
 .hamburger {

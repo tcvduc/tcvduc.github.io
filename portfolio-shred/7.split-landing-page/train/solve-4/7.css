@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --color-blur: #111111e0;
+  --color-active: rgb(90, 90, 90);
+  --width-hover: 75%;
+  --width-other: 25%;
+  --speed: 1000ms;
+
+  --left-bg-color: rgba(87, 84, 236, 0.7);
+  --right-bg-color: rgba(43, 43, 43, 0.8);
+  --left-btn-hover-color: rgba(87, 84, 236, 1);
+  --right-btn-hover-color: rgba(28, 122, 28, 1);
+}
+
+.layer {
+  width: 100%;
+  height: 100vh;
+}
+
+.split {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  transition-duration: var(--speed);
+}
+
+.square1 {
+  background-image: url("https://50projects50days.com/projects/split-landing-page/ps.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.square1::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--left-bg-color);
+  z-index: 5;
+}
+
+.text {
+  position: absolute;
+  z-index: 10;
+  font-size: 32px;
+  color: #fff;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.buttonBuyNow {
+  position: absolute;
+  z-index: 10;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 3px solid #fff;
+  width: 240px;
+  padding: 12px 0;
+  text-align: center;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.buttonBuyNow:active {
+  background-color: var(--color-blur);
+  border-color: var(--color-blur);
+}
+
+.square2 {
+  background-image: url("https://50projects50days.com/projects/split-landing-page/xbox.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.square2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--right-bg-color);
+}
+
+.layer.square1Hover .square1 {
+  width: var(--width-hover);
+}
+
+.layer.square1Hover .square2 {
+  width: var(--width-other);
+}
+
+.layer.square2Hover .square2 {
+  width: var(--width-hover);
+}
+.layer.square2Hover .square1 {
+  width: var(--width-other);
+}
+
+/* Responsive for device width from 768px  */
+
+@media screen and (min-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+
+  .layer {
+    position: relative;
+  }
+
+  .split {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .square1 {
+    top: 0;
+    left: 0;
+  }
+
+  .square2 {
+    right: 0;
+    top: 0;
+  }
+
+  .text {
+    font-size: 65px;
+    top: 35%;
+  }
+
+  .buttonBuyNow {
+    font-size: 20px;
+    top: 50%;
+  }
+
+  .buttonBuyNow:hover {
+    background-color: var(--color-blur);
+    border-color: var(--color-blur);
+  }
+
+  .buttonBuyNow:active {
+    background-color: var(--color-active);
+    border-color: var(--color-active);
+  }
+}
