@@ -115,7 +115,7 @@
        */
       function (event) {
         const { key } = event;
-
+        console.log(1);
         if (wasTabKey(key)) {
           const tabKeyFocusedElement = window.document.activeElement;
           const className = tabKeyFocusedElement.classList[0];
