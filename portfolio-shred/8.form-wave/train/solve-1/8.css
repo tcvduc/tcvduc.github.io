@@ -171,3 +171,7 @@
 .inputOnFocus {
   border-bottom-color: var(--input-on-focus-color);
 }
+
+.inputEmail.inputOnFocus ~ .pseudoBorderBottom .pseudoBorderBottomOnFocus {
+  width: 100%;
+}

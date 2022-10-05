@@ -72,12 +72,43 @@
 
   /**
    *
-   * @param {HTMLInputElement} input
+   * @param {string} s
    */
-  function wasInputFocus(input) {
-    let ret = false;
-    console.log(1);
-    window.onkeydown =
+  function wasInputEmailString(s) {
+    const regex = /inputEmail/g;
+    return regex.test(s);
+  }
+
+  /**
+   *
+   * @param {HTMLElement} inputEmail
+   * @param {HTMLElement} labelEmail
+   *
+   */
+  function addCSSForInputEmailWhenItFocused(inputEmail, labelEmail) {
+    inputEmail.classList.add(classes.inputOnFocus);
+    labelEmail.classList.add(classes.labelOnFocus);
+  }
+
+  /**
+   *
+   * @param {HTMLElement} inputEmail
+   * @param {HTMLElement} labelEmail
+   *
+   */
+  function removeCSSForInputEmailWhenItFocused(inputEmail, labelEmail) {
+    inputEmail.classList.remove(classes.inputOnFocus);
+    labelEmail.classList.remove(classes.labelOnFocus);
+  }
+
+  /**
+   *
+   * @param {HTMLInputElement} inputEmail
+   * @param {HTMLInputElement} labelEmail
+   *
+   */
+  function inputEmailTabKeyFocusedOn(inputEmail, labelEmail) {
+    window.onkeyup =
       /**
        *
        * @param {KeyboardEvent} event
@@ -86,13 +117,19 @@
         const { key } = event;
 
         if (wasTabKey(key)) {
-          console.log(window.document.activeElement);
+          const tabKeyFocusedElement = window.document.activeElement;
+          const className = tabKeyFocusedElement.classList[0];
 
-          return;
+          if (wasInputEmailString(className)) {
+            addCSSForInputEmailWhenItFocused(inputEmail, labelEmail);
+            return;
+          }
+
+          if (!wasInputEmailString(className)) {
+            removeCSSForInputEmailWhenItFocused(inputEmail, labelEmail);
+          }
         }
       };
-
-    return ret;
   }
 
   /**
@@ -109,16 +146,15 @@
     labelEmail,
     pseudoBorderBottomOnFocus
   ) {
-    inputEmail.onfocus =
-      /**
-       *
-       * @param {FocusEvent} event
-       */
-      function (event) {
-        // labelEmail.classList.toggle(classes.labelOnFocus);
-        // inputEmail.classList.toggle(classes.inputOnFocus);
-        // pseudoBorderBottomOnFocus.classList.toggle(classes.width100Percent);
-      };
+    /**
+     * Problem: Detect Toggle Input Email On Focus
+     * + The Input Email Focused When
+     *   + The mouse clicked on
+     *   + The Tab key focus on
+     *
+     */
+
+    inputEmailTabKeyFocusedOn(inputEmail, labelEmail);
   }
 
   function detectDOMChange() {
@@ -153,8 +189,6 @@
     )[0];
 
     inputEmailOnfocus(inputEmail, labelEmail, pseudoBorderBottomOnFocus);
-
-    console.log(wasInputFocus(inputEmail));
   }
 
   main();
