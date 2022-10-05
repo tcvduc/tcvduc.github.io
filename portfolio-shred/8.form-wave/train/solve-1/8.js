@@ -76,7 +76,7 @@
    */
   function wasInputFocus(input) {
     let ret = false;
-
+    console.log(1);
     window.onkeydown =
       /**
        *
