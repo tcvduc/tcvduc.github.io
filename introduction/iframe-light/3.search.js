@@ -127,7 +127,6 @@
               const element = elements[i];
 
               const wsefs = wasSuitableElementForSearch(element);
-
               if (wsefs) {
                 element.classList.add(classes.foundSearchKeyword);
                 const elementOffsetTop = getElementOffsetTop(element).offsetTop;

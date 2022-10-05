@@ -21,6 +21,8 @@
     {
       projectHashtag: "01",
       projectName: "Expanding Cards",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/1.expanding-cards/live-demo",
       liveDemoHref: `"/portfolio-shred/1.expanding-cards/live-demo"`,
     },
   ];
@@ -97,7 +99,7 @@
         project.liveDemoHref
       );
 
-      layerReactJsBars.appendChild(portfolioBarElement);
+      // layerReactJsBars.appendChild(portfolioBarElement);
     });
   }
 
@@ -192,8 +194,11 @@
        * @param {MessageEvent} event
        */
       function (event) {
-        const { data: message } = event;
-        console.log(message);
+        const { data: searchKeyword } = event;
+
+        if (searchKeyword !== "") {
+          console.log("Log from: ", window.location.pathname);
+        }
       };
   }
 

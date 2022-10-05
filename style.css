@@ -240,6 +240,7 @@ a {
 
 .print {
   margin-left: auto;
+  opacity: 0;
 }
 
 .hamburger {
@@ -373,6 +374,10 @@ iframe {
 
 .layer.active-dark .technologyName {
   color: var(--active-dark-stroke-color);
+}
+
+.opacity0 {
+  opacity: 0;
 }
 
 /* Responsive for device width from 768px  */
