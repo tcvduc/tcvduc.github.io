@@ -7,6 +7,7 @@
 :root {
   --border-radius-value: 2px;
   --input-on-focus-color: #aad7e6;
+  --transition-duration: 800ms;
 }
 
 .layer {
@@ -47,7 +48,6 @@
   outline: none;
   border-radius: var(--border-radius-value);
   background-color: transparent;
-  border-bottom: 2px solid #fff;
   color: #fff;
   font-size: 18px;
 }
@@ -111,4 +111,63 @@
 
 .buttonRegister:active {
   color: #b9dae6;
+}
+
+.layerEmail {
+  position: relative;
+  height: 40px;
+}
+
+.labelEmail {
+  position: absolute;
+  left: 0;
+  top: 20%;
+  color: #fff;
+  font-size: 18px;
+  transition-duration: 200ms;
+  transition-property: all;
+}
+
+.inputEmail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transition-duration: var(--transition-duration);
+  transition-property: all;
+  transform-origin: left;
+}
+
+.pseudoBorderBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.pseudoBorderBottomOnFocus {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--input-on-focus-color);
+  transform-origin: right;
+  transition-duration: var(--transition-duration);
+  transition-property: width;
+}
+
+.width100Percent {
+  width: 100%;
+}
+
+.labelOnFocus {
+  top: -20px;
+  color: var(--input-on-focus-color);
+}
+
+.inputOnFocus {
+  border-bottom-color: var(--input-on-focus-color);
 }

@@ -4,6 +4,11 @@
     titleForm: "titleForm",
     layerForm: "layerForm",
     inputEmail: "inputEmail",
+    labelEmail: "labelEmail",
+    labelOnFocus: "labelOnFocus",
+    inputOnFocus: "inputOnFocus",
+    width100Percent: "width100Percent",
+    pseudoBorderBottomOnFocus: "pseudoBorderBottomOnFocus",
   };
 
   function getFormElement() {
@@ -51,49 +56,87 @@
       undefined
     );
 
-    layer.innerHTML = "Loading...";
     const loadedFontFace = await fontFaceMulish.load();
     window.document.fonts.add(loadedFontFace);
     window.document.body.style.fontFamily = "Mulish";
-    const formElement = getFormElement();
-
-    window.setTimeout(function () {
-      layer.innerHTML = "";
-      layer.appendChild(formElement);
-
-      const inputEmail = window.document.getElementsByClassName(
-        classes.inputEmail
-      )[0];
-
-      console.log(inputEmail);
-    }, 500);
   }
 
   /**
    *
-   * @param {HTMLElement} inputEmail
+   * @param {HTMLInputElement} input
    */
-  function inputEmailOnfocus(inputEmail) {
-    console.log(inputEmail);
-    console.log(1);
+  function wasInputFocus(input) {
+    let ret = false;
+
+    input.onfocus = function () {
+      ret = true;
+    };
+
+    return ret;
   }
 
-  function detectDOMElements() {
-    const elements = window.document.querySelectorAll("*");
-    console.log(elements);
+  /**
+   *
+   * @param {HTMLInputElement} inputEmail
+   * @param {HTMLElement} labelEmail
+   * @param {HTMLElement} pseudoBorderBottomOnFocus
+   *
+   *
+   *
+   */
+  function inputEmailOnfocus(
+    inputEmail,
+    labelEmail,
+    pseudoBorderBottomOnFocus
+  ) {
+    inputEmail.onfocus =
+      /**
+       *
+       * @param {FocusEvent} event
+       */
+      function (event) {
+        // labelEmail.classList.toggle(classes.labelOnFocus);
+        // inputEmail.classList.toggle(classes.inputOnFocus);
+        // pseudoBorderBottomOnFocus.classList.toggle(classes.width100Percent);
+      };
+  }
+
+  function detectDOMChange() {
+    const mutationObserve = new MutationObserver(function (mutation) {
+      const mutationTarget = mutation.target;
+      console.log(mutation);
+    });
+
+    mutationObserve.observe(window.document.documentElement, {
+      attributes: true,
+      characterData: true,
+      childList: true,
+      subtree: true,
+      attributeOldValue: true,
+      characterDataOldValue: true,
+    });
   }
 
   async function main() {
     const layer = window.document.getElementsByClassName(classes.layer)[0];
     await asyncTitleFormOnload(layer);
 
-    detectDOMElements();
-
     // input email exists after the function above completed
     const inputEmail = window.document.getElementsByClassName(
       classes.inputEmail
     )[0];
-    // inputEmailOnfocus(inputEmail);
+    const labelEmail = window.document.getElementsByClassName(
+      classes.labelEmail
+    )[0];
+    const pseudoBorderBottomOnFocus = window.document.getElementsByClassName(
+      classes.pseudoBorderBottomOnFocus
+    )[0];
+
+    inputEmailOnfocus(inputEmail, labelEmail, pseudoBorderBottomOnFocus);
+
+    detectDOMChange();
+
+    // console.log(wasInputFocus(inputEmail));
   }
 
   main();
