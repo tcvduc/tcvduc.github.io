@@ -63,14 +63,34 @@
 
   /**
    *
+   * @param {string} key
+   */
+  function wasTabKey(key) {
+    const regex = /Tab/g;
+    return regex.test(key);
+  }
+
+  /**
+   *
    * @param {HTMLInputElement} input
    */
   function wasInputFocus(input) {
     let ret = false;
 
-    input.onfocus = function () {
-      ret = true;
-    };
+    window.onkeydown =
+      /**
+       *
+       * @param {KeyboardEvent} event
+       */
+      function (event) {
+        const { key } = event;
+
+        if (wasTabKey(key)) {
+          console.log(window.document.activeElement);
+
+          return;
+        }
+      };
 
     return ret;
   }
@@ -134,9 +154,7 @@
 
     inputEmailOnfocus(inputEmail, labelEmail, pseudoBorderBottomOnFocus);
 
-    detectDOMChange();
-
-    // console.log(wasInputFocus(inputEmail));
+    console.log(wasInputFocus(inputEmail));
   }
 
   main();
