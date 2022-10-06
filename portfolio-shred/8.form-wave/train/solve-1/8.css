@@ -7,7 +7,8 @@
 :root {
   --border-radius-value: 2px;
   --input-on-focus-color: #aad7e6;
-  --transition-duration: 800ms;
+  --transition-duration: 400ms;
+  --letter-wave-speed: 100ms;
 }
 
 .layer {
@@ -58,6 +59,10 @@
   font-size: 18px;
 }
 
+.inputPassword {
+  position: absolute;
+}
+
 .inputOnFocusColor {
   border-bottom-color: var(--input-on-focus-color);
 }
@@ -68,6 +73,8 @@
 
 .layerPassword {
   margin-top: 40px;
+  position: relative;
+  height: 40px;
 }
 
 .layerButton {
@@ -126,6 +133,57 @@
   font-size: 18px;
   transition-duration: 200ms;
   transition-property: all;
+  display: flex;
+}
+
+/* .labelOnFocus {
+  top: -20px;
+  color: var(--input-on-focus-color);
+} */
+
+.labelEmail.labelOnFocus .letter {
+  color: var(--input-on-focus-color);
+}
+
+.labelEmail.labelOnFocus .letterE {
+  transform: translateY(-25px);
+}
+
+.letterM {
+  transition-delay: calc(1 * var(--letter-wave-speed));
+}
+
+.labelEmail.labelOnFocus .letterM {
+  transform: translateY(-25px);
+  transition-delay: calc(1 * var(--letter-wave-speed));
+}
+
+.letterA {
+  transition-delay: calc(2 * var(--letter-wave-speed));
+}
+
+.labelEmail.labelOnFocus .letterA {
+  transform: translateY(-25px);
+}
+
+.letterI {
+  transition-delay: calc(3 * var(--letter-wave-speed));
+}
+
+.labelEmail.labelOnFocus .letterI {
+  transform: translateY(-25px);
+}
+
+.letterL {
+  transition-delay: calc(4 * var(--letter-wave-speed));
+}
+
+.labelEmail.labelOnFocus .letterL {
+  transform: translateY(-25px);
+}
+
+.letter {
+  transition-duration: var(--transition-duration);
 }
 
 .inputEmail {
@@ -163,15 +221,104 @@
   width: 100%;
 }
 
-.labelOnFocus {
-  top: -20px;
-  color: var(--input-on-focus-color);
-}
-
 .inputOnFocus {
   border-bottom-color: var(--input-on-focus-color);
 }
 
 .inputEmail.inputOnFocus ~ .pseudoBorderBottom .pseudoBorderBottomOnFocus {
   width: 100%;
+}
+
+.labelPassword {
+  display: flex;
+  position: absolute;
+  top: 20%;
+  height: 100%;
+}
+
+.letter {
+  color: #fff;
+  font-size: 18px;
+}
+
+.pseudoBorderBottom {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.inputPassword.inputOnFocus ~ .pseudoBorderBottom .pseudoBorderBottomOnFocus {
+  width: 100%;
+}
+
+.labelPassword.labelOnFocus .letterP {
+  transition-delay: calc(1 * var(--letter-wave-speed));
+  transform: translateY(-25px);
+  color: var(--input-on-focus-color);
+}
+
+.letterA {
+  transition-delay: calc(2 * var(--letter-wave-speed));
+}
+
+.labelPassword.labelOnFocus .letterA {
+  transform: translateY(-25px);
+  color: var(--input-on-focus-color);
+}
+
+.letterS1 {
+  transition-delay: calc(3 * var(--letter-wave-speed));
+}
+
+.labelPassword.labelOnFocus .letterS1 {
+  transform: translateY(-25px);
+  color: var(--input-on-focus-color);
+}
+
+.letterS2 {
+  transition-delay: calc(4 * var(--letter-wave-speed));
+}
+
+.labelPassword.labelOnFocus .letterS2 {
+  transform: translateY(-25px);
+  color: var(--input-on-focus-color);
+}
+
+.letterW {
+  transition-delay: calc(5 * var(--letter-wave-speed));
+}
+
+.labelPassword.labelOnFocus .letterW {
+  transform: translateY(-25px);
+  color: var(--input-on-focus-color);
+}
+
+.letterO {
+  transition-delay: calc(6 * var(--letter-wave-speed));
+}
+
+.labelPassword.labelOnFocus .letterO {
+  transform: translateY(-25px);
+  color: var(--input-on-focus-color);
+}
+
+.letterR {
+  transition-delay: calc(7 * var(--letter-wave-speed));
+}
+
+.labelPassword.labelOnFocus .letterR {
+  transform: translateY(-25px);
+  color: var(--input-on-focus-color);
+}
+
+.letterD {
+  transition-delay: calc(8 * var(--letter-wave-speed));
+}
+
+.labelPassword.labelOnFocus .letterD {
+  transform: translateY(-25px);
+  color: var(--input-on-focus-color);
 }
