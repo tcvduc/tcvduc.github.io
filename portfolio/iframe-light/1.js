@@ -25,6 +25,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/1.expanding-cards/live-demo",
       liveDemoHref: `"/portfolio-shred/1.expanding-cards/live-demo"`,
     },
+
+    {
+      projectHashtag: "02",
+      projectName: "Progress Steps",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/2.progress-steps/live-demo",
+      liveDemoHref: `"/portfolio-shred/2.progress-steps/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [
