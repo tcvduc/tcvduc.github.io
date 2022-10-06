@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --border-radius-value: 2px;
+  --input-on-focus-color: #aad7e6;
+}
+
+.layer {
+  background-color: #3c7db3;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layerForm {
+  height: 430px;
+  width: calc(100% - 24px * 2);
+  max-width: 380px;
+  border: 1px solid #000;
+  border-radius: var(--border-radius-value);
+  background-color: rgba(0, 0, 0, 0.378);
+}
+
+.titleForm {
+  padding: 32px 24px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 32px;
+  text-align: center;
+}
+
+.layerInputFormGroup {
+  padding: 0 32px;
+}
+
+.inputEmail,
+.inputPassword {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  outline: none;
+  border-radius: var(--border-radius-value);
+  background-color: transparent;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  font-size: 18px;
+}
+
+.inputPassword::placeholder,
+.inputEmail::placeholder {
+  color: #fff;
+  font-size: 18px;
+}
+
+.inputOnFocusColor {
+  border-bottom-color: var(--input-on-focus-color);
+}
+
+.inputOnFocusColor::placeholder {
+  color: var(--input-on-focus-color);
+}
+
+.layerPassword {
+  margin-top: 40px;
+}
+
+.layerButton {
+  margin-top: 40px;
+}
+
+.buttonLogin {
+  background-color: var(--input-on-focus-color);
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  border-radius: var(--border-radius-value);
+  box-shadow: 1px 1px 10px 1px #fff;
+  cursor: pointer;
+}
+
+.buttonLogin:active {
+  background-color: #b9dae6;
+}
+
+.layerText {
+  margin-top: 40px;
+  display: flex;
+}
+
+.text {
+  color: #fff;
+  font-size: 18px;
+}
+
+.buttonRegister {
+  color: var(--input-on-focus-color);
+  background-color: transparent;
+  font-size: 18px;
+  margin-left: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.buttonRegister:active {
+  color: #b9dae6;
+}

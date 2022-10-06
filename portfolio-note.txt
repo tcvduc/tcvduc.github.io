@@ -118,6 +118,7 @@ IV. Problem Note
 + live demo href:
   + "/portfolio-shred/1.expanding-cards/live-demo"
     + live-demo/index.html
+  + "/portfolio-shred/2.progress-steps/live-demo"
 
 + data-side-bar-index = hashtag + 1
   + 01 + 1 = 02 = 2

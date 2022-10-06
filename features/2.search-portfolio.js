@@ -131,16 +131,22 @@
           switch (currentSidebarTabActive) {
             case sideBarTabName.Introduction:
               // Tab Active: Introduction
+              console.log("Tab Active: Introduction");
+
+              fromParentHtmlSendSearchKeywordToIframe(iframe, searchKeyword);
+
               break;
 
             case sideBarTabName.Portfolio:
               // Tab Active: Portfolio
+              console.log("Tab Active: Portfolio");
+              fromParentHtmlSendSearchKeywordToIframe(iframe, searchKeyword);
+
               break;
 
             default:
               // Default Tab Active: Introduction
               console.log("Tab Active: Introduction");
-
               // from parent html send keyword to children iframe
               fromParentHtmlSendSearchKeywordToIframe(iframe, searchKeyword);
 
