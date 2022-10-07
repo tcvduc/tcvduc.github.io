@@ -33,6 +33,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/2.progress-steps/live-demo",
       liveDemoHref: `"/portfolio-shred/2.progress-steps/live-demo"`,
     },
+
+    {
+      projectHashtag: "03",
+      projectName: "Rotating Navigation",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/3.rotating-navigation/live-demo",
+      liveDemoHref: `"/portfolio-shred/3.rotating-navigation/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [
