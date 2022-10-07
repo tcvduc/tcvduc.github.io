@@ -52,17 +52,22 @@
    * @param {string} projectHashtag
    * @param {string} projectName
    * @param {string} liveDemoHref
+   * @param {string} sourceCodeHref
+   *
    *
    */
   function createAnPortfolioBarElement(
     projectHashtag,
     projectName,
-    liveDemoHref
+    liveDemoHref,
+    sourceCodeHref
   ) {
     const htmlCode = `
     <div class="hashtag">${projectHashtag}</div>
     <div class="project">
-      <a href="">${projectName}</a>
+      <a target="_blank"
+       href="${sourceCodeHref}"
+       >${projectName}</a>
     </div>
     <div class="live-demo">
       <a
@@ -88,7 +93,8 @@
       const portfolioBarElement = createAnPortfolioBarElement(
         project.projectHashtag,
         project.projectName,
-        project.liveDemoHref
+        project.liveDemoHref,
+        project.sourceCodeHref
       );
 
       layerBars.appendChild(portfolioBarElement);
