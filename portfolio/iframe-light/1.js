@@ -89,7 +89,7 @@
    * @param {HTMLElement} layerBars
    */
   function innerHTMLPortfolioHtmlCssJsBars(layerBars) {
-    portfolioHtmlCssJsProjects.forEach(function (project) {
+    portfolioHtmlCssJsProjects.forEach(function (project, i) {
       const portfolioBarElement = createAnPortfolioBarElement(
         project.projectHashtag,
         project.projectName,
@@ -163,18 +163,18 @@
             elementAttributes.dataSideBarIndex
           );
 
-          const localStorageValue = {
-            dataSidebarIndex: dataSidebarIndex,
-            project: projects[j].children[0].textContent,
-          };
+          // const localStorageValue = {
+          //   dataSidebarIndex: dataSidebarIndex,
+          //   project: projects[j].children[0].textContent,
+          // };
 
           // set to local storage
-          window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
+          // window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
 
-          window.localStorage.setItem(
-            localStorageKeyProjectSideBarIndex,
-            JSON.stringify(localStorageValue)
-          );
+          // window.localStorage.setItem(
+          //   localStorageKeyProjectSideBarIndex,
+          //   JSON.stringify(localStorageValue)
+          // );
         }
 
         window.onmouseup = function () {
