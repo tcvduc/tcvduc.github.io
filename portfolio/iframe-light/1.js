@@ -52,17 +52,22 @@
    * @param {string} projectHashtag
    * @param {string} projectName
    * @param {string} liveDemoHref
+   * @param {string} sourceCodeHref
+   *
    *
    */
   function createAnPortfolioBarElement(
     projectHashtag,
     projectName,
-    liveDemoHref
+    liveDemoHref,
+    sourceCodeHref
   ) {
     const htmlCode = `
     <div class="hashtag">${projectHashtag}</div>
     <div class="project">
-      <a href="">${projectName}</a>
+      <a target="_blank"
+       href="${sourceCodeHref}"
+       >${projectName}</a>
     </div>
     <div class="live-demo">
       <a
@@ -84,11 +89,12 @@
    * @param {HTMLElement} layerBars
    */
   function innerHTMLPortfolioHtmlCssJsBars(layerBars) {
-    portfolioHtmlCssJsProjects.forEach(function (project) {
+    portfolioHtmlCssJsProjects.forEach(function (project, i) {
       const portfolioBarElement = createAnPortfolioBarElement(
         project.projectHashtag,
         project.projectName,
-        project.liveDemoHref
+        project.liveDemoHref,
+        project.sourceCodeHref
       );
 
       layerBars.appendChild(portfolioBarElement);
@@ -157,18 +163,18 @@
             elementAttributes.dataSideBarIndex
           );
 
-          const localStorageValue = {
-            dataSidebarIndex: dataSidebarIndex,
-            project: projects[j].children[0].textContent,
-          };
+          // const localStorageValue = {
+          //   dataSidebarIndex: dataSidebarIndex,
+          //   project: projects[j].children[0].textContent,
+          // };
 
           // set to local storage
-          window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
+          // window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
 
-          window.localStorage.setItem(
-            localStorageKeyProjectSideBarIndex,
-            JSON.stringify(localStorageValue)
-          );
+          // window.localStorage.setItem(
+          //   localStorageKeyProjectSideBarIndex,
+          //   JSON.stringify(localStorageValue)
+          // );
         }
 
         window.onmouseup = function () {
