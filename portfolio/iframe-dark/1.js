@@ -81,6 +81,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/8.form-wave/live-demo",
       liveDemoHref: `"/portfolio-shred/8.form-wave/live-demo"`,
     },
+
+    {
+      projectHashtag: "09",
+      projectName: "Sound Board",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/9.sound-board/live-demo",
+      liveDemoHref: `"/portfolio-shred/9.sound-board/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [

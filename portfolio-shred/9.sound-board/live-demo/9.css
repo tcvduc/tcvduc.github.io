@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: rgb(161, 100, 223);
+  --bg-sound-board: rebeccapurple;
+  --bg-sound-board-active: rgb(108, 64, 153);
+
+  --border-radius-value: 2px;
+}
+
+.layer {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.soundBoard {
+  background-color: var(--bg-sound-board);
+  border-radius: var(--border-radius-value);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: capitalize;
+  cursor: pointer;
+  user-select: none;
+  padding: 24px;
+}
+
+.soundBoard:active {
+  background-color: var(--bg-sound-board-active);
+}
+
+.layerSoundboards {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "board";
+  padding: 24px;
+  gap: 24px;
+}
+
+audio {
+  display: none;
+}
+
+@media screen and (min-width: 576px) {
+  .layerSoundboards {
+    grid-template-areas: "board board board board";
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .soundBoard {
+    height: 70px;
+  }
+
+  .layerSoundboards {
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

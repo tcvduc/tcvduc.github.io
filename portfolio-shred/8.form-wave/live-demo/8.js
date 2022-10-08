@@ -45,13 +45,7 @@
     return ret;
   }
 
-  /**
-   *
-   * @param {HTMLElement} layer
-   *
-   *
-   */
-  async function asyncTitleFormOnload(layer) {
+  async function asyncTitleFormOnload() {
     const fontFaceMulish = new FontFace(
       "Mulish",
       `url("https://github.com/tcvduc/tcvduc.github.io/blob/main/portfolio-shred/8.form-wave/live-demo/Mulish-Bold.ttf")`,
