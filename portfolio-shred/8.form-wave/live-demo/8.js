@@ -54,7 +54,7 @@
   async function asyncTitleFormOnload(layer) {
     const fontFaceMulish = new FontFace(
       "Mulish",
-      "url(Mulish-bold.ttf)",
+      `url("https://github.com/tcvduc/tcvduc.github.io/blob/main/portfolio-shred/8.form-wave/live-demo/Mulish-Bold.ttf")`,
       undefined
     );
 
