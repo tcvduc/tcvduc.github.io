@@ -8,6 +8,7 @@
     bar: "bar",
     projectInformation: "project-information",
     layerBars: "layerBars",
+    reactjs: "reactjs",
   };
 
   const elementAttributes = {
@@ -20,7 +21,65 @@
     {
       projectHashtag: "01",
       projectName: "Expanding Cards",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/1.expanding-cards/live-demo",
       liveDemoHref: `"/portfolio-shred/1.expanding-cards/live-demo"`,
+    },
+
+    {
+      projectHashtag: "02",
+      projectName: "Progress Steps",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/2.progress-steps/live-demo",
+      liveDemoHref: `"/portfolio-shred/2.progress-steps/live-demo"`,
+    },
+
+    {
+      projectHashtag: "03",
+      projectName: "Rotating Navigation",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/3.rotating-navigation/live-demo",
+      liveDemoHref: `"/portfolio-shred/3.rotating-navigation/live-demo"`,
+    },
+
+    {
+      projectHashtag: "04",
+      projectName: "Hidden Search",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/4.hidden-search/live-demo",
+      liveDemoHref: `"/portfolio-shred/4.hidden-search/live-demo"`,
+    },
+
+    {
+      projectHashtag: "05",
+      projectName: "Blurry Loading",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/5.blurry-loading/live-demo",
+      liveDemoHref: `"/portfolio-shred/5.blurry-loading/live-demo"`,
+    },
+
+    {
+      projectHashtag: "06",
+      projectName: "Scroll Animation",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/6.scroll-animation/live-demo",
+      liveDemoHref: `"/portfolio-shred/6.scroll-animation/live-demo"`,
+    },
+
+    {
+      projectHashtag: "07",
+      projectName: "Split Landing Page",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/7.split-landing-page/live-demo",
+      liveDemoHref: `"/portfolio-shred/7.split-landing-page/live-demo"`,
+    },
+
+    {
+      projectHashtag: "08",
+      projectName: "Form Wave",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/8.form-wave/live-demo",
+      liveDemoHref: `"/portfolio-shred/8.form-wave/live-demo"`,
     },
   ];
 
@@ -41,17 +100,22 @@
    * @param {string} projectHashtag
    * @param {string} projectName
    * @param {string} liveDemoHref
+   * @param {string} sourceCodeHref
+   *
    *
    */
   function createAnPortfolioBarElement(
     projectHashtag,
     projectName,
-    liveDemoHref
+    liveDemoHref,
+    sourceCodeHref
   ) {
     const htmlCode = `
     <div class="hashtag">${projectHashtag}</div>
-    <div class="project" >
-      <a href="">${projectName}</a>
+    <div class="project">
+      <a target="_blank"
+       href="${sourceCodeHref}"
+       >${projectName}</a>
     </div>
     <div class="live-demo">
       <a
@@ -72,15 +136,32 @@
    *
    * @param {HTMLElement} layerBars
    */
-  function innerHTMLPortfolioBars(layerBars) {
-    portfolioHtmlCssJsProjects.forEach(function (project) {
+  function innerHTMLPortfolioHtmlCssJsBars(layerBars) {
+    portfolioHtmlCssJsProjects.forEach(function (project, i) {
+      const portfolioBarElement = createAnPortfolioBarElement(
+        project.projectHashtag,
+        project.projectName,
+        project.liveDemoHref,
+        project.sourceCodeHref
+      );
+
+      layerBars.appendChild(portfolioBarElement);
+    });
+  }
+
+  /**
+   *
+   * @param {HTMLElement} layerReactJsBars
+   */
+  function innerHTMLPortfolioReactJSBars(layerReactJsBars) {
+    portfolioReactJSProject.forEach(function (project) {
       const portfolioBarElement = createAnPortfolioBarElement(
         project.projectHashtag,
         project.projectName,
         project.liveDemoHref
       );
 
-      layerBars.appendChild(portfolioBarElement);
+      // layerReactJsBars.appendChild(portfolioBarElement);
     });
   }
 
@@ -130,18 +211,18 @@
             elementAttributes.dataSideBarIndex
           );
 
-          const localStorageValue = {
-            dataSidebarIndex: dataSidebarIndex,
-            project: projects[j].children[0].textContent,
-          };
+          // const localStorageValue = {
+          //   dataSidebarIndex: dataSidebarIndex,
+          //   project: projects[j].children[0].textContent,
+          // };
 
           // set to local storage
-          window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
+          // window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
 
-          window.localStorage.setItem(
-            localStorageKeyProjectSideBarIndex,
-            JSON.stringify(localStorageValue)
-          );
+          // window.localStorage.setItem(
+          //   localStorageKeyProjectSideBarIndex,
+          //   JSON.stringify(localStorageValue)
+          // );
         }
 
         window.onmouseup = function () {
@@ -168,20 +249,19 @@
     }
   }
 
-  /**
-   *
-   * @param {HTMLElement} layerReactJsBars
-   */
-  function innerHTMLPortfolioReactJSBars(layerReactJsBars) {
-    portfolioReactJSProject.forEach(function (project) {
-      const portfolioBarElement = createAnPortfolioBarElement(
-        project.projectHashtag,
-        project.projectName,
-        project.liveDemoHref
-      );
+  function thisIsPortfolioIframeLightGetPostMessageFromParent() {
+    window.onmessage =
+      /**
+       *
+       * @param {MessageEvent} event
+       */
+      function (event) {
+        const { data: searchKeyword } = event;
 
-      // layerReactJsBars.appendChild(portfolioBarElement);
-    });
+        if (searchKeyword !== "") {
+          console.log("Log from: ", window.location.pathname);
+        }
+      };
   }
 
   function main() {
@@ -193,9 +273,12 @@
       classes.layerBars
     )[1];
 
-    innerHTMLPortfolioBars(layerBars);
+    innerHTMLPortfolioHtmlCssJsBars(layerBars);
     innerHTMLPortfolioReactJSBars(layerReactJsBars);
+
     barShredElementOnMouseOverAndOnMouseLeave(hashtags, projects, liveDemos);
+
+    thisIsPortfolioIframeLightGetPostMessageFromParent();
   }
 
   main();

@@ -33,6 +33,54 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/2.progress-steps/live-demo",
       liveDemoHref: `"/portfolio-shred/2.progress-steps/live-demo"`,
     },
+
+    {
+      projectHashtag: "03",
+      projectName: "Rotating Navigation",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/3.rotating-navigation/live-demo",
+      liveDemoHref: `"/portfolio-shred/3.rotating-navigation/live-demo"`,
+    },
+
+    {
+      projectHashtag: "04",
+      projectName: "Hidden Search",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/4.hidden-search/live-demo",
+      liveDemoHref: `"/portfolio-shred/4.hidden-search/live-demo"`,
+    },
+
+    {
+      projectHashtag: "05",
+      projectName: "Blurry Loading",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/5.blurry-loading/live-demo",
+      liveDemoHref: `"/portfolio-shred/5.blurry-loading/live-demo"`,
+    },
+
+    {
+      projectHashtag: "06",
+      projectName: "Scroll Animation",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/6.scroll-animation/live-demo",
+      liveDemoHref: `"/portfolio-shred/6.scroll-animation/live-demo"`,
+    },
+
+    {
+      projectHashtag: "07",
+      projectName: "Split Landing Page",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/7.split-landing-page/live-demo",
+      liveDemoHref: `"/portfolio-shred/7.split-landing-page/live-demo"`,
+    },
+
+    {
+      projectHashtag: "08",
+      projectName: "Form Wave",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/8.form-wave/live-demo",
+      liveDemoHref: `"/portfolio-shred/8.form-wave/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [
