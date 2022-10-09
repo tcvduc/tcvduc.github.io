@@ -97,6 +97,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/10.dad-jokes/live-demo",
       liveDemoHref: `"/portfolio-shred/10.dad-jokes/live-demo"`,
     },
+
+    {
+      projectHashtag: "11",
+      projectName: "Event KeyCodes",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/11.event-keycodes/live-demo",
+      liveDemoHref: `"/portfolio-shred/11.event-keycodes/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [
