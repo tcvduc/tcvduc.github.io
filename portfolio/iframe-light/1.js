@@ -89,6 +89,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/9.sound-board/live-demo",
       liveDemoHref: `"/portfolio-shred/9.sound-board/live-demo"`,
     },
+
+    {
+      projectHashtag: "10",
+      projectName: "Dad Jokes",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/10.dad-jokes/live-demo",
+      liveDemoHref: `"/portfolio-shred/10.dad-jokes/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [
