@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --bg-color: #e1e1e1;
+}
+
+.layer {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layer2 {
+  height: 300px;
+  width: calc(100% - 120px);
+  display: grid;
+  grid-template-areas: "key";
+  gap: 24px;
+}
+
+.layerKey {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventDotKey {
+  color: #555;
+  font-weight: 500;
+}
+
+.key {
+  font-weight: 500;
+}
+
+.keyInfo {
+  border-radius: 2px;
+  padding: 1.5rem 3rem;
+  background-color: #fff;
+  margin-top: 6px;
+  border: 1px solid #999;
+  box-shadow: 1px 1px 3px rgb(0 0 0 / 10%);
+  min-width: 150px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.information {
+  text-transform: capitalize;
+  font-weight: 500;
+  background-color: #fff;
+  padding: 24px 36px;
+  border: 1px solid #999;
+  box-shadow: 1px 1px 3px rgb(0 0 0 / 10%);
+  font-size: 18px;
+}
+
+.displayNone {
+  display: none;
+}
+
+@media screen and (min-width: 1080px) {
+  .information {
+    margin-bottom: 120px;
+  }
+
+  .layer2 {
+    grid-template-areas: "key key key";
+    max-width: 650px;
+    padding-bottom: 120px;
+  }
+
+  .keyInfo {
+    width: 200px;
+  }
+}
