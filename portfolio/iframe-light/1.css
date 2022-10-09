@@ -12,6 +12,10 @@
   --color-click-bar: rgba(17, 17, 17, 0.178);
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .technology {
   font-weight: 500;
   padding: 18px 0;
@@ -117,6 +121,15 @@ a {
 
 .text {
   font-size: 16px;
+}
+
+.template {
+  margin: 24px 0;
+  display: inline-flex;
+}
+
+.templateHref {
+  font-size: 20px;
 }
 
 /* Responsive for device   width from 500px  */
