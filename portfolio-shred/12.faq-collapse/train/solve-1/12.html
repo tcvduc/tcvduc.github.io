@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ Collapse</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./12.css" />
+  </head>
+  <body>
+    <div class="layer">
+      <div class="title">Frequently asked questions</div>
+      <div class="layerCollapseFAQ">
+        <div class="collapseFAQ faq open">
+          <div class="bar">
+            <div class="FAQ">Is my edit correct?</div>
+            <div class="collapseIcon" data-faq-index="0">
+              <svg height="100%" width="100%" viewBox="0 0 100 100">
+                <defs>
+                  <polyline
+                    id="line"
+                    style="
+                      stroke-linejoin: round;
+                      stroke-linecap: round;
+                      fill: none;
+                      stroke: #111;
+                      stroke-width: 8.5px;
+                    "
+                    points="30 45, 50 60 , 70 45"
+                  />
+                </defs>
+
+                <use href="#line" />
+              </svg>
+            </div>
+          </div>
+          <div class="answer">Yes, it's correct.</div>
+        </div>
+        <div class="collapseFAQ faq"></div>
+        <div class="collapseFAQ faq"></div>
+      </div>
+    </div>
+    <script src="./12.js"></script>
+  </body>
+</html>
