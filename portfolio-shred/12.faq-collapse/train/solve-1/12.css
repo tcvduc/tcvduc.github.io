@@ -78,6 +78,7 @@ body {
   font-size: 18px;
   display: flex;
   align-items: center;
+  max-width: 160px;
 }
 
 .answer {
@@ -85,7 +86,8 @@ body {
 }
 
 .open {
-  height: 120px;
+  height: unset;
+  min-height: 100px;
   box-shadow: 0 3px 6px rgb(0 0 0 / 10%), 0 3px 6px rgb(0 0 0 / 10%);
 }
 
@@ -94,7 +96,7 @@ body {
   overflow: hidden;
 }
 
-.faq::before {
+.faq.open::before {
   content: "\f075";
   font-family: "Font Awesome 5 Free";
   font-size: 7rem;
@@ -107,7 +109,7 @@ body {
   transform: rotateY(180deg);
 }
 
-.faq::after {
+.faq.open::after {
   content: "\f075";
   font-family: "Font Awesome 5 Free";
   font-size: 7rem;

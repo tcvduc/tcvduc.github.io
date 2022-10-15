@@ -8,22 +8,34 @@
   };
 
   const faqs = [
-    "Is my edit correct?",
-    "I need to know is this sentence correct or not?",
-    "How to use in or on in day month year english grammar?",
-    "How to use present perfect tense?",
+    {
+      index: 0,
+      faq: "Is my edit correct?",
+    },
+    {
+      index: 1,
+      faq: "I need to know is this sentence correct or not?",
+    },
+    {
+      index: 2,
+      faq: "How to use in or on in day month year english grammar?",
+    },
+    {
+      index: 3,
+      faq: "How to use present perfect tense?",
+    },
   ];
 
   /**
    *
-   * @param {string} faq
+   * @param {string} faqObject
    */
-  function createAnCollapseFAQElement(faq) {
+  function createAnCollapseFAQElement(faqObject) {
     const htmlCode = `
     
     <div class="bar">
-      <div class="FAQ">${faq}</div>
-      <div class="collapseIcon">
+      <div class="FAQ">${faqObject.faq}</div>
+      <div class="collapseIcon" data-faq-index="${faqObject.index}">
         <svg height="100%" width="100%" viewBox="0 0 100 100">
           <defs>
             <polyline
@@ -35,7 +47,7 @@
                 stroke: #111;
                 stroke-width: 8.5px;
               "
-              points="50 45, 70 60 , 90 45"
+              points="30 45, 50 60 , 70 45"
             />
           </defs>
 
@@ -43,10 +55,13 @@
         </svg>
       </div>
     </div>
+    <div class="answer">Yes, it's correct.</div>
   
     `;
     const ret = window.document.createElement("div");
     ret.classList.add(classes.collapseFAQ);
+    ret.classList.add(classes.faq);
+
     ret.innerHTML = htmlCode;
     return ret;
   }
@@ -89,9 +104,8 @@
     );
     const faqElements = window.document.getElementsByClassName(classes.faq);
 
+    innerCollapseFAQ(layerCollapseFAQ);
     collapseIconListOnclick(collapseIcons, faqElements);
-
-    // innerCollapseFAQ(layerCollapseFAQ);
   }
 
   main();
