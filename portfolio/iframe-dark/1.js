@@ -110,8 +110,8 @@
       projectHashtag: "12",
       projectName: "FAQ Collapse",
       sourceCodeHref:
-        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/11.event-keycodes/live-demo",
-      liveDemoHref: `"/portfolio-shred/11.event-keycodes/live-demo"`,
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/12.faq-collapse/live-demo",
+      liveDemoHref: `"/portfolio-shred/12.faq-collapse/live-demo"`,
     },
   ];
 
