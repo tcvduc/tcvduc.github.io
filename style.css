@@ -61,6 +61,7 @@ a {
   height: 100vh;
   background-color: var(--bg-sidebar-light);
   padding: calc(var(--padding-square-value) + var(--padding-value));
+  transition: var(--transition-duration);
 }
 
 .sidebar-navigate {
@@ -94,6 +95,7 @@ a {
   width: 100vw;
   min-height: 100vh;
   background-color: var(--bg-nav-light);
+  transition: var(--transition-duration);
 }
 
 .square {
@@ -399,5 +401,14 @@ iframe {
 
   .layer {
     overflow-x: hidden;
+  }
+
+  .width100vw {
+    width: 100vw;
+  }
+
+  .width0 {
+    width: 0;
+    padding: 0;
   }
 }

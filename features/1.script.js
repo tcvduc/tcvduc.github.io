@@ -37,6 +37,9 @@
     introductionTab: "introductionTab",
     portfolioTab: "portfolioTab",
     sidebarSubSubNavigate: "sidebar-sub-sub-navigate",
+    width0: "width0",
+    width100vw: "width100vw",
+    delayKTimeAndPadding0: "delayKTimeAndPadding0",
   };
 
   const localStorageKeySideBarActive = "SIDEBAR_ACTIVE";
@@ -716,17 +719,39 @@
    *
    * @param {HTMLElement} hamburger
    * @param {HTMLElement} layer
+   * @param {HTMLElement} layerSidebarNavigation
+   * @param {HTMLElement} layerContent
+   *
+   *
+   *
    *
    *
    */
-  function handleHamburgerOnclick(hamburger, layer) {
+  function handleHamburgerOnclick(
+    hamburger,
+    layer,
+    layerSidebarNavigation,
+    layerContent
+  ) {
     hamburger.onclick = function () {
       const screenWidth = screen.width;
       if (screenWidth < responsiveNumber.widthFrom1024) {
+        // mobile roll
         layer.scrollBy({
           left: -screenWidth,
           behavior: "smooth",
         });
+      } else {
+        /**
+         * computer roll
+         * + step 1: sidebar width from 20vw to 0
+         * + step 2: layer content width from 80vw to 100vw
+         *
+         * w
+         */
+        layerSidebarNavigation.classList.toggle(classes.width0);
+        layerSidebarNavigation.classList.toggle(classes.delayKTimeAndPadding0);
+        layerContent.classList.toggle(classes.width100vw);
       }
     };
   }
@@ -779,7 +804,6 @@
             newValue: mutation.target.classList.value,
             element: mutation.target,
           };
-          // console.log(changes);
         }
       });
     });
@@ -963,9 +987,7 @@
     contentElement
   ) {
     for (let i = sidebarHtmlCssJsProjectIndex.length - 1; i >= 0; --i) {
-      sidebarHtmlCssJsProjectIndex[i].onclick = function () {
-        console.log(i);
-      };
+      sidebarHtmlCssJsProjectIndex[i].onclick = function () {};
     }
   }
 
@@ -1093,7 +1115,12 @@
 
     handleTechnologyNameOnclick(technologyNames, layerListProjects);
 
-    handleHamburgerOnclick(hamburger, layer);
+    handleHamburgerOnclick(
+      hamburger,
+      layer,
+      layerSidebarNavigation,
+      layerContent
+    );
 
     displaySidebarHtmlCssJsProject(sidebarHtmlCssJsProjectLayer);
     /**
