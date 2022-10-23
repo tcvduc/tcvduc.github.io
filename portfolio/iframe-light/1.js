@@ -113,6 +113,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/12.faq-collapse/live-demo",
       liveDemoHref: `"/portfolio-shred/12.faq-collapse/live-demo"`,
     },
+
+    {
+      projectHashtag: "13",
+      projectName: "Random Choice Picker",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/13.random-choice-picker/live-demo",
+      liveDemoHref: `"/portfolio-shred/13.random-choice-picker/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [
