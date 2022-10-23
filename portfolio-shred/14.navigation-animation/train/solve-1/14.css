@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --bg-layer-top: #eafbff;
+  --bg-layer-bottom: #5290f9;
+}
+
+.layer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.layerTop {
+  width: 100%;
+  height: 50%;
+  background-color: var(--bg-layer-top);
+}
+
+.layerBottom {
+  width: 100%;
+  height: 50%;
+  background-color: var(--bg-layer-bottom);
+}
+
+.navigation {
+  --size: 85px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: var(--size);
+  height: var(--size);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 5;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation {
+  transition: 800ms;
+  transition-timing-function: ease;
+}
+
+.navigation:active {
+  background-color: #eaf2ff;
+}
+
+.navigation.active {
+  width: 320px;
+}
+
+.listLink {
+  --svg-width: 85px;
+  display: flex;
+  width: calc(100% - var(--svg-width));
+}
+
+.link {
+  margin-left: 12px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  user-select: none;
+}
+
+.link:first-child {
+  margin-left: 0;
+}
+
+.svgNavigationIcon {
+  cursor: pointer;
+}

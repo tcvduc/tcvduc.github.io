@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Animation</title>
+    <link rel="stylesheet" href="./14.css" />
+  </head>
+  <body>
+    <div class="layer">
+      <div class="navigation">
+        <div class="listLink">
+          <a class="link" href="#">Home</a>
+          <a class="link" href="#">Works</a>
+          <a class="link" href="#">About</a>
+          <a class="link" href="#">Contact</a>
+        </div>
+
+        <svg
+          class="svgNavigationIcon"
+          width="85px"
+          height="85px"
+          viewBox="0 0 100 100"
+        >
+          <defs>
+            <line
+              style="stroke-width: 4px; stroke: #5290f9; stroke-linecap: round"
+              id="firstLine"
+              x1="35"
+              y1="49"
+              x2="65"
+              y2="49"
+            />
+            <line
+              id="secondLine"
+              style="stroke-width: 4px; stroke: #5290f9; stroke-linecap: round"
+              id="firstLine"
+              x1="35"
+              y1="61"
+              x2="65"
+              y2="61"
+            />
+          </defs>
+
+          <use href="#firstLine" />
+          <use href="#secondLine" />
+        </svg>
+      </div>
+      <div class="layerTop"></div>
+      <div class="layerBottom"></div>
+    </div>
+    <script src="./14.js"></script>
+  </body>
+</html>
