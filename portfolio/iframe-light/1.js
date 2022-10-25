@@ -121,6 +121,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/13.random-choice-picker/live-demo",
       liveDemoHref: `"/portfolio-shred/13.random-choice-picker/live-demo"`,
     },
+
+    {
+      projectHashtag: "14",
+      projectName: "Animated Navigation",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/14.navigation-animation/live-demo",
+      liveDemoHref: `"/portfolio-shred/14.navigation-animation/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [
