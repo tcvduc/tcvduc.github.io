@@ -253,26 +253,6 @@
       projects[j].onmousedown = function () {
         projects[j].classList.add(classes.colorClickBar);
 
-        if (projects[j].children[0]?.textContent) {
-          // get attribute data side bar index value
-          const dataSidebarIndex = projects[j].getAttribute(
-            elementAttributes.dataSideBarIndex
-          );
-
-          // const localStorageValue = {
-          //   dataSidebarIndex: dataSidebarIndex,
-          //   project: projects[j].children[0].textContent,
-          // };
-
-          // set to local storage
-          // window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
-
-          // window.localStorage.setItem(
-          //   localStorageKeyProjectSideBarIndex,
-          //   JSON.stringify(localStorageValue)
-          // );
-        }
-
         window.onmouseup = function () {
           projects[j].classList.remove(classes.colorClickBar);
         };
@@ -297,19 +277,51 @@
     }
   }
 
-  function thisIsPortfolioIframeLightGetPostMessageFromParent() {
-    window.onmessage =
-      /**
-       *
-       * @param {MessageEvent} event
-       */
-      function (event) {
-        const { data: searchKeyword } = event;
+  /**
+   *
+   * @param {string} s
+   */
+  function advanceTrim(s) {
+    /**
+     * - s = `
+     *  abc      def
+     * `
+     * + ret = `abc def`
+     *
+     *
+     *
+     */
+    const regexDownLine = /\n/g;
+    const regexMultipleEmpties = / +/g;
+    const regexBeginEmpty = /^ +/g;
+    const regexEndEmpty = / +$/g;
 
-        if (searchKeyword !== "") {
-          console.log("Log from: ", window.location.pathname);
-        }
-      };
+    return s
+      .replace(regexDownLine, "")
+      .replace(regexMultipleEmpties, " ")
+      .replace(regexBeginEmpty, "")
+      .replace(regexEndEmpty, "");
+  }
+
+  /**
+   *
+   * @param {string} searchKeyword
+   */
+  function activateSearchResult(searchKeyword) {
+    console.log("searchKeyword: ", searchKeyword);
+    const elements = window.document.all;
+    const lowercasedSearchKeyword = searchKeyword.toLowerCase();
+
+    for (let i = elements.length - 1; i >= 0; --i) {
+      const elementTextContent = elements[i].textContent;
+      const trimmedText = advanceTrim(elementTextContent);
+      const lowercasedText = trimmedText.toLowerCase();
+
+      if (lowercasedText.includes(lowercasedSearchKeyword)) {
+        console.log(elements[i]);
+        break;
+      }
+    }
   }
 
   function main() {
@@ -325,8 +337,6 @@
     innerHTMLPortfolioReactJSBars(layerReactJsBars);
 
     barShredElementOnMouseOverAndOnMouseLeave(hashtags, projects, liveDemos);
-
-    thisIsPortfolioIframeLightGetPostMessageFromParent();
   }
 
   main();
