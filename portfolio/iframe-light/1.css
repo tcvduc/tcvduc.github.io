@@ -10,6 +10,7 @@
   --color-dark-stroke: #cdd9e5;
   --color-hover-bar: rgba(17, 17, 17, 0.125);
   --color-click-bar: rgba(17, 17, 17, 0.178);
+  --background-color-found-search-keyword: rgb(128, 162, 255);
 }
 
 ::-webkit-scrollbar {
@@ -130,6 +131,15 @@ a {
 
 .templateHref {
   font-size: 20px;
+}
+
+.foundSearchKeyword {
+  background-color: var(--background-color-found-search-keyword);
+  color: #fff;
+}
+
+.template.foundSearchKeyword a {
+  color: #fff;
 }
 
 /* Responsive for device   width from 500px  */

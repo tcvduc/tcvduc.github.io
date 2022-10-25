@@ -136,6 +136,14 @@ a {
 .templateHref {
   font-size: 20px;
 }
+.foundSearchKeyword {
+  background-color: #398cff;
+  color: #fff;
+}
+
+.template.foundSearchKeyword a {
+  color: #fff;
+}
 
 /* Responsive for device   width from 500px  */
 
