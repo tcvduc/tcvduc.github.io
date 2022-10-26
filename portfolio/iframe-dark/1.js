@@ -129,6 +129,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/14.navigation-animation/live-demo",
       liveDemoHref: `"/portfolio-shred/14.navigation-animation/live-demo"`,
     },
+
+    {
+      projectHashtag: "15",
+      projectName: "Incrementing Counter",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/15.incrementing-counter/live-demo",
+      liveDemoHref: `"/portfolio-shred/15.incrementing-counter/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [
