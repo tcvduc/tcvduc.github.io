@@ -83,14 +83,10 @@
   /**
    *
    * @param {HTMLElement[]} bottleOfWater250mls
-   * @param {HTMLElement} layerInfo
-   * @param {HTMLElement} layerWater
    * @param {HTMLElement} infoLitter
    *
-   *
-   *
    */
-  function infoHandler(bottleOfWater250mls, layerInfo, layerWater, infoLitter) {
+  function calculateInfoLitRemain(bottleOfWater250mls, infoLitter) {
     /**
      * Problem: Calculate Info Lit Remain
      *
@@ -165,11 +161,77 @@
     let ret = (currentBottleActive * litMax) / activeMax;
 
     infoLitter.innerHTML = `${ret}L`;
+  }
 
+  /**
+   *
+   * @param {HTMLElement[]} bottleOfWater250mls
+   * @param {HTMLElement} layerWater
+   *
+   */
+  function calculatePercent(bottleOfWater250mls, layerWater) {
     /**
      * Problem: Calculate Percent
      *
+     * Understanding The Problem
+     * + active min: 0
+     * + active max: 8
+     * + percent min: 0
+     * + percent max: 100
+     *
+     * + active 0 - percent 0
+     * + active 8 - percent 100
+     *
+     * Approach
+     * + active 0 - percent 0
+     * + active 1 - percent x1
+     *   + x1 = 1 x 100 / 8
+     * + active 2 - percent x2
+     *   + x2 = 2 x 100 / 8
+     * + active 8 - percent 100
+     *
+     * Equation
+     * active(i) = i x PercentMax / ActiveMax
+     *
+     *
+     *
      */
+    const activeMax = bottleOfWater250mls.length;
+    const percentMax = 100;
+    let currentActive = 0;
+
+    for (let i = bottleOfWater250mls.length - 1; i >= 0; --i) {
+      if (bottleOfWater250mls[i].classList.contains(classes.active)) {
+        currentActive = i + 1;
+        break;
+      }
+    }
+
+    let ret = (currentActive * percentMax) / activeMax;
+
+    layerWater.innerHTML = `${ret}%`;
+  }
+
+  /**
+   *
+   * @param {HTMLElement[]} bottleOfWater250mls
+   * @param {HTMLElement} layerInfo
+   * @param {HTMLElement} layerWater
+   * @param {HTMLElement} infoLitter
+   *
+   */
+  function infoHandler(bottleOfWater250mls, layerInfo, layerWater, infoLitter) {
+    /**
+     * Problem: Info Handler
+     * + calculate info lit remain - done
+     * + calculate percent - done
+     * + calculate layer info height
+     * + calculate layer water height
+     *
+     *
+     */
+    calculateInfoLitRemain(bottleOfWater250mls, infoLitter);
+    calculatePercent(bottleOfWater250mls, layerWater);
   }
 
   function main() {
