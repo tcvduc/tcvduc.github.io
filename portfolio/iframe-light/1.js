@@ -137,6 +137,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/15.incrementing-counter/live-demo",
       liveDemoHref: `"/portfolio-shred/15.incrementing-counter/live-demo"`,
     },
+
+    {
+      projectHashtag: "16",
+      projectName: "Drink Water",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/16.drink-water/live-demo",
+      liveDemoHref: `"/portfolio-shred/16.drink-water/live-demo"`,
+    },
   ];
 
   const portfolioReactJSProject = [

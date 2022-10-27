@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Mono", sans-serif;
+}
+
+:root {
+  --bg-color: cornflowerblue;
+  --color-fill: #6ab3f8;
+  --speed: 400ms;
+}
+
+body {
+  background-color: var(--bg-color);
+  padding: 24px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 120px;
+}
+
+.layer {
+  width: 100%;
+  height: 100%;
+  max-width: 375px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+
+.goal {
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  margin: 24px 0;
+  font-weight: 500;
+}
+
+.bottleOfWater {
+  --border-size: 45px;
+  height: 320px;
+  width: calc(100% - 170px);
+  margin: 0 auto;
+  border: 5px solid rgb(12, 87, 226);
+  border-bottom-left-radius: var(--border-size);
+  border-bottom-right-radius: var(--border-size);
+  position: relative;
+  overflow: hidden;
+}
+
+.layerInfo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  transition-duration: var(--speed);
+  overflow: hidden;
+}
+
+.infoLitter,
+.subInfo {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  color: rgb(12, 87, 226);
+}
+
+.subInfo {
+  font-size: 16px;
+  text-align: center;
+}
+
+.layerWater {
+  position: absolute;
+  background-color: #6ab3f8;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 5;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 500;
+  color: rgb(12, 87, 226);
+  transition-duration: var(--speed);
+  overflow: hidden;
+}
+
+.instructionTitle {
+  text-align: center;
+  margin: 24px 0;
+  color: #fff;
+}
+
+.bottleOfWaterListed {
+  display: grid;
+  gap: 24px;
+  grid-template-areas: "item item item item";
+  padding: 0 24px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.bottleOfWater250ml {
+  --border-size: 15px;
+  max-width: 50px;
+  height: 85px;
+  border: 5px solid rgb(12, 87, 226);
+  border-bottom-left-radius: var(--border-size);
+  border-bottom-right-radius: var(--border-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  color: rgb(12, 87, 226);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: 200ms;
+}
+
+.bottleOfWater250ml.active {
+  background-color: var(--color-fill);
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .bottleOfWater {
+    width: 150px;
+  }
+}
