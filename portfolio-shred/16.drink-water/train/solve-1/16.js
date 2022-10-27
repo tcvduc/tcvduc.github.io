@@ -161,6 +161,8 @@
     let ret = (currentBottleActive * litMax) / activeMax;
 
     infoLitter.innerHTML = `${ret}L`;
+
+    return ret;
   }
 
   /**
@@ -210,6 +212,92 @@
     let ret = (currentActive * percentMax) / activeMax;
 
     layerWater.innerHTML = `${ret}%`;
+
+    return ret;
+  }
+
+  /**
+   *
+   * @param {number} percent
+   * @param {HTMLElement} layerInfo
+   *
+   *
+   */
+  function calculateLayerInfoHeight(percent, layerInfo) {
+    /**
+     * Problem: Calculate Layer Info Height
+     *
+     * Understanding The Problem
+     * + percent 0 - height 100
+     * + percent 100 - height 0
+     *
+     * Approach
+     * + percent 0 - height 100
+     *   + height = 100 - percent
+     *   + height = 100 - 0
+     *   + height = 100
+     * + percent 50 - height 50
+     *   + height = 100 - percent
+     *   + height = 100 - 50
+     *   + height = 50
+     *
+     * + percent 100 - height 0
+     *
+     *
+     * Equation
+     * + height = PercentMax - percent
+     *
+     *
+     *
+     */
+    const percentMax = 100;
+    const height = percentMax - percent;
+
+    layerInfo.style.height = `${height}%`;
+  }
+
+  /**
+   *
+   * @param {number} lit
+   * @param {HTMLElement} layerWater
+   *
+   */
+  function calculateLayerWaterHeight(lit, layerWater) {
+    /**
+     * Problem: Calculate Layer Water Height
+     *
+     * Understanding The Problem
+     *
+     * + percent 0 - height 0
+     * + percent 50 - height 50
+     * + percent 100 - height 100
+     *
+     * Approach 1
+     * + percent 0 - height 0
+     *   + height = percent
+     * + percent 50 - height 50
+     *   + height = percent
+     * + percent 100 - height 100
+     *   + height = percent
+     *
+     * Approach 2
+     * + lit 0 - height 0
+     * + lit 1 - height 50
+     * + lit 1.25 - height x1
+     *   + x1 = 1.25 x 100 / 2
+     *   + x1 = lit x HeightMax / LitMax
+     * + lit 2 - height 100
+     *
+     * Equation
+     * + height = percent
+     * + height = lit x HeightMax / LitMax
+     *
+     *
+     */
+    const heightMax = 100;
+    const litMax = 2;
+    const height = (lit * heightMax) / litMax;
+    layerWater.style.height = `${height}%`;
   }
 
   /**
@@ -225,13 +313,16 @@
      * Problem: Info Handler
      * + calculate info lit remain - done
      * + calculate percent - done
-     * + calculate layer info height
+     * + calculate layer info height - done
      * + calculate layer water height
      *
      *
      */
-    calculateInfoLitRemain(bottleOfWater250mls, infoLitter);
-    calculatePercent(bottleOfWater250mls, layerWater);
+    const lit = calculateInfoLitRemain(bottleOfWater250mls, infoLitter);
+    const percent = calculatePercent(bottleOfWater250mls, layerWater);
+
+    calculateLayerInfoHeight(percent, layerInfo);
+    calculateLayerWaterHeight(lit, layerWater);
   }
 
   function main() {
@@ -250,6 +341,8 @@
     const infoLitter = window.document.getElementsByClassName(
       classes.infoLitter
     )[0];
+
+    infoHandler(bottleOfWater250mls, layerInfo, layerWater, infoLitter);
 
     bottleOfWater250mlsOnclick(
       bottleOfWater250mls,
