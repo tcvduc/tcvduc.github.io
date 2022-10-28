@@ -1,4 +1,10 @@
 (function () {
+  const API_URL =
+    "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
+  const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+  const SEARCH_API =
+    'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="';
+
   const classes = {
     item: "item",
     layerFilms: "layerFilms",
@@ -11,6 +17,12 @@
       this.filmRate = filmRate;
       this.filmOverView = filmOverView;
     }
+  }
+
+  async function getMovieData() {
+    const response = await window.fetch(API_URL);
+    const data = await response.json();
+    return data;
   }
 
   /**
@@ -221,7 +233,7 @@
    *
    * @param {HTMLElement} layerFilms
    */
-  function displayFilmList(layerFilms) {
+  async function displayFilmList(layerFilms) {
     for (let i = 100; i >= 0; --i) {
       const overview = generateRandomString(generateRandomNumber(10, 3000));
       const film = new Film("", "film" + i, i * Math.random() * 5, overview);
@@ -229,6 +241,9 @@
       const itemElement = createAnItemElement(film);
       layerFilms.appendChild(itemElement);
     }
+
+    const filmData = await getMovieData();
+    console.log(filmData);
 
     const items = window.document.getElementsByClassName(classes.item);
     animateItemElementWhenItWasHovered(items);
