@@ -16,24 +16,45 @@
         </div>
       </nav>
 
-      <div class="layerFilms">
-        <div class="item">
-          <div class="layerFilmDecoration">
-            <div class="filmAvatar">
-              <img class="imgFilmAvatar" src="" alt="Film Avatar" />
-            </div>
-            <div class="filmInfo">
-              <div class="filmName">Terrifier 2</div>
-              <div class="filmRate">7.1</div>
-            </div>
-          </div>
-          <div class="layerFilmInfo">
-            <div class="title">Overview</div>
-            <div class="info">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Deleniti, reiciendis.
-            </div>
-          </div>
+      <div class="layerFilms"></div>
+
+      <div class="layerPagination">
+        <div class="previousButton">
+          <svg height="100%" width="100%" viewBox="0 0 100 100">
+            <defs>
+              <polyline
+                style="
+                  fill: none;
+                  stroke-width: 6px;
+                  stroke-linejoin: round;
+                  stroke-linecap: round;
+                  stroke: #fff;
+                "
+                id="previousArrow"
+                points="55 40, 40 50, 55 60"
+              />
+            </defs>
+            <use href="#previousArrow"></use>
+          </svg>
+        </div>
+
+        <div class="nextButton">
+          <svg height="100%" width="100%" viewBox="0 0 100 100">
+            <defs>
+              <polyline
+                style="
+                  fill: none;
+                  stroke-width: 6px;
+                  stroke-linejoin: round;
+                  stroke-linecap: round;
+                  stroke: #fff;
+                "
+                id="nextArrow"
+                points="45 40, 60 50, 45 60"
+              />
+            </defs>
+            <use href="#nextArrow"></use>
+          </svg>
         </div>
       </div>
     </div>

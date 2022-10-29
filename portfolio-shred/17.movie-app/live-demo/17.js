@@ -7,7 +7,11 @@
 
   const classes = {
     item: "item",
+    page: "page",
     layerFilms: "layerFilms",
+    previousButton: "previousButton",
+    nextButton: "nextButton",
+    layerPagination: "layerPagination",
   };
 
   class Film {
@@ -249,12 +253,97 @@
     animateItemElementWhenItWasHovered(items);
   }
 
+  /**
+   *
+   * @param {number} page
+   */
+  function createPageElement(page) {
+    const element = window.document.createElement("div");
+    element.classList.add(classes.page);
+    element.innerHTML = page;
+    return element;
+  }
+
+  /**
+   *
+   * @param {HTMLElement} layerPagination
+   * @param {HTMLElement} previousButton
+   *
+   */
+  function handlePaginationUI(layerPagination, previousButton) {
+    /**
+     * Problem: Display Pagination
+     *
+     * Understanding The Problem
+     *
+     * + device width: 375px
+     * + previousButton 1 2 3 ... (k - 1) k nextButton
+     *
+     * -> Calculate how many pages button should
+     * display
+     *
+     * Approach
+     *
+     * + step 1: get device width - done
+     * + step 2: get pagination area width - done
+     *   + step 2.1: set max width for pagination area
+     * + step 3: get one page width - done
+     * + step 4: get page spacing number - done
+     * + step 5: loop i from 1 to 100 - done
+     * + step 6: increase width variable - done
+     * + step 7: until pagination area width
+     * - increase width < 0 then break - done
+     *
+     *
+     */
+    const deviceWidth = window.innerWidth;
+    let paginationAreaWidth = deviceWidth - 24 * 2;
+
+    if (deviceWidth >= 768) {
+      paginationAreaWidth = 400;
+      layerPagination.style.width = paginationAreaWidth + "px";
+      layerPagination.style.marginLeft = "auto";
+    } else {
+      layerPagination.style.width = paginationAreaWidth + "px";
+      layerPagination.style.margin = "0 auto";
+    }
+
+    const onePageWidth = 40;
+    const pageSpacingNumber = 12;
+
+    let increaseWidth = 40 * 2;
+    let totalPageShouldBeDisplayed = 0;
+    for (let i = 1; i <= 100; ++i) {
+      increaseWidth += onePageWidth + pageSpacingNumber;
+      totalPageShouldBeDisplayed++;
+      if (paginationAreaWidth - increaseWidth - onePageWidth < 0) {
+        break;
+      }
+    }
+
+    for (let i = totalPageShouldBeDisplayed; i >= 1; --i) {
+      const pageElement = createPageElement(i);
+      console.log(pageElement);
+      previousButton.after(pageElement);
+    }
+
+    console.log(totalPageShouldBeDisplayed);
+  }
+
   function main() {
     const layerFilms = window.document.getElementsByClassName(
       classes.layerFilms
     )[0];
+    const layerPagination = window.document.getElementsByClassName(
+      classes.layerPagination
+    )[0];
 
-    displayFilmList(layerFilms);
+    const previousButton = window.document.getElementsByClassName(
+      classes.previousButton
+    )[0];
+
+    // displayFilmList(layerFilms);
+    handlePaginationUI(layerPagination, previousButton);
   }
 
   main();

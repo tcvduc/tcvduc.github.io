@@ -151,6 +151,50 @@ nav {
   height: 100%;
 }
 
+.layerPagination {
+  /* width: fit-content; */
+  margin-left: auto;
+  margin-right: 24px;
+  display: flex;
+  border: 1px solid #fff;
+}
+
+.previousButton,
+.nextButton {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  color: #fff;
+  cursor: pointer;
+}
+.nextButton {
+  margin-left: 12px;
+}
+
+.page {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  margin-left: 12px;
+}
+
+.page:active,
+.previousButton:active,
+.nextButton:active {
+  background-color: #7374b3;
+}
+
 @media (min-width: 768px) {
   .layerFilms {
     grid-template-areas: "item item";
