@@ -195,6 +195,10 @@ nav {
   background-color: #7374b3;
 }
 
+.page.active {
+  background-color: steelblue;
+}
+
 @media (min-width: 768px) {
   .layerFilms {
     grid-template-areas: "item item";

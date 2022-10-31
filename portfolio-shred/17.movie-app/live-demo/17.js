@@ -8,6 +8,7 @@
   const classes = {
     item: "item",
     page: "page",
+    active: "active",
     layerFilms: "layerFilms",
     previousButton: "previousButton",
     nextButton: "nextButton",
@@ -267,12 +268,11 @@
   /**
    *
    * @param {HTMLElement} layerPagination
-   * @param {HTMLElement} previousButton
    *
    */
-  function handlePaginationUI(layerPagination, previousButton) {
+  function paginationProcess1(layerPagination) {
     /**
-     * Problem: Display Pagination
+     * Problem: Display Pagination UI
      *
      * Understanding The Problem
      *
@@ -280,7 +280,7 @@
      * + previousButton 1 2 3 ... (k - 1) k nextButton
      *
      * -> Calculate how many pages button should
-     * display
+     * display - done
      *
      * Approach
      *
@@ -321,13 +321,230 @@
       }
     }
 
-    for (let i = totalPageShouldBeDisplayed; i >= 1; --i) {
-      const pageElement = createPageElement(i);
-      console.log(pageElement);
-      previousButton.after(pageElement);
+    return totalPageShouldBeDisplayed;
+  }
+
+  function createPreviousButton() {
+    const htmlCode = ` 
+    <svg height="100%" width="100%" viewBox="0 0 100 100">
+      <defs>
+        <polyline
+          style="
+            fill: none;
+            stroke-width: 6px;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            stroke: #fff;
+          "
+          id="previousArrow"
+          points="55 40, 40 50, 55 60"
+        />
+      </defs>
+      <use href="#previousArrow"></use>
+    </svg>
+    `;
+
+    const element = window.document.createElement("div");
+    element.classList.add(classes.previousButton);
+    element.innerHTML = htmlCode;
+    return element;
+  }
+
+  function createNextButton() {
+    const htmlCode = ` 
+    <svg height="100%" width="100%" viewBox="0 0 100 100">
+      <defs>
+        <polyline
+          style="
+            fill: none;
+            stroke-width: 6px;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            stroke: #fff;
+          "
+          id="nextArrow"
+          points="45 40, 60 50, 45 60"
+        />
+      </defs>
+      <use href="#nextArrow"></use>
+    </svg>
+    `;
+
+    const element = window.document.createElement("div");
+    element.classList.add(classes.nextButton);
+    element.innerHTML = htmlCode;
+    return element;
+  }
+
+  /**
+   *
+   * @param {HTMLElement} element
+   * @param {HTMLElement} node
+   *
+   */
+  function wasNodeChildOfElement(element, node) {
+    /**
+     * Problem: Check if a node is a child node
+     * of an element
+     *
+     * Understand The Problem
+     * + node3
+     * + element
+     *   + node1
+     *   + node2
+     *   + node3
+     *   + node4
+     *   ..
+     *   + node_k
+     * + ret = true
+     *
+     * + step 1: write a function to check if
+     * a two element is the same
+     * + step 2: traverse element children
+     * use step 1 to get the result
+     *
+     *
+     *
+     *
+     *
+     */
+    const childs = element.children;
+    let flag = false;
+
+    for (let i = childs.length - 1; i >= 0; --i) {
+      if (childs[i].isSameNode(node)) {
+        flag = true;
+        break;
+      }
     }
 
-    console.log(totalPageShouldBeDisplayed);
+    return flag;
+  }
+
+  /**
+   *
+   * @param {number} totalPageShouldBeDisplayed
+   * @param {HTMLElement} previousButton
+   * @param {HTMLElement} layerPagination
+   *
+   *
+   *
+   */
+  function paginationProcess2(totalPageShouldBeDisplayed, layerPagination) {
+    /**
+     * Problem: Display Pagination When
+     * actual page number is greater than
+     * should be displayed page number
+     *
+     * Understand The Problem
+     *
+     * + actual page: 14
+     * + should be display page: 6
+     *
+     * + ret
+     *     + |1| 2 3 4 5 6 next - done
+     *     + prev |2| 3 4 5 6 7 next
+     *     + prev |3| 4 5 6 7 8 next
+     *     + prev |4| 5 6 7 8 9 next
+     *     + prev |5| 6 7 8 9 10 next
+     *     + prev |6| 7 8 9 10 11 next
+     *     + prev |7| 8 9 10 11 12 next
+     *     + prev |8| 9 10 11 12 13  next
+     *     + prev |9| 10 11 12 13 14 next
+     *     + prev |10| 11 12 13 14 next
+     *     + prev 10 11 12 13 |14|
+     *
+     * -- ----------------
+     * -- ----------------
+     *
+     * - total page: 14
+     * - should max: 6
+     *
+     * + [1,2,3,4,5,6]
+     *   + [|2|,3,4,5,6,7]
+     *   + [|3|,4,5,6,7,8]
+     *   + [|4|,5,6,7,8,9]
+     *   + [|5|,6,7,8,9,10]
+     *   + [|6|,7,8,9,10,11]
+     *   + [|7|,8,9,10,11,12]
+     *   + [|8|,9,10,11,12,13]
+     *   + [|9|,10,11,12,13,14]
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+    const totalPage = 14;
+    const pageArrayMaxLength = totalPageShouldBeDisplayed;
+
+    const previousButtonElement = createPreviousButton();
+    const nextButtonElement = createNextButton();
+
+    for (let i = pageArrayMaxLength; i >= 1; --i) {
+      const pageElement = createPageElement(i);
+      layerPagination.prepend(pageElement);
+    }
+
+    // next button
+    layerPagination.appendChild(nextButtonElement);
+
+    const pages = window.document.getElementsByClassName(classes.page);
+    for (let i = pages.length - 1; i >= 0; --i) {
+      pages[i].onclick = function () {
+        // remove other page active
+        for (let j = pages.length - 1; j >= 0; --j) {
+          pages[j].classList.remove(classes.active);
+        }
+
+        const page = +pages[i].textContent;
+
+        if (page === 1) {
+          pages[i].classList.add(classes.active);
+          return;
+        }
+
+        if (page !== 1) {
+          layerPagination.prepend(previousButtonElement);
+
+          for (let k = pages.length - 1; k >= 0; --k) {
+            const pageNumberIncrease = page + k;
+            if (pageNumberIncrease <= totalPage) {
+              console.log(pageNumberIncrease);
+              pages[k].textContent = `${pageNumberIncrease}`;
+            }
+          }
+
+          let activeIndex = 0;
+          pages[activeIndex].classList.add(classes.active);
+        }
+      };
+    }
+  }
+
+  /**
+   *
+   * @param {HTMLElement} layerPagination
+   *
+   */
+  function handlePaginationUI(layerPagination) {
+    /**
+     * Problem: Pagination UI
+     * + calculate page number should be displayed - done
+     * + handle display suitable UI when the
+     * actual page number is greater than page number
+     * should be displayed
+     *
+     *
+     */
+    const totalPageShouldBeDisplayed = paginationProcess1(layerPagination);
+
+    paginationProcess2(totalPageShouldBeDisplayed, layerPagination);
   }
 
   function main() {
@@ -338,12 +555,8 @@
       classes.layerPagination
     )[0];
 
-    const previousButton = window.document.getElementsByClassName(
-      classes.previousButton
-    )[0];
-
     // displayFilmList(layerFilms);
-    handlePaginationUI(layerPagination, previousButton);
+    handlePaginationUI(layerPagination);
   }
 
   main();
