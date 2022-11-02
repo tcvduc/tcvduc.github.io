@@ -511,13 +511,67 @@
 
         if (page !== 1) {
           layerPagination.prepend(previousButtonElement);
+          const delta = page + totalPageShouldBeDisplayed - 1;
+
+          if (delta >= totalPage) {
+            /**
+             * + 11 12 13 14 15 16
+             * + page: 11
+             * + ret
+             *   + 9 10 11 12 13 14
+             *
+             *
+             * + delta: 17
+             * + page: 12
+             * + delta2: delta - totalPage
+             *   + delta2: delta - totalPage
+             *   + delta2: 17 - 14
+             *   + delta2: 3
+             * + page - delta2: 12 - 3
+             * + page - delta2: 9
+             *
+             *
+             *
+             * + ret
+             *  ---0 1  2  3  4  5
+             *   + 9 10 11 12 13 14
+             *
+             * + step 1: display 9 -> 12 - done
+             * + step 2: display 12 -> 14
+             *
+             *
+             *
+             */
+            const delta2 = delta - totalPage;
+            let pageTraverse = page;
+            for (let i = delta2; i >= 0; --i) {
+              pages[i].innerHTML = `${pageTraverse}`;
+              pageTraverse--;
+            }
+
+            pageTraverse = totalPage;
+            for (let j = totalPageShouldBeDisplayed - 1; j >= delta2 + 1; --j) {
+              pages[j].innerHTML = `${pageTraverse}`;
+              pageTraverse--;
+            }
+
+            let activeIndex = 0;
+            for (let k = pages.length - 1; k >= 0; --k) {
+              const pageValue = +pages[k].textContent;
+              if (pageValue === page) {
+                activeIndex = k;
+                break;
+              }
+            }
+
+            pages[activeIndex].classList.add(classes.active);
+
+            return;
+          }
 
           for (let k = pages.length - 1; k >= 0; --k) {
             const pageNumberIncrease = page + k;
-            if (pageNumberIncrease <= totalPage) {
-              console.log(pageNumberIncrease);
-              pages[k].textContent = `${pageNumberIncrease}`;
-            }
+            pages[k].textContent = `${pageNumberIncrease}`;
           }
 
           let activeIndex = 0;
