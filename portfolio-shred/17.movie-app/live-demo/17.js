@@ -421,6 +421,125 @@
     return flag;
   }
 
+  function paginationLogic1() {
+    // remove other page active
+    for (let j = pages.length - 1; j >= 0; --j) {
+      pages[j].classList.remove(classes.active);
+    }
+
+    let wasNextButtonRemoved = false;
+
+    const page = +pages[i].textContent;
+
+    if (page === 1) {
+      pages[i].classList.add(classes.active);
+      return;
+    }
+
+    if (page !== 1) {
+      layerPagination.prepend(previousButtonElement);
+      const delta = page + totalPageShouldBeDisplayed - 1;
+
+      if (delta >= totalPage) {
+        /**
+         * + 11 12 13 14 15 16
+         * + page: 11
+         * + ret
+         *   + 9 10 11 12 13 14
+         *
+         *
+         * + delta: 17
+         * + page: 12
+         * + delta2: delta - totalPage
+         *   + delta2: delta - totalPage
+         *   + delta2: 17 - 14
+         *   + delta2: 3
+         * + page - delta2: 12 - 3
+         * + page - delta2: 9
+         *
+         *
+         *
+         * + ret
+         *  ---0 1  2  3  4  5
+         *   + 9 10 11 12 13 14
+         *
+         * + step 1: display 9 -> 12 - done
+         * + step 2: display 12 -> 14 - done
+         *
+         *
+         *
+         */
+        const delta2 = delta - totalPage;
+        let pageTraverse = page;
+        for (let i = delta2; i >= 0; --i) {
+          pages[i].innerHTML = `${pageTraverse}`;
+          pageTraverse--;
+        }
+
+        pageTraverse = totalPage;
+        for (let j = totalPageShouldBeDisplayed - 1; j >= delta2 + 1; --j) {
+          pages[j].innerHTML = `${pageTraverse}`;
+          pageTraverse--;
+        }
+
+        let activeIndex = 0;
+        for (let k = pages.length - 1; k >= 0; --k) {
+          const pageValue = +pages[k].textContent;
+          if (pageValue === page) {
+            activeIndex = k;
+            break;
+          }
+        }
+
+        pages[activeIndex].classList.add(classes.active);
+        if (
+          +pages[activeIndex].textContent ===
+          totalPage - pageArrayMaxLength + 1
+        ) {
+          const child =
+            layerPagination.children[layerPagination.children.length - 1];
+          const wasNextButton = child.classList.contains(classes.nextButton);
+
+          if (wasNextButton) {
+            layerPagination.removeChild(child);
+            wasNextButtonRemoved = true;
+          }
+        }
+
+        if (wasNextButtonRemoved) {
+          console.log(1);
+        }
+
+        return;
+      }
+
+      /**
+       * - case
+       * + page: 6
+       * + from: 1 2 3 4 5 6
+       * + to: |6| 7 8 9 10 11
+       *
+       *
+       */
+      for (let k = pages.length - 1; k >= 0; --k) {
+        const pageNumberIncrease = page + k;
+        pages[k].textContent = `${pageNumberIncrease}`;
+      }
+
+      let activeIndex = 0;
+      pages[activeIndex].classList.add(classes.active);
+    }
+  }
+
+  /**
+   *
+   * @param {HTMLElement} element
+   */
+  function wasNextButtonElement(element) {
+    const regex = new RegExp(classes.nextButton, "g");
+    return regex.test(element.className);
+  }
+
   /**
    *
    * @param {number} totalPageShouldBeDisplayed
@@ -481,12 +600,15 @@
      *
      */
     const totalPage = 14;
-    const pageArrayMaxLength = totalPageShouldBeDisplayed;
+    const pagesArrayMaxLength = totalPageShouldBeDisplayed;
+    const lastPagesIndex = pagesArrayMaxLength - 1;
+    const arrayPagesMiddleIndex = window.Math.ceil(lastPagesIndex / 2);
+    let wasNextButtonRemoved = false;
 
     const previousButtonElement = createPreviousButton();
     const nextButtonElement = createNextButton();
 
-    for (let i = pageArrayMaxLength; i >= 1; --i) {
+    for (let i = pagesArrayMaxLength; i >= 1; --i) {
       const pageElement = createPageElement(i);
       layerPagination.prepend(pageElement);
     }
@@ -494,88 +616,147 @@
     // next button
     layerPagination.appendChild(nextButtonElement);
 
+    let activeIndex = 0;
     const pages = window.document.getElementsByClassName(classes.page);
+    pages[activeIndex].classList.add(classes.active);
+
     for (let i = pages.length - 1; i >= 0; --i) {
       pages[i].onclick = function () {
-        // remove other page active
+        // remove other page active css
         for (let j = pages.length - 1; j >= 0; --j) {
           pages[j].classList.remove(classes.active);
         }
 
         const page = +pages[i].textContent;
+        /**
+         * array page index
+         * 0 1 2 3 4 5
+         *
+         */
+        // delta expected: 4
+        const delta = pagesArrayMaxLength - 1 - 1;
+        activeIndex = i;
 
-        if (page === 1) {
-          pages[i].classList.add(classes.active);
-          return;
-        }
-
-        if (page !== 1) {
-          layerPagination.prepend(previousButtonElement);
-          const delta = page + totalPageShouldBeDisplayed - 1;
-
-          if (delta >= totalPage) {
+        if (activeIndex <= delta) {
+          if (wasNextButtonRemoved && activeIndex === 0) {
             /**
-             * + 11 12 13 14 15 16
-             * + page: 11
-             * + ret
-             *   + 9 10 11 12 13 14
-             *
-             *
-             * + delta: 17
-             * + page: 12
-             * + delta2: delta - totalPage
-             *   + delta2: delta - totalPage
-             *   + delta2: 17 - 14
-             *   + delta2: 3
-             * + page - delta2: 12 - 3
-             * + page - delta2: 9
-             *
-             *
+             * Problem
+             * + current pagination
+             * -- 0 1  2  3  4  5
+             *    9 10 11 12 13 14
              *
              * + ret
-             *  ---0 1  2  3  4  5
-             *   + 9 10 11 12 13 14
+             * -- 0 1 2  3   4  5
+             *    6 7 8  |9| 10 11
              *
-             * + step 1: display 9 -> 12 - done
-             * + step 2: display 12 -> 14
-             *
+             * w
              *
              *
              */
-            const delta2 = delta - totalPage;
+            console.log("page 9");
+            const page = +pages[activeIndex].textContent;
             let pageTraverse = page;
-            for (let i = delta2; i >= 0; --i) {
-              pages[i].innerHTML = `${pageTraverse}`;
+
+            for (let l = arrayPagesMiddleIndex; l >= 0; --l) {
+              pages[l].innerHTML = `${pageTraverse}`;
               pageTraverse--;
             }
 
-            pageTraverse = totalPage;
-            for (let j = totalPageShouldBeDisplayed - 1; j >= delta2 + 1; --j) {
-              pages[j].innerHTML = `${pageTraverse}`;
+            const delta2 = lastPagesIndex - arrayPagesMiddleIndex;
+            pageTraverse = page + delta2;
+            for (let m = lastPagesIndex; m >= arrayPagesMiddleIndex + 1; --m) {
+              pages[m].innerHTML = `${pageTraverse}`;
               pageTraverse--;
             }
 
-            let activeIndex = 0;
-            for (let k = pages.length - 1; k >= 0; --k) {
-              const pageValue = +pages[k].textContent;
-              if (pageValue === page) {
-                activeIndex = k;
+            let activeIndex1 = 0;
+
+            for (let n = pages.length - 1; n >= 0; --n) {
+              if (+pages[n].textContent === page) {
+                activeIndex1 = n;
                 break;
               }
             }
 
+            console.log("activeIndex: ", activeIndex);
+
+            pages[activeIndex1].classList.add(classes.active);
+          } else {
             pages[activeIndex].classList.add(classes.active);
+          }
+
+          return;
+        }
+
+        if (page >= totalPageShouldBeDisplayed) {
+          /**
+           * Problem:
+           * + page: 6
+           * + ret
+           *   prev 3 4 5 |6| 7 8 next
+           *
+           */
+          layerPagination.prepend(previousButtonElement);
+          const lastPagesIndex = pagesArrayMaxLength - 1;
+          const currentLastPage = +pages[lastPagesIndex].textContent;
+
+          if (currentLastPage === totalPage) {
+            pages[i].classList.add(classes.active);
 
             return;
           }
 
-          for (let k = pages.length - 1; k >= 0; --k) {
-            const pageNumberIncrease = page + k;
-            pages[k].textContent = `${pageNumberIncrease}`;
-          }
+          if (i === lastPagesIndex) {
+            /**
+             * Problem
+             * + lastPageIndex: 5
+             * + arrayMiddleIndex = Math.ceil(lastPageIndex / 2)
+             * + arrayMiddleIndex = 3
+             * + page active: 6
+             *   + 1 2 3 4 5 |6|
+             *
+             *
+             * + ret
+             * -- 0 1 2 3   4 5
+             *    3 4 5 |6| 7 8
+             *
+             * + step 1: display page from 3 -> 0 - done
+             * + step 2: display page from 5 -> 4 - done
+             * + step 3: active css at right index
+             *
+             *
+             *
+             */
+            let pageTraverse = page;
+            const arrayPageMiddleIndex = window.Math.ceil(lastPagesIndex / 2);
+            for (let i = arrayPageMiddleIndex; i >= 0; --i) {
+              pages[i].innerHTML = `${pageTraverse}`;
+              pageTraverse--;
+            }
 
-          let activeIndex = 0;
-          pages[activeIndex].classList.add(classes.active);
+            const delta1 = lastPagesIndex - arrayPageMiddleIndex;
+            pageTraverse = page + delta1;
+            for (let j = lastPagesIndex; j >= arrayPageMiddleIndex + 1; --j) {
+              pages[j].innerHTML = `${pageTraverse}`;
+              pageTraverse--;
+            }
+
+            const activeIndex = arrayPageMiddleIndex;
+            pages[activeIndex].classList.add(classes.active);
+
+            const currentLastPage = pages[lastPagesIndex];
+            const currentLastPageValue = +currentLastPage.textContent;
+
+            if (currentLastPageValue === totalPage) {
+              const child =
+                layerPagination.children[layerPagination.children.length - 1];
+
+              if (wasNextButtonElement(child)) {
+                layerPagination.removeChild(child);
+                wasNextButtonRemoved = true;
+              }
+            }
+          }
         }
       };
     }

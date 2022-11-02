@@ -41,6 +41,7 @@ nav {
   outline: none;
   color: #fff;
   font-size: 18px;
+  user-select: none;
 }
 
 .inputSearch::placeholder {
@@ -197,6 +198,10 @@ nav {
 
 .page.active {
   background-color: steelblue;
+}
+
+.page.active:active {
+  background-color: rgb(55, 125, 182);
 }
 
 @media (min-width: 768px) {
