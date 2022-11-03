@@ -600,6 +600,8 @@
      *
      */
     const totalPage = 14;
+    // const totalPage = 24;
+
     const pagesArrayMaxLength = totalPageShouldBeDisplayed;
     const lastPagesIndex = pagesArrayMaxLength - 1;
     const arrayPagesMiddleIndex = window.Math.ceil(lastPagesIndex / 2);
@@ -638,7 +640,7 @@
         activeIndex = i;
 
         if (activeIndex <= delta) {
-          if (wasNextButtonRemoved && activeIndex === 0) {
+          if (activeIndex === 0) {
             /**
              * Problem
              * + current pagination
@@ -653,34 +655,53 @@
              *
              *
              */
-            console.log("page 9");
+            layerPagination.appendChild(nextButtonElement);
+
             const page = +pages[activeIndex].textContent;
             let pageTraverse = page;
 
-            for (let l = arrayPagesMiddleIndex; l >= 0; --l) {
-              pages[l].innerHTML = `${pageTraverse}`;
+            for (let i1 = arrayPagesMiddleIndex; i1 >= 0; --i1) {
+              pages[i1].innerHTML = `${pageTraverse}`;
               pageTraverse--;
             }
 
             const delta2 = lastPagesIndex - arrayPagesMiddleIndex;
             pageTraverse = page + delta2;
-            for (let m = lastPagesIndex; m >= arrayPagesMiddleIndex + 1; --m) {
-              pages[m].innerHTML = `${pageTraverse}`;
+
+            for (
+              let j1 = lastPagesIndex;
+              j1 >= arrayPagesMiddleIndex + 1;
+              --j1
+            ) {
+              pages[j1].innerHTML = `${pageTraverse}`;
               pageTraverse--;
             }
 
-            let activeIndex1 = 0;
+            const firstPage = pages[0].textContent;
 
-            for (let n = pages.length - 1; n >= 0; --n) {
-              if (+pages[n].textContent === page) {
-                activeIndex1 = n;
+            if (firstPage <= 0) {
+              pageTraverse = totalPageShouldBeDisplayed;
+
+              for (let k1 = lastPagesIndex; k1 >= 0; --k1) {
+                pages[k1].innerHTML = `${pageTraverse}`;
+                pageTraverse--;
+              }
+
+              const child = layerPagination.children[0];
+              if (child.classList.contains(classes.previousButton)) {
+                layerPagination.removeChild(child);
+              }
+            }
+
+            let currentPageActiveIndex = arrayPagesMiddleIndex;
+            for (let l1 = lastPagesIndex; l1 >= 0; --l1) {
+              if (+pages[l1].textContent === page) {
+                currentPageActiveIndex = l1;
                 break;
               }
             }
 
-            console.log("activeIndex: ", activeIndex);
-
-            pages[activeIndex1].classList.add(classes.active);
+            pages[currentPageActiveIndex].classList.add(classes.active);
           } else {
             pages[activeIndex].classList.add(classes.active);
           }
@@ -699,7 +720,6 @@
           layerPagination.prepend(previousButtonElement);
           const lastPagesIndex = pagesArrayMaxLength - 1;
           const currentLastPage = +pages[lastPagesIndex].textContent;
-
           if (currentLastPage === totalPage) {
             pages[i].classList.add(classes.active);
 
@@ -741,21 +761,33 @@
               pageTraverse--;
             }
 
-            const activeIndex = arrayPageMiddleIndex;
-            pages[activeIndex].classList.add(classes.active);
-
             const currentLastPage = pages[lastPagesIndex];
             const currentLastPageValue = +currentLastPage.textContent;
 
-            if (currentLastPageValue === totalPage) {
+            if (currentLastPageValue >= totalPage) {
+              pageTraverse = totalPage;
+              for (let k = lastPagesIndex; k >= 0; --k) {
+                pages[k].innerHTML = `${pageTraverse}`;
+                --pageTraverse;
+              }
+
               const child =
                 layerPagination.children[layerPagination.children.length - 1];
 
               if (wasNextButtonElement(child)) {
                 layerPagination.removeChild(child);
-                wasNextButtonRemoved = true;
               }
             }
+
+            let activeIndex = arrayPageMiddleIndex;
+            for (let l = lastPagesIndex; l >= 0; --l) {
+              if (+pages[l].textContent === page) {
+                activeIndex = l;
+                break;
+              }
+            }
+
+            pages[activeIndex].classList.add(classes.active);
           }
         }
       };
