@@ -619,7 +619,9 @@
     nextButtonLogic(
       nextButtonElement,
       totalPageShouldBeDisplayed,
-      layerPagination
+      layerPagination,
+      previousButtonElement,
+      totalPage
     );
 
     let activeIndex = 0;
@@ -664,7 +666,9 @@
             nextButtonLogic(
               nextButtonElement,
               totalPageShouldBeDisplayed,
-              layerPagination
+              layerPagination,
+              previousButtonElement,
+              totalPage
             );
 
             const page = +pages[activeIndex].textContent;
@@ -733,7 +737,8 @@
             previousButtonElement,
             totalPageShouldBeDisplayed,
             layerPagination,
-            nextButtonElement
+            nextButtonElement,
+            totalPage
           );
 
           const lastPagesIndex = pagesArrayMaxLength - 1;
@@ -817,6 +822,8 @@
    * @param {HTMLElement} nextButton
    * @param {HTMLElement} totalPageShouldBeDisplayed
    * @param {HTMLElement} layerPagination
+   * @param {HTMLElement} previousButtonElement
+   *
    *
    *
    */
@@ -824,10 +831,31 @@
   function nextButtonLogic(
     nextButton,
     totalPageShouldBeDisplayed,
-    layerPagination
+    layerPagination,
+    previousButtonElement,
+    totalPage
   ) {
     if (nextButton) {
-      nextButton.onclick = function () {};
+      nextButton.onclick = function () {
+        const pages = window.document.getElementsByClassName(classes.page);
+        const pagesArrayMaxLength = pages.length - 1;
+
+        let activeIndex = null;
+
+        for (let i = pages.length - 1; i >= 0; --i) {
+          if (wasPageActive(pages[i])) {
+            activeIndex = i;
+            break;
+          }
+        }
+        pages[activeIndex].classList.remove(classes.active);
+
+        activeIndex++;
+        pages[activeIndex].classList.add(classes.active);
+        const page = +pages[activeIndex].textContent;
+
+        // clicking forwards logic
+      };
     }
   }
 
@@ -846,6 +874,10 @@
    * @param {HTMLElement} previousButton
    * @param {number} totalPageShouldBeDisplayed
    * @param {HTMLElement} layerPagination
+   * @param {HTMLElement} nextButtonElement
+   * @param {number} totalPage
+   *
+   *
    *
    *
    *
@@ -854,7 +886,8 @@
     previousButton,
     totalPageShouldBeDisplayed,
     layerPagination,
-    nextButtonElement
+    nextButtonElement,
+    totalPage
   ) {
     if (previousButton) {
       const pages = window.document.getElementsByClassName(classes.page);
@@ -902,7 +935,9 @@
               nextButtonLogic(
                 nextButtonElement,
                 totalPageShouldBeDisplayed,
-                layerPagination
+                layerPagination,
+                previousButton,
+                totalPage
               );
 
               const page = +pages[activeIndex].textContent;
