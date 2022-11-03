@@ -605,7 +605,6 @@
     const pagesArrayMaxLength = totalPageShouldBeDisplayed;
     const lastPagesIndex = pagesArrayMaxLength - 1;
     const arrayPagesMiddleIndex = window.Math.ceil(lastPagesIndex / 2);
-    let wasNextButtonRemoved = false;
 
     const previousButtonElement = createPreviousButton();
     const nextButtonElement = createNextButton();
@@ -617,6 +616,11 @@
 
     // next button
     layerPagination.appendChild(nextButtonElement);
+    nextButtonLogic(
+      nextButtonElement,
+      totalPageShouldBeDisplayed,
+      layerPagination
+    );
 
     let activeIndex = 0;
     const pages = window.document.getElementsByClassName(classes.page);
@@ -639,6 +643,7 @@
         const delta = pagesArrayMaxLength - 1 - 1;
         activeIndex = i;
 
+        // click backwards logic
         if (activeIndex <= delta) {
           if (activeIndex === 0) {
             /**
@@ -656,6 +661,11 @@
              *
              */
             layerPagination.appendChild(nextButtonElement);
+            nextButtonLogic(
+              nextButtonElement,
+              totalPageShouldBeDisplayed,
+              layerPagination
+            );
 
             const page = +pages[activeIndex].textContent;
             let pageTraverse = page;
@@ -709,6 +719,7 @@
           return;
         }
 
+        // click forwards logic
         if (page >= totalPageShouldBeDisplayed) {
           /**
            * Problem:
@@ -718,6 +729,13 @@
            *
            */
           layerPagination.prepend(previousButtonElement);
+          previousButtonLogic(
+            previousButtonElement,
+            totalPageShouldBeDisplayed,
+            layerPagination,
+            nextButtonElement
+          );
+
           const lastPagesIndex = pagesArrayMaxLength - 1;
           const currentLastPage = +pages[lastPagesIndex].textContent;
           if (currentLastPage === totalPage) {
@@ -796,6 +814,155 @@
 
   /**
    *
+   * @param {HTMLElement} nextButton
+   * @param {HTMLElement} totalPageShouldBeDisplayed
+   * @param {HTMLElement} layerPagination
+   *
+   *
+   */
+
+  function nextButtonLogic(
+    nextButton,
+    totalPageShouldBeDisplayed,
+    layerPagination
+  ) {
+    if (nextButton) {
+      nextButton.onclick = function () {};
+    }
+  }
+
+  /**
+   *
+   * @param {HTMLElement} page
+   */
+  function wasPageActive(page) {
+    const regex = /active/g;
+    const pageClassName = page.className;
+    return regex.test(pageClassName);
+  }
+
+  /**
+   *
+   * @param {HTMLElement} previousButton
+   * @param {number} totalPageShouldBeDisplayed
+   * @param {HTMLElement} layerPagination
+   *
+   *
+   *
+   */
+  function previousButtonLogic(
+    previousButton,
+    totalPageShouldBeDisplayed,
+    layerPagination,
+    nextButtonElement
+  ) {
+    if (previousButton) {
+      const pages = window.document.getElementsByClassName(classes.page);
+      const pagesArrayMaxLength = 6;
+      const delta = pagesArrayMaxLength - 1 - 1;
+      const arrayPagesMiddleIndex = window.Math.ceil(pagesArrayMaxLength / 2);
+      const lastPagesIndex = pagesArrayMaxLength - 1;
+
+      previousButton.onclick = function () {
+        let activeIndex = null;
+
+        for (let i = pages.length - 1; i >= 0; --i) {
+          if (wasPageActive(pages[i])) {
+            activeIndex = i;
+            break;
+          }
+        }
+        pages[activeIndex].classList.remove(classes.active);
+
+        activeIndex--;
+        pages[activeIndex].classList.add(classes.active);
+
+        const pageValue = +pages[activeIndex].textContent;
+
+        if (activeIndex === 0 && pageValue > 1) {
+          pages[0].classList.remove(classes.active);
+          // click backwards logic
+          if (activeIndex <= delta) {
+            if (activeIndex === 0) {
+              /**
+               * Problem
+               * + current pagination
+               * -- 0 1  2  3  4  5
+               *    9 10 11 12 13 14
+               *
+               * + ret
+               * -- 0 1 2  3   4  5
+               *    6 7 8  |9| 10 11
+               *
+               * w
+               *
+               *
+               */
+              layerPagination.appendChild(nextButtonElement);
+              nextButtonLogic(
+                nextButtonElement,
+                totalPageShouldBeDisplayed,
+                layerPagination
+              );
+
+              const page = +pages[activeIndex].textContent;
+              let pageTraverse = page;
+
+              for (let i1 = arrayPagesMiddleIndex; i1 >= 0; --i1) {
+                pages[i1].innerHTML = `${pageTraverse}`;
+                pageTraverse--;
+              }
+
+              const delta2 = lastPagesIndex - arrayPagesMiddleIndex;
+              pageTraverse = page + delta2;
+
+              for (
+                let j1 = lastPagesIndex;
+                j1 >= arrayPagesMiddleIndex + 1;
+                --j1
+              ) {
+                pages[j1].innerHTML = `${pageTraverse}`;
+                pageTraverse--;
+              }
+
+              const firstPage = pages[0].textContent;
+
+              if (firstPage <= 0) {
+                pageTraverse = totalPageShouldBeDisplayed;
+
+                for (let k1 = lastPagesIndex; k1 >= 0; --k1) {
+                  pages[k1].innerHTML = `${pageTraverse}`;
+                  pageTraverse--;
+                }
+
+                const child = layerPagination.children[0];
+                if (child.classList.contains(classes.previousButton)) {
+                  layerPagination.removeChild(child);
+                }
+              }
+
+              let currentPageActiveIndex = arrayPagesMiddleIndex;
+              for (let l1 = lastPagesIndex; l1 >= 0; --l1) {
+                if (+pages[l1].textContent === page) {
+                  currentPageActiveIndex = l1;
+                  break;
+                }
+              }
+
+              pages[currentPageActiveIndex].classList.add(classes.active);
+            } else {
+              pages[activeIndex].classList.add(classes.active);
+            }
+
+            return;
+          }
+        }
+      };
+    }
+  }
+
+  /**
+   *
    * @param {HTMLElement} layerPagination
    *
    */
@@ -805,7 +972,10 @@
      * + calculate page number should be displayed - done
      * + handle display suitable UI when the
      * actual page number is greater than page number
-     * should be displayed
+     * should be displayed - done
+     * + previous button logic -
+     * + next button logic -
+     * + calculate total page base on data -
      *
      *
      */
