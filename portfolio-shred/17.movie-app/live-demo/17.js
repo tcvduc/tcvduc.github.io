@@ -239,7 +239,7 @@
    * @param {HTMLElement} layerFilms
    */
   async function displayFilmList(layerFilms) {
-    for (let i = 100; i >= 0; --i) {
+    for (let i = 10; i >= 0; --i) {
       const overview = generateRandomString(generateRandomNumber(10, 3000));
       const film = new Film("", "film" + i, i * Math.random() * 5, overview);
 
@@ -693,7 +693,7 @@
 
             const firstPage = pages[0].textContent;
 
-            if (firstPage <= 0) {
+            if (firstPage <= 1) {
               pageTraverse = totalPageShouldBeDisplayed;
 
               for (let k1 = lastPagesIndex; k1 >= 0; --k1) {
@@ -953,7 +953,7 @@
   ) {
     if (previousButton) {
       const pages = window.document.getElementsByClassName(classes.page);
-      const pagesArrayMaxLength = 6;
+      const pagesArrayMaxLength = totalPageShouldBeDisplayed;
       const delta = pagesArrayMaxLength - 1 - 1;
       const arrayPagesMiddleIndex = window.Math.ceil(pagesArrayMaxLength / 2);
       const lastPagesIndex = pagesArrayMaxLength - 1;
@@ -1023,8 +1023,7 @@
               }
 
               const firstPage = pages[0].textContent;
-
-              if (firstPage <= 0) {
+              if (firstPage <= 1) {
                 pageTraverse = totalPageShouldBeDisplayed;
 
                 for (let k1 = lastPagesIndex; k1 >= 0; --k1) {
@@ -1070,10 +1069,10 @@
      * + handle display suitable UI when the
      * actual page number is greater than page number
      * should be displayed - done
-     * + previous button logic -
-     * + next button logic -
+     * + previous button logic - done
+     * + next button logic - done
      * + calculate total page base on data -
-     *
+     * + integrate data and UI -
      *
      */
     const totalPageShouldBeDisplayed = paginationProcess1(layerPagination);
