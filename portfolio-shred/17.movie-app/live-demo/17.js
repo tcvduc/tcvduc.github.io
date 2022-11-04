@@ -1,4 +1,4 @@
-(function () {
+(async function () {
   const API_URL =
     "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
   const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
@@ -15,7 +15,9 @@
     layerPagination: "layerPagination",
   };
 
+  let previousEndOffset = 0;
   const limit = 8;
+  const items = await getMovieData();
 
   class Film {
     constructor(filmAvatarHref, filmName, filmRate, filmOverView) {
@@ -216,12 +218,6 @@
    * @param {HTMLElement[]} items
    */
   function animateItemElementWhenItWasHovered(items) {
-    const cssCode = `
-    .item:hover .layerFilmInfo {
-        top: calc(100% - 50%);
-      }
-    `;
-
     for (let i = items.length - 1; i >= 0; --i) {
       items[i].onmouseenter = function () {
         const layerFilmInfoElement = items[i].children[1];
@@ -239,21 +235,84 @@
   /**
    *
    * @param {HTMLElement} layerFilms
+   * @param {number} pageActive
+   *
    */
-  async function displayFilmList(layerFilms) {
-    for (let i = 10; i >= 0; --i) {
-      const overview = generateRandomString(generateRandomNumber(10, 3000));
-      const film = new Film("", "film" + i, i * Math.random() * 5, overview);
+  async function displayFilmList(layerFilms, pageActive = 1) {
+    /**
+     * Problem
+     * + case 1
+     *   + limit: 8
+     *   + pageActive: 1
+     *   + offset: 0 -> 7
+     *   + start offset: 0
+     *     + start offset:
+     *   + end offset: 7
+     *     + end offset: start offset + limit - 1
+     *
+     * + case 2
+     *   + limit: 8
+     *   + pageActive: 2
+     *   + offset: 8 -> 15
+     *
+     * Equation
+     * + offset: start offset -> end offset
+     * + start offset
+     *   + if page = 1
+     *     + start offset = 0
+     *   + if page > 1
+     *     + start offset = previous end offset + 1
+     *
+     * + end offset = start offset + limit - 1
+     *
+     *
+     */
+    if (pageActive === 1) {
+      const startOffset = 0;
+      const endOffset = startOffset + limit - 1;
+      previousEndOffset = endOffset;
 
-      const itemElement = createAnItemElement(film);
-      layerFilms.appendChild(itemElement);
+      layerFilms.innerHTML = "";
+      for (let i = startOffset; i <= endOffset; ++i) {
+        const filmData = items[i];
+        const overview = filmData.overview;
+        const filmAvatarHref = IMG_PATH + filmData.poster_path;
+        const filmName = filmData.original_title;
+        const filmRate = filmData.vote_average;
+
+        const film = new Film(filmAvatarHref, filmName, filmRate, overview);
+        const itemElement = createAnItemElement(film);
+
+        layerFilms.appendChild(itemElement);
+      }
+
+      const itemsElement = window.document.getElementsByClassName(classes.item);
+      animateItemElementWhenItWasHovered(itemsElement);
+
+      return;
     }
 
-    const filmData = await getMovieData();
-    console.log(filmData);
+    if (pageActive > 1) {
+      layerFilms.innerHTML = "";
+      const startOffset = previousEndOffset + 1;
+      const endOffset = startOffset + limit - 1;
 
-    const items = window.document.getElementsByClassName(classes.item);
-    animateItemElementWhenItWasHovered(items);
+      for (let i = startOffset; i <= endOffset; ++i) {
+        const filmData = items[i];
+        const overview = filmData.overview;
+        const filmAvatarHref = IMG_PATH + filmData.poster_path;
+        const filmName = filmData.original_title;
+        const filmRate = filmData.vote_average;
+
+        const film = new Film(filmAvatarHref, filmName, filmRate, overview);
+        const itemElement = createAnItemElement(film);
+
+        layerFilms.appendChild(itemElement);
+      }
+
+      console.log("previousEndOffset: ", previousEndOffset);
+      console.log("run here");
+    }
   }
 
   /**
@@ -508,10 +567,6 @@
           }
         }
 
-        if (wasNextButtonRemoved) {
-          console.log(1);
-        }
-
         return;
       }
 
@@ -655,12 +710,8 @@
      *
      *
      */
-    console.log("items: ", items);
-    console.log("limit: ", limit);
 
     const totalPage = calculateTotalPageButton(items, limit);
-    // const totalPage = 24;
-    console.log("totalPage: ", totalPage);
 
     const pagesArrayMaxLength = totalPageShouldBeDisplayed;
     const lastPagesIndex = pagesArrayMaxLength - 1;
@@ -893,8 +944,17 @@
        */
       let pageTraverse = 1;
       const previousButton = createPreviousButton();
+      const nextButton = createNextButton();
 
       layerPagination.prepend(previousButton);
+
+      previousButtonLogic(
+        previousButton,
+        totalPageShouldBeDisplayed,
+        layerPagination,
+        nextButton,
+        totalPage
+      );
 
       for (let i = totalPage; i >= 1; --i) {
         const pageButton = createPageElement(pageTraverse);
@@ -902,11 +962,38 @@
         pageTraverse++;
       }
 
-      const nextButton = createNextButton();
-      layerPagination.append(nextButton);
+      const pages = window.document.getElementsByClassName(classes.page);
+      pages[0].classList.add(classes.active);
 
-      return;
+      for (let i = pages.length - 1; i >= 0; --i) {
+        pageButtonLogic(pages[i], pages);
+      }
+
+      layerPagination.append(nextButton);
+      nextButtonLogic(
+        nextButton,
+        totalPageShouldBeDisplayed,
+        layerPagination,
+        previousButton,
+        totalPage
+      );
     }
+  }
+
+  /**
+   *
+   * @param {HTMLElement} pageButton
+   * @param {HTMLElement[]} pages
+   *
+   */
+  function pageButtonLogic(pageButton, pages) {
+    pageButton.onclick = function () {
+      for (let i = pages.length - 1; i >= 0; --i) {
+        pages[i].classList.remove(classes.active);
+      }
+
+      pageButton.classList.add(classes.active);
+    };
   }
 
   /**
@@ -928,12 +1015,33 @@
     totalPage
   ) {
     if (nextButton) {
+      const totalPageMinusOne = totalPage - 1;
       nextButton.onclick = function () {
         const pages = window.document.getElementsByClassName(classes.page);
         const lastIndex = pages.length - 1;
         const middleIndex = window.Math.ceil(lastIndex / 2);
 
-        let activeIndex = null;
+        let activeIndex = 0;
+
+        if (totalPage <= totalPageShouldBeDisplayed) {
+          for (let i = pages.length - 1; i >= 0; --i) {
+            if (pages[i].classList.contains(classes.active)) {
+              activeIndex = i;
+              break;
+            }
+          }
+
+          if (activeIndex < totalPageMinusOne) {
+            activeIndex++;
+            pages[activeIndex].classList.add(classes.active);
+          }
+
+          for (let j = activeIndex - 1; j >= 0; --j) {
+            pages[j].classList.remove(classes.active);
+          }
+
+          return;
+        }
 
         for (let i = pages.length - 1; i >= 0; --i) {
           if (wasPageActive(pages[i])) {
@@ -1049,9 +1157,12 @@
       const delta = pagesArrayMaxLength - 1 - 1;
       const arrayPagesMiddleIndex = window.Math.ceil(pagesArrayMaxLength / 2);
       const lastPagesIndex = pagesArrayMaxLength - 1;
+      const layerFilms = window.document.getElementsByClassName(
+        classes.layerFilms
+      )[0];
 
       previousButton.onclick = function () {
-        let activeIndex = null;
+        let activeIndex = 0;
 
         for (let i = pages.length - 1; i >= 0; --i) {
           if (wasPageActive(pages[i])) {
@@ -1059,6 +1170,13 @@
             break;
           }
         }
+
+        if (activeIndex === 0) {
+          const pageActive = +pages[activeIndex].textContent;
+          displayFilmList(layerFilms, pageActive);
+          return;
+        }
+
         pages[activeIndex].classList.remove(classes.active);
 
         activeIndex--;
@@ -1141,10 +1259,11 @@
             } else {
               pages[activeIndex].classList.add(classes.active);
             }
-
-            return;
           }
         }
+
+        const pageActive = +pages[activeIndex].textContent;
+        displayFilmList(layerFilms, pageActive);
       };
     }
   }
@@ -1153,9 +1272,11 @@
    *
    * @param {HTMLElement} layerPagination
    * @param {Array} items
+   * @param {HTMLElement} layerFilms
+   *
    *
    */
-  function handlePaginationUI(layerPagination, items) {
+  function handlePaginationUI(layerPagination, items, layerFilms) {
     /**
      * Problem: Pagination UI
      * + calculate page number should be displayed - done
@@ -1164,7 +1285,7 @@
      * should be displayed - done
      * + previous button logic - done
      * + next button logic - done
-     * + calculate total page base on data -
+     * + calculate total page base on data - done
      * + integrate data and UI -
      *
      */
@@ -1195,13 +1316,11 @@
       classes.layerPagination
     )[0];
 
-    // const items = await getMovieData();
-
-    const virtualTotalPageButton = 14;
-    const items = virtualItemData(limit * virtualTotalPageButton);
+    // const virtualTotalPageButton = 14;
+    // const items = virtualItemData(limit * virtualTotalPageButton);
 
     displayFilmList(layerFilms);
-    handlePaginationUI(layerPagination, items);
+    handlePaginationUI(layerPagination, items, layerFilms);
   }
 
   main();
