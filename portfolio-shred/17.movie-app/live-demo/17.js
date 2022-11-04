@@ -533,6 +533,25 @@
 
   /**
    *
+   * @param {Array} items
+   * @param {number} limit
+   *
+   */
+  function calculateTotalPageButton(items, limit) {
+    let countTraverse = 0;
+    let totalPage = 0;
+
+    for (let i = items.length - 1; i >= 0; --i) {
+      if (countTraverse === limit) {
+        totalPage++;
+      }
+
+      countTraverse++;
+    }
+  }
+
+  /**
+   *
    * @param {HTMLElement} element
    */
   function wasNextButtonElement(element) {
@@ -543,13 +562,16 @@
   /**
    *
    * @param {number} totalPageShouldBeDisplayed
-   * @param {HTMLElement} previousButton
    * @param {HTMLElement} layerPagination
-   *
+   * @param {Array} items
    *
    *
    */
-  function paginationProcess2(totalPageShouldBeDisplayed, layerPagination) {
+  function paginationProcess2(
+    totalPageShouldBeDisplayed,
+    layerPagination,
+    items
+  ) {
     /**
      * Problem: Display Pagination When
      * actual page number is greater than
@@ -592,13 +614,38 @@
      *
      *
      *
+     * -- ------------------------------------------------
+     * -- Problem: Calculate totalPage Base on items
+     * -- -----------------------------------------------
+     * + items: 14
+     * + limit: 8
+     * + offset: 0 -> 13
+     * + totalPage: x
+     * ----------------0 1 2 3 4 5 6 7 8 9  10 11 12 13
+     * + array items: [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+     *
+     * The Ret
+     * + page 1: offset 0 -> 7
+     * + page 2: offset 8 -> 15
+     *   + max offset: 13
+     *   + page 2 ret: offset 8 -> 13
+     * -> Total Page: 2
+     *   + How to find total page equation base on
+     *   items, limit, offset ?
      *
      *
-     *
+     * Equation
+     * + total item base on offset = item2 Offset - item1 Offset + 1
+     *   + item2 offset > item1 offset
+     * + offset end = offset start + limit - 1
+     *   + offset 7 = 0 + 8 - 1
+     *   + offset 7 = 7
+     * + total page = x
      *
      *
      *
      */
+    console.log(items);
     const totalPage = 14;
     // const totalPage = 24;
 
@@ -1060,9 +1107,10 @@
   /**
    *
    * @param {HTMLElement} layerPagination
+   * @param {Array} items
    *
    */
-  function handlePaginationUI(layerPagination) {
+  function handlePaginationUI(layerPagination, items) {
     /**
      * Problem: Pagination UI
      * + calculate page number should be displayed - done
@@ -1077,19 +1125,20 @@
      */
     const totalPageShouldBeDisplayed = paginationProcess1(layerPagination);
 
-    paginationProcess2(totalPageShouldBeDisplayed, layerPagination);
+    paginationProcess2(totalPageShouldBeDisplayed, layerPagination, items);
   }
 
-  function main() {
+  async function main() {
     const layerFilms = window.document.getElementsByClassName(
       classes.layerFilms
     )[0];
     const layerPagination = window.document.getElementsByClassName(
       classes.layerPagination
     )[0];
+    const items = await getMovieData();
 
-    // displayFilmList(layerFilms);
-    handlePaginationUI(layerPagination);
+    displayFilmList(layerFilms);
+    handlePaginationUI(layerPagination, items);
   }
 
   main();
