@@ -116,6 +116,7 @@ function calculateTotalPageButton(items, limit) {
  * + limit: 8
  * -> Expected ret: 1
  *
+ *
  * Case 2: done
  * ----------0 1 2 3 4 5 6 7 8 9  10 11 12 13
  * + items: [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
@@ -123,6 +124,8 @@ function calculateTotalPageButton(items, limit) {
  * + page 2 offset: 8 -> 15
  *   + max offset: 13
  *   + page 2 offset ret: 8 -> 13
+ *
+ *
  *
  * Case 3: done
  *

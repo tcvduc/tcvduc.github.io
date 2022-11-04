@@ -21,6 +21,7 @@ body::-webkit-scrollbar {
   min-height: 100vh;
   background-color: var(--primary-color);
   overflow: hidden;
+  padding-bottom: 120px;
 }
 
 nav {
@@ -153,10 +154,10 @@ nav {
 }
 
 .layerPagination {
-  /* width: fit-content; */
   margin-left: auto;
   margin-right: 24px;
   display: flex;
+  justify-content: flex-end;
   border: 1px solid #fff;
 }
 
