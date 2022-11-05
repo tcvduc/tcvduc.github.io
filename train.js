@@ -1,23 +1,34 @@
-function detectDOMChanges() {
-  const mutationObserve = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      if (mutation.attributeName === "class") {
-        const changes = {
-          oldValue: mutation.oldValue,
-          newValue: mutation.target.classList.value,
-          element: mutation.target,
-        };
-        console.log(changes);
-      }
-    });
-  });
+/**
+ *
+ * @param {string} s
+ */
+function advanceRegexTrim(s) {
+  /**
+   * + s = `
+   *  abc     def
+   * `
+   * + ret = `  abc    def
+   * `
+   * + ret =`  abc    def   `
+   * + ret =` abc def `
+   * + ret = `abc def`
+   *
+   */
+  const emptyString = "";
+  const oneSpaceString = " ";
+  const regexDownLine = /\n/g;
+  const regexMultipleSpaces = / +/g;
+  const regexLeftSpaces = /^ +/g;
+  const regexRightSpaces = / +$/g;
 
-  mutationObserve.observe(document.documentElement, {
-    attributes: true,
-    characterData: true,
-    childList: true,
-    subtree: true,
-    attributeOldValue: true,
-    characterDataOldValue: true,
-  });
+  return s
+    .replace(regexDownLine, emptyString)
+    .replace(regexMultipleSpaces, oneSpaceString)
+    .replace(regexLeftSpaces, emptyString)
+    .replace(regexRightSpaces, emptyString);
 }
+
+const s = `
+  abc     def   
+`;
+console.log(advanceRegexTrim(s));

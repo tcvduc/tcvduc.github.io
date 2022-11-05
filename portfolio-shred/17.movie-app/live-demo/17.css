@@ -158,7 +158,6 @@ nav {
   margin-right: 24px;
   display: flex;
   justify-content: flex-end;
-  border: 1px solid #fff;
 }
 
 .previousButton,
@@ -193,7 +192,8 @@ nav {
 
 .page:active,
 .previousButton:active,
-.nextButton:active {
+.nextButton:active,
+.buttonScrollTop:active {
   background-color: #7374b3;
 }
 
@@ -203,6 +203,19 @@ nav {
 
 .page.active:active {
   background-color: rgb(55, 125, 182);
+}
+
+.buttonScrollTop {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  position: fixed;
+  bottom: calc(24px * 2);
+  right: 24px;
+  z-index: 15;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

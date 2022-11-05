@@ -13,6 +13,8 @@
     previousButton: "previousButton",
     nextButton: "nextButton",
     layerPagination: "layerPagination",
+    buttonScrollTop: "buttonScrollTop",
+    inputSearch: "inputSearch",
   };
 
   let previousEndOffset = 0;
@@ -236,9 +238,15 @@
    *
    * @param {HTMLElement} layerFilms
    * @param {number} pageActive
+   * @param {Object[]} changeableItem
+   *
    *
    */
-  async function displayFilmList(layerFilms, pageActive = 1) {
+  async function displayFilmList(
+    layerFilms,
+    pageActive = 1,
+    changeableItem = items
+  ) {
     /**
      * Problem
      * + case 1
@@ -269,18 +277,9 @@
      */
 
     layerFilms.innerHTML = "";
-    const maxOffset = items.length - 1;
+    const maxOffset = changeableItem.length - 1;
     const startOffset = (pageActive - 1) * limit;
     const endOffset = startOffset + limit - 1;
-
-    console.table([
-      {
-        pageActive: pageActive,
-        startOffset: startOffset,
-        endOffset: endOffset,
-        maxOffset: maxOffset,
-      },
-    ]);
 
     /**
      * Problem
@@ -359,7 +358,7 @@
 
     if (endOffset > maxOffset) {
       for (let i = startOffset; i <= maxOffset; ++i) {
-        const filmData = items[i];
+        const filmData = changeableItem[i];
         const overview = filmData.overview;
         const filmAvatarHref = IMG_PATH + filmData.poster_path;
         const filmName = filmData.original_title;
@@ -375,7 +374,7 @@
 
     if (endOffset <= maxOffset) {
       for (let i = startOffset; i <= endOffset; ++i) {
-        const filmData = items[i];
+        const filmData = changeableItem[i];
         const overview = filmData.overview;
         const filmAvatarHref = IMG_PATH + filmData.poster_path;
         const filmName = filmData.original_title;
@@ -386,7 +385,6 @@
 
         layerFilms.appendChild(itemElement);
       }
-      return;
     }
   }
 
@@ -702,14 +700,14 @@
    *
    * @param {number} totalPageShouldBeDisplayed
    * @param {HTMLElement} layerPagination
-   * @param {Array} items
+   * @param {Array} changeableItem
    *
    *
    */
   function paginationProcess2(
     totalPageShouldBeDisplayed,
     layerPagination,
-    items
+    changeableItem
   ) {
     /**
      * Problem: Display Pagination When
@@ -786,7 +784,7 @@
      *
      */
 
-    const totalPage = calculateTotalPageButton(items, limit);
+    const totalPage = calculateTotalPageButton(changeableItem, limit);
 
     const pagesArrayMaxLength = totalPageShouldBeDisplayed;
     const lastPagesIndex = pagesArrayMaxLength - 1;
@@ -864,7 +862,6 @@
 
               const page = +pages[activeIndex].textContent;
               let pageTraverse = page;
-
               for (let i1 = arrayPagesMiddleIndex; i1 >= 0; --i1) {
                 pages[i1].innerHTML = `${pageTraverse}`;
                 pageTraverse--;
@@ -1017,6 +1014,7 @@
        *
        *
        */
+
       let pageTraverse = 1;
       const previousButton = createPreviousButton();
       const nextButton = createNextButton();
@@ -1066,8 +1064,14 @@
       for (let i = pages.length - 1; i >= 0; --i) {
         pages[i].classList.remove(classes.active);
       }
-
       pageButton.classList.add(classes.active);
+
+      const pageActive = +pageButton.textContent;
+      const layerFilms = window.document.getElementsByClassName(
+        classes.layerFilms
+      )[0];
+
+      displayFilmList(layerFilms, pageActive);
     };
   }
 
@@ -1354,12 +1358,16 @@
   /**
    *
    * @param {HTMLElement} layerPagination
-   * @param {Array} items
+   * @param {Array} changeableItem
    * @param {HTMLElement} layerFilms
    *
    *
    */
-  function handlePaginationUI(layerPagination, items, layerFilms) {
+  function handlePaginationUI(
+    layerPagination,
+    changeableItem = items,
+    layerFilms
+  ) {
     /**
      * Problem: Pagination UI
      * + calculate page number should be displayed - done
@@ -1369,12 +1377,16 @@
      * + previous button logic - done
      * + next button logic - done
      * + calculate total page base on data - done
-     * + integrate data and UI -
+     * + integrate data and UI - done
      *
      */
     const totalPageShouldBeDisplayed = paginationProcess1(layerPagination);
 
-    paginationProcess2(totalPageShouldBeDisplayed, layerPagination, items);
+    paginationProcess2(
+      totalPageShouldBeDisplayed,
+      layerPagination,
+      changeableItem
+    );
   }
 
   /**
@@ -1391,6 +1403,146 @@
     return ret;
   }
 
+  /**
+   *
+   * @param {HTMLElement} buttonScrollTop
+   */
+  function buttonScrollTopOnclick(buttonScrollTop) {
+    buttonScrollTop.onclick = function () {
+      console.log(1);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+  }
+
+  /**
+   *
+   * @param {string} key
+   */
+  function wasEnterKey(key) {
+    const regex = /Enter/g;
+    return !!regex.test(key);
+  }
+
+  /**
+   *
+   * @param {string} s
+   */
+  function advanceRegexTrim(s) {
+    /**
+     * + s = `
+     *  abc     def
+     * `
+     * + ret = `  abc    def
+     * `
+     * + ret =`  abc    def   `
+     * + ret =` abc def `
+     * + ret = `abc def`
+     *
+     */
+    const emptyString = "";
+    const oneSpaceString = " ";
+    const regexDownLine = /\n/g;
+    const regexMultipleSpaces = / +/g;
+    const regexLeftSpaces = /^ +/g;
+    const regexRightSpaces = / +$/g;
+
+    return s
+      .replace(regexDownLine, emptyString)
+      .replace(regexMultipleSpaces, oneSpaceString)
+      .replace(regexLeftSpaces, emptyString)
+      .replace(regexRightSpaces, emptyString);
+  }
+
+  /**
+   *
+   * @param {string} s
+   */
+  function toLowercaseString(s) {
+    return s.toLowerCase();
+  }
+
+  /**
+   *
+   * @param {Array} a
+   * @param {any} element
+   */
+  function arrayPush(a, element) {
+    const ret = new Array(a.length + 1);
+
+    for (let i = a.length - 1; i >= 0; --i) {
+      ret[i] = a[i];
+    }
+
+    ret[ret.length - 1] = element;
+
+    return ret;
+  }
+
+  /**
+   *
+   * @param {HTMLInputElement} inputSearch
+   */
+  function inputSearchOnKeyup(inputSearch) {
+    inputSearch.onkeyup =
+      /**
+       *
+       * @param {KeyboardEvent} event
+       */
+      function (event) {
+        const { key } = event;
+
+        if (wasEnterKey(key)) {
+          /**
+           * Problem: Search film by keyword
+           * + keyword: terrified
+           * + films: [{filmName: "film 1"}, {filmName:"terrified 2"}]
+           * + ret: [{filmName:"terrified 2"}]
+           *
+           * + step 1: get keyword - done
+           * + step 2: trim keyword - done
+           * + step 3: traverse data to find films that matched - done
+           * + step 4: display UI film - done
+           * + step 5: pagination logic
+           *
+           *
+           *
+           */
+          const { value: searchText } = event.target;
+          const searchTextTrimmed = advanceRegexTrim(searchText);
+
+          let filmsFound = [];
+
+          for (let i = items.length - 1; i >= 0; --i) {
+            const filmName = items[i].original_title;
+            const filmNameLowercased = toLowercaseString(filmName);
+
+            const regex = new RegExp(searchTextTrimmed, "g");
+            if (regex.test(filmNameLowercased)) {
+              filmsFound = arrayPush(filmsFound, items[i]);
+            }
+          }
+
+          const layerPagination = window.document.getElementsByClassName(
+            classes.layerPagination
+          )[0];
+
+          const layerFilms = window.document.getElementsByClassName(
+            classes.layerFilms
+          )[0];
+          const pageActive = 1;
+
+          const changeableItem = filmsFound;
+          displayFilmList(layerFilms, pageActive, changeableItem);
+
+          layerPagination.innerHTML = "";
+          handlePaginationUI(layerPagination, changeableItem, layerFilms);
+        }
+      };
+  }
+
   async function main() {
     const layerFilms = window.document.getElementsByClassName(
       classes.layerFilms
@@ -1398,12 +1550,20 @@
     const layerPagination = window.document.getElementsByClassName(
       classes.layerPagination
     )[0];
+    const buttonScrollTop = window.document.getElementsByClassName(
+      classes.buttonScrollTop
+    )[0];
+    const inputSearch = window.document.getElementsByClassName(
+      classes.inputSearch
+    )[0];
 
     // const virtualTotalPageButton = 14;
     // const items = virtualItemData(limit * virtualTotalPageButton);
 
     displayFilmList(layerFilms);
     handlePaginationUI(layerPagination, items, layerFilms);
+    buttonScrollTopOnclick(buttonScrollTop);
+    inputSearchOnKeyup(inputSearch);
   }
 
   main();
