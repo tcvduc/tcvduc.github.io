@@ -267,13 +267,98 @@
      *
      *
      */
-    if (pageActive === 1) {
-      const startOffset = 0;
-      const endOffset = startOffset + limit - 1;
-      previousEndOffset = endOffset;
 
-      layerFilms.innerHTML = "";
-      for (let i = startOffset; i <= endOffset; ++i) {
+    layerFilms.innerHTML = "";
+    const maxOffset = items.length - 1;
+    const startOffset = (pageActive - 1) * limit;
+    const endOffset = startOffset + limit - 1;
+
+    console.table([
+      {
+        pageActive: pageActive,
+        startOffset: startOffset,
+        endOffset: endOffset,
+        maxOffset: maxOffset,
+      },
+    ]);
+
+    /**
+     * Problem
+     * + limit 8
+     * + page 1
+     *   + start offset: 0
+     *     + start offset = (page - 1) x limit
+     *     + start offset = (1 - 1) x 8
+     *     + start offset = 0 x 8
+     *     + start offset = 0
+     *   + end offset: 7
+     *     + end offset = start offset + limit - 1
+     *     + end offset = 0 + 8 - 1
+     *     + end offset = 8 - 1
+     *     + end offset = 7
+     * + start offset = (page - 1) x limit
+     * + end offset   = start offset + limit - 1
+     *
+     *
+     *
+     *
+     * + page: 2
+     * + limit: 8
+     * + ret
+     *   + start offset: 8
+     *     + start offset = (page - 1) x limit
+     *     + start offset = (2 - 1) x 8
+     *     + start offset = 1 x 8
+     *     + start offset = 8
+     *     -> calculate start offset based on page
+     *
+     *
+     *   + end offset: 15
+     *     + end offset: 8 + 8 - 1
+     *     + end offset = page x start offset - 1 - wrong equation
+     *     + end offset = start offset + limit - 1 - correct equation
+     *     -> calculate end offset based on start offset
+     *
+     * + page: 3
+     * + limit: 8
+     *   + start offset: 16
+     *     + start offset = previous end offset + 1
+     *     + start offset = 15 + 1
+     *     + start offset = 16
+     *
+     *     + start offset = (page - 1) x limit
+     *     + start offset = (3 - 1) x 8
+     *     + start offset = 2 x 8
+     *     + start offset = 16
+     *     -> correct equation
+     *
+     *   + end offset:
+     *     + end offset = start offset + limit - 1
+     *     + end offset = 16 + limit - 1
+     *     + end offset = 16 + 8 - 1
+     *     + end offset = 24 - 1
+     *     + end offset = 23
+     *
+     *     + end offset = page x start offset  - 1
+     *     + end offset = 3 x 16  - 1
+     *     + end offset = 3 x 16  - 1
+     *
+     * Equation
+     * + start offset = (page - 1) x limit
+     * + end offset   = start offset + limit - 1
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+
+    // the previous offset must calculate based on the page
+
+    if (endOffset > maxOffset) {
+      for (let i = startOffset; i <= maxOffset; ++i) {
         const filmData = items[i];
         const overview = filmData.overview;
         const filmAvatarHref = IMG_PATH + filmData.poster_path;
@@ -285,18 +370,10 @@
 
         layerFilms.appendChild(itemElement);
       }
-
-      const itemsElement = window.document.getElementsByClassName(classes.item);
-      animateItemElementWhenItWasHovered(itemsElement);
-
       return;
     }
 
-    if (pageActive > 1) {
-      layerFilms.innerHTML = "";
-      const startOffset = previousEndOffset + 1;
-      const endOffset = startOffset + limit - 1;
-
+    if (endOffset <= maxOffset) {
       for (let i = startOffset; i <= endOffset; ++i) {
         const filmData = items[i];
         const overview = filmData.overview;
@@ -309,9 +386,7 @@
 
         layerFilms.appendChild(itemElement);
       }
-
-      console.log("previousEndOffset: ", previousEndOffset);
-      console.log("run here");
+      return;
     }
   }
 
@@ -1023,6 +1098,7 @@
 
         let activeIndex = 0;
 
+        // case page button display one time
         if (totalPage <= totalPageShouldBeDisplayed) {
           for (let i = pages.length - 1; i >= 0; --i) {
             if (pages[i].classList.contains(classes.active)) {
@@ -1034,6 +1110,12 @@
           if (activeIndex < totalPageMinusOne) {
             activeIndex++;
             pages[activeIndex].classList.add(classes.active);
+
+            const pageActive = +pages[activeIndex].textContent;
+            const layerFilms = window.document.getElementsByClassName(
+              classes.layerFilms
+            )[0];
+            displayFilmList(layerFilms, pageActive);
           }
 
           for (let j = activeIndex - 1; j >= 0; --j) {
@@ -1042,19 +1124,19 @@
 
           return;
         }
-
+        // case large page button
         for (let i = pages.length - 1; i >= 0; --i) {
           if (wasPageActive(pages[i])) {
             activeIndex = i;
             break;
           }
         }
+
         pages[activeIndex].classList.remove(classes.active);
 
         activeIndex++;
         pages[activeIndex].classList.add(classes.active);
         const page = +pages[activeIndex].textContent;
-
         // clicking forwards logic
         if (activeIndex === lastIndex) {
           /**
@@ -1070,6 +1152,7 @@
            *   3 4 5 |6| 7 8
            *
            */
+
           layerPagination.prepend(previousButtonElement);
           previousButtonLogic(
             previousButtonElement,
