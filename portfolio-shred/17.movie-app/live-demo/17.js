@@ -20,6 +20,7 @@
   let previousEndOffset = 0;
   const limit = 8;
   const items = await getMovieData();
+  // const items = virtualItemData(100);
 
   class Film {
     constructor(filmAvatarHref, filmName, filmRate, filmOverView) {
@@ -217,18 +218,18 @@
 
   /**
    *
-   * @param {HTMLElement[]} items
+   * @param {HTMLElement[]} itemElements
    */
-  function animateItemElementWhenItWasHovered(items) {
-    for (let i = items.length - 1; i >= 0; --i) {
-      items[i].onmouseenter = function () {
-        const layerFilmInfoElement = items[i].children[1];
+  function animateItemElementWhenItWasHovered(itemElements) {
+    for (let i = itemElements.length - 1; i >= 0; --i) {
+      itemElements[i].onmouseenter = function () {
+        const layerFilmInfoElement = itemElements[i].children[1];
         const height = layerFilmInfoElement.getBoundingClientRect().height;
         layerFilmInfoElement.style.top = `calc(100% - ${height}px)`;
       };
 
-      items[i].onmouseleave = function () {
-        const layerFilmInfoElement = items[i].children[1];
+      itemElements[i].onmouseleave = function () {
+        const layerFilmInfoElement = itemElements[i].children[1];
         layerFilmInfoElement.style.top = `100%`;
       };
     }
@@ -369,6 +370,10 @@
 
         layerFilms.appendChild(itemElement);
       }
+
+      const itemElements = window.document.getElementsByClassName(classes.item);
+      animateItemElementWhenItWasHovered(itemElements);
+
       return;
     }
 
@@ -385,6 +390,9 @@
 
         layerFilms.appendChild(itemElement);
       }
+
+      const itemElements = window.document.getElementsByClassName(classes.item);
+      animateItemElementWhenItWasHovered(itemElements);
     }
   }
 
@@ -436,7 +444,7 @@
     if (deviceWidth >= 768) {
       paginationAreaWidth = 400;
       layerPagination.style.width = paginationAreaWidth + "px";
-      layerPagination.style.marginLeft = "auto";
+      layerPagination.style.marginRight = "auto";
     } else {
       layerPagination.style.width = paginationAreaWidth + "px";
       layerPagination.style.margin = "0 auto";
@@ -707,7 +715,7 @@
   function paginationProcess2(
     totalPageShouldBeDisplayed,
     layerPagination,
-    changeableItem
+    changeableItem = items
   ) {
     /**
      * Problem: Display Pagination When
@@ -1026,7 +1034,8 @@
         totalPageShouldBeDisplayed,
         layerPagination,
         nextButton,
-        totalPage
+        totalPage,
+        changeableItem
       );
 
       for (let i = totalPage; i >= 1; --i) {
@@ -1039,7 +1048,7 @@
       pages[0].classList.add(classes.active);
 
       for (let i = pages.length - 1; i >= 0; --i) {
-        pageButtonLogic(pages[i], pages);
+        pageButtonLogic(pages[i], pages, changeableItem);
       }
 
       layerPagination.append(nextButton);
@@ -1048,7 +1057,8 @@
         totalPageShouldBeDisplayed,
         layerPagination,
         previousButton,
-        totalPage
+        totalPage,
+        changeableItem
       );
     }
   }
@@ -1057,9 +1067,11 @@
    *
    * @param {HTMLElement} pageButton
    * @param {HTMLElement[]} pages
+   * @param {HTMLElement[]} changeableItem
+   *
    *
    */
-  function pageButtonLogic(pageButton, pages) {
+  function pageButtonLogic(pageButton, pages, changeableItem) {
     pageButton.onclick = function () {
       for (let i = pages.length - 1; i >= 0; --i) {
         pages[i].classList.remove(classes.active);
@@ -1071,7 +1083,7 @@
         classes.layerFilms
       )[0];
 
-      displayFilmList(layerFilms, pageActive);
+      displayFilmList(layerFilms, pageActive, changeableItem);
     };
   }
 
@@ -1082,6 +1094,8 @@
    * @param {HTMLElement} layerPagination
    * @param {HTMLElement} previousButtonElement
    * @param {number} totalPage
+   * @param {HTMLElement[]} changeableItem
+   *
    *
    *
    */
@@ -1091,7 +1105,8 @@
     totalPageShouldBeDisplayed,
     layerPagination,
     previousButtonElement,
-    totalPage
+    totalPage,
+    changeableItem = items
   ) {
     if (nextButton) {
       const totalPageMinusOne = totalPage - 1;
@@ -1119,7 +1134,7 @@
             const layerFilms = window.document.getElementsByClassName(
               classes.layerFilms
             )[0];
-            displayFilmList(layerFilms, pageActive);
+            displayFilmList(layerFilms, pageActive, changeableItem);
           }
 
           for (let j = activeIndex - 1; j >= 0; --j) {
@@ -1163,7 +1178,8 @@
             totalPageShouldBeDisplayed,
             layerPagination,
             nextButton,
-            totalPage
+            totalPage,
+            changeableItem
           );
 
           let pageTraverse = page;
@@ -1225,6 +1241,8 @@
    * @param {HTMLElement} layerPagination
    * @param {HTMLElement} nextButtonElement
    * @param {number} totalPage
+   * @param {HTMLElement[]} changeableItem
+   *
    *
    *
    *
@@ -1236,7 +1254,8 @@
     totalPageShouldBeDisplayed,
     layerPagination,
     nextButtonElement,
-    totalPage
+    totalPage,
+    changeableItem = items
   ) {
     if (previousButton) {
       const pages = window.document.getElementsByClassName(classes.page);
@@ -1260,7 +1279,7 @@
 
         if (activeIndex === 0) {
           const pageActive = +pages[activeIndex].textContent;
-          displayFilmList(layerFilms, pageActive);
+          displayFilmList(layerFilms, pageActive, changeableItem);
           return;
         }
 
@@ -1350,7 +1369,7 @@
         }
 
         const pageActive = +pages[activeIndex].textContent;
-        displayFilmList(layerFilms, pageActive);
+        displayFilmList(layerFilms, pageActive, changeableItem);
       };
     }
   }
@@ -1397,7 +1416,12 @@
     const ret = [];
 
     for (let i = length; i >= 1; --i) {
-      ret.push(length - i + 1);
+      const film = {
+        index: length - i + 1,
+        original_title: "film" + " " + window.Math.random().toPrecision(1),
+      };
+
+      ret.push(film);
     }
 
     return ret;
@@ -1409,7 +1433,6 @@
    */
   function buttonScrollTopOnclick(buttonScrollTop) {
     buttonScrollTop.onclick = function () {
-      console.log(1);
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -1525,20 +1548,22 @@
             }
           }
 
-          const layerPagination = window.document.getElementsByClassName(
-            classes.layerPagination
-          )[0];
+          if (filmsFound.length !== 0) {
+            const layerPagination = window.document.getElementsByClassName(
+              classes.layerPagination
+            )[0];
 
-          const layerFilms = window.document.getElementsByClassName(
-            classes.layerFilms
-          )[0];
-          const pageActive = 1;
+            const layerFilms = window.document.getElementsByClassName(
+              classes.layerFilms
+            )[0];
+            const pageActive = 1;
 
-          const changeableItem = filmsFound;
-          displayFilmList(layerFilms, pageActive, changeableItem);
+            const changeableItem = filmsFound;
+            displayFilmList(layerFilms, pageActive, changeableItem);
 
-          layerPagination.innerHTML = "";
-          handlePaginationUI(layerPagination, changeableItem, layerFilms);
+            layerPagination.innerHTML = "";
+            handlePaginationUI(layerPagination, changeableItem, layerFilms);
+          }
         }
       };
   }
@@ -1559,8 +1584,10 @@
 
     // const virtualTotalPageButton = 14;
     // const items = virtualItemData(limit * virtualTotalPageButton);
+    const pageActive = 1;
+    const changeableItem = items;
 
-    displayFilmList(layerFilms);
+    displayFilmList(layerFilms, pageActive, changeableItem);
     handlePaginationUI(layerPagination, items, layerFilms);
     buttonScrollTopOnclick(buttonScrollTop);
     inputSearchOnKeyup(inputSearch);
