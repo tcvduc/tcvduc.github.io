@@ -60,14 +60,54 @@ main {
   border-radius: 3px;
 }
 
+.movie img {
+  width: 100%;
+}
+
 .movieInfo {
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.2rem;
+  padding: 0.5rem 1rem 1rem;
+  letter-spacing: 0.5px;
 }
 
-.green {
+.movieInfo span {
+  background-color: var(--primary-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-weight: bold;
 }
 
-.orange {
+.movieInfo span.green {
+  color: lightgreen;
 }
 
-.red {
+.movieInfo span.orange {
+  color: orange;
+}
+
+.movieInfo span.red {
+  color: red;
+}
+
+.overview {
+  background-color: #fff;
+  padding: 2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 100%;
+  transform: translateY(101%);
+  overflow-y: auto;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+}
+
+.movie:hover .overview {
+  transform: translateY(0);
 }
