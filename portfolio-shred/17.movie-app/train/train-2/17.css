@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --primary-color: #22254b;
+  --secondary-color: #373b69;
+}
+
+.layer {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--primary-color);
+}
+
+header {
+  width: 100%;
+  padding: 1.2rem;
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.searchInput {
+  border-radius: 30px;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary-color);
+  font-size: 18px;
+  color: #fff;
+  border: 1px solid #7378c5;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #7378c5;
+}
+
+.layerFilms {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.film {
+  background-color: #fff;
+  width: 100%;
+  max-width: 300px;
+  height: 400px;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.filmPoster {
+  height: 80%;
+  background-color: var(--primary-color);
+}
+
+.filmPoster img {
+  width: 100%;
+}
+
+.filmInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 20%;
+  background-color: var(--secondary-color);
+  padding: 24px;
+}
+
+.filmTitle {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.filmRate {
+  background-color: var(--primary-color);
+  padding: 0.6rem 0.85rem;
+  color: orange;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 2px;
+}
+
+.layerOverview {
+  background-color: #fff;
+  padding: 24px;
+  position: absolute;
+  width: 100%;
+  transition-property: transform;
+  transition-duration: 800ms;
+  bottom: 0;
+  transform: translateY(101%);
+}
+
+.overviewTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.overviewContent {
+  margin: 12px 0;
+  font-size: 18px;
+}
+
+.film:hover .layerOverview {
+  transform: translateY(0);
+}
+
+.orange {
+  color: orange;
+}
+
+.green {
+  color: lightgreen;
+}
+
+.red {
+  color: red;
+}
