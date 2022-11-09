@@ -6,7 +6,8 @@
 
 2. Tedious
 + The journey soon became tedious.
-
++ The journey soon became tedious
+  + 
 
 
 

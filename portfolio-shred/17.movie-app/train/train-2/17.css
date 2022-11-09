@@ -45,22 +45,24 @@ header {
 
 .layerFilms {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   padding: 24px;
 }
 
 .film {
-  background-color: #fff;
   width: 100%;
   max-width: 300px;
   height: 400px;
   position: relative;
   overflow-y: hidden;
+  margin: 12px;
+  border-radius: 2px;
 }
 
 .filmPoster {
   height: 80%;
-  background-color: var(--primary-color);
+  overflow: hidden;
 }
 
 .filmPoster img {
