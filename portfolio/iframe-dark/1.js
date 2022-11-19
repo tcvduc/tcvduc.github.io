@@ -153,6 +153,14 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/17.movie-app/live-demo",
       liveDemoHref: `"/portfolio-shred/17.movie-app/live-demo"`,
     },
+
+    {
+      projectHashtag: "17",
+      projectName: "Movie App - Query String Tech",
+      sourceCodeHref:
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/17.movie-app/train/train-2/",
+      liveDemoHref: `"/portfolio-shred/17.movie-app/train/train-2"`,
+    },
   ];
 
   const portfolioReactJSProject = [
