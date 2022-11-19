@@ -44,19 +44,17 @@ header {
 }
 
 .layerFilms {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-areas: "item";
+  grid-gap: 24px;
   padding: 24px;
 }
 
 .film {
   width: 100%;
-  max-width: 300px;
   height: 400px;
   position: relative;
   overflow-y: hidden;
-  margin: 12px;
   border-radius: 2px;
 }
 
@@ -129,4 +127,76 @@ header {
 
 .red {
   color: red;
+}
+
+previous-button,
+next-button,
+page {
+  display: block;
+  --size: 40px;
+  height: var(--size);
+  width: var(--size);
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+}
+
+page {
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 18px;
+}
+
+previous-button:active,
+next-button:active,
+page:active {
+  background-color: #7378c5;
+}
+
+page.active {
+  background-color: #7378c5;
+}
+
+.layerPagination {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 24px;
+}
+
+pagination {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 300px;
+  max-width: 600px;
+  overflow: hidden;
+  gap: 12px;
+  padding: 0 24px;
+}
+
+page-button-list {
+  display: flex;
+  gap: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .layerFilms {
+    grid-template-areas: "item item";
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .layerFilms {
+    grid-template-areas: "item item item";
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .layerFilms {
+    grid-template-areas: "item item item item";
+  }
 }

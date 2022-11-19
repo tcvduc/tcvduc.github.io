@@ -15,7 +15,50 @@
 
       <div class="layerFilms"></div>
 
-      <div class="pagination"></div>
+      <div class="layerPagination">
+        <pagination>
+          <previous-button>
+            <svg height="100%" width="100%" viewBox="0 0 100 100">
+              <defs>
+                <polyline
+                  style="
+                    stroke-width: 4px;
+                    fill: none;
+                    stroke-linejoin: round;
+                    stroke-linecap: round;
+                    stroke: #fff;
+                  "
+                  id="leftArrow"
+                  points="40 50, 60 40, 40 50, 60 60"
+                />
+              </defs>
+              <use href="#leftArrow" />
+            </svg>
+          </previous-button>
+
+          <page-button-list> </page-button-list>
+
+          <next-button>
+            <svg height="100%" width="100%" viewBox="0 0 100 100">
+              <defs>
+                <polyline
+                  style="
+                    stroke-width: 4px;
+                    fill: none;
+                    stroke-linejoin: round;
+                    stroke-linecap: round;
+                    stroke: #fff;
+                  "
+                  id="rightArrow"
+                  points="40 40, 60 50, 40 60, 60 50"
+                />
+              </defs>
+
+              <use href="#rightArrow" />
+            </svg>
+          </next-button>
+        </pagination>
+      </div>
     </div>
     <script src="./17.js"></script>
   </body>
