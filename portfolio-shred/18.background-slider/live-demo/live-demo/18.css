@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+body {
+  overflow: hidden;
+}
+
 .layer1 {
   width: 100vw;
   height: 100vh;
@@ -11,6 +15,11 @@
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
+  transition-duration: 400ms;
+}
+
+.layer1.active {
+  transform: scale(1.2);
 }
 
 .layer2 {

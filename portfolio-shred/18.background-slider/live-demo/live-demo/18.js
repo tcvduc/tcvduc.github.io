@@ -2,6 +2,7 @@
   const classes = {
     layer1: "layer1",
     layer3: "layer3",
+    active: "active",
     leftArrow: "leftArrow",
     rightArrow: "rightArrow",
   };
@@ -15,6 +16,21 @@
   ];
   let imageIndex = 0;
   const imageMaximumIndex = images.length - 1;
+  const scaleY = 1.07;
+
+  /**
+   *
+   * @param {number} n
+   */
+  function wasOddNumber(n) {
+    /**
+     * + Odd Number: 1, 3, 5, 7,..., 2k + 1
+     * + Odd number is not divided by 2
+     *
+     *
+     */
+    return n % 2 !== 0;
+  }
 
   /**
    *
@@ -31,8 +47,55 @@
         imageIndex = imageMaximumIndex;
       }
 
-      layer1.style.backgroundImage = `url('${images[imageIndex]}')`;
-      layer3.style.backgroundImage = `url('${images[imageIndex]}')`;
+      if (wasOddNumber(imageIndex)) {
+        layer1.style.backgroundImage = `url('${images[imageIndex]}')`;
+        layer1.style.transform = `scaleY(${scaleY})`;
+        layer3.style.backgroundImage = `url('${images[imageIndex]}')`;
+
+        return;
+      }
+
+      if (!wasOddNumber(imageIndex)) {
+        layer1.style.backgroundImage = `url('${images[imageIndex]}')`;
+        layer1.style.transform = "scale(1)";
+
+        layer3.style.backgroundImage = `url('${images[imageIndex]}')`;
+      }
+    };
+  }
+
+  /**
+   *
+   * @param {HTMLElement} rightArrow
+   * @param {HTMLElement} layer1
+   * @param {HTMLElement} layer3
+   *
+   */
+  function rightArrowOnclick(rightArrow, layer1, layer3) {
+    rightArrow.onclick = function () {
+      imageIndex++;
+
+      if (imageIndex > images.length - 1) {
+        imageIndex = 0;
+      }
+
+      if (wasOddNumber(imageIndex)) {
+        layer1.style.backgroundImage = `url('${images[imageIndex]}')`;
+        layer1.style.transform = `scaleY(${scaleY})`;
+
+        layer3.style.backgroundImage = `url('${images[imageIndex]}')`;
+
+        return;
+      }
+
+      if (!wasOddNumber(imageIndex)) {
+        layer1.style.backgroundImage = `url('${images[imageIndex]}')`;
+        layer1.style.transform = `scaleY(1)`;
+
+        layer3.style.backgroundImage = `url('${images[imageIndex]}')`;
+
+        return;
+      }
     };
   }
 
@@ -47,8 +110,10 @@
     )[0];
 
     layer1.style.backgroundImage = `url('${images[imageIndex]}')`;
+    layer3.style.backgroundImage = `url('${images[imageIndex]}')`;
 
     leftArrowOnclick(leftArrow, layer1, layer3);
+    rightArrowOnclick(rightArrow, layer1, layer3);
   }
 
   main();
