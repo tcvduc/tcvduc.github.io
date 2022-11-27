@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+.layer1 {
+  width: 100vw;
+  height: 100vh;
+  background-color: blanchedalmond;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition-duration: 400ms;
+}
+
+.layer1.active {
+  transform: scale(1.2);
+}
+
+.layer2 {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.71);
+}
+
+.layer3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 100% / 3);
+  height: calc(100% - 100% / 3);
+  background-color: rgb(163, 64, 64);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+button {
+  position: absolute;
+  width: 70px;
+  height: 50px;
+  background-color: unset;
+  outline: none;
+  border: none;
+  border: 3px solid orange;
+  cursor: pointer;
+}
+
+button:active {
+  background-color: rgba(0, 0, 0, 0.559);
+}
+
+button.leftArrow {
+  top: 50%;
+  transform: translateY(-50%) translateX(-100%);
+}
+
+button.rightArrow {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) translateX(100%);
+}
