@@ -1,67 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  background-position: center center;
+  background-size: cover;
+  transition: 0.4s;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+.slider-container {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  height: 70vh;
+  width: 70vw;
+  position: relative;
   overflow: hidden;
 }
 
-.layer1 {
-  width: 100vw;
+.slide {
+  opacity: 0;
   height: 100vh;
-  background-color: blanchedalmond;
-  position: relative;
-  background-repeat: no-repeat;
+  width: 100vw;
+  background-position: center center;
   background-size: cover;
-  transition-duration: 400ms;
-}
-
-.layer1.active {
-  transform: scale(1.2);
-}
-
-.layer2 {
   position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.71);
+  top: -15vh;
+  left: -15vw;
+  transition: 0.4s ease;
+  z-index: 1;
 }
 
-.layer3 {
-  position: absolute;
+.slide.active {
+  opacity: 1;
+}
+
+.arrow {
+  position: fixed;
+  background-color: transparent;
+  color: #fff;
+  padding: 20px;
+  font-size: 30px;
+  border: 2px solid orange;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(100% - 100% / 3);
-  height: calc(100% - 100% / 3);
-  background-color: rgb(163, 64, 64);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-button {
-  position: absolute;
-  width: 70px;
-  height: 50px;
-  background-color: unset;
-  outline: none;
-  border: none;
-  border: 3px solid orange;
+  transform: translateY(-50%);
   cursor: pointer;
 }
 
-button:active {
-  background-color: rgba(0, 0, 0, 0.559);
+.arrow:focus {
+  outline: 0;
 }
 
-button.leftArrow {
-  top: 50%;
-  transform: translateY(-50%) translateX(-100%);
+.left-arrow {
+  left: calc(15vw - 65px);
 }
 
-button.rightArrow {
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%) translateX(100%);
+.right-arrow {
+  right: calc(15vw - 65px);
 }
