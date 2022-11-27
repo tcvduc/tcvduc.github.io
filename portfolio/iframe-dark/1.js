@@ -166,7 +166,7 @@
       projectHashtag: "18",
       projectName: "Background Slider",
       sourceCodeHref:
-        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/18.background-slider/live-demo/",
+        "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/18.background-slider/live-demo",
       liveDemoHref: `"/portfolio-shred/18.background-slider/live-demo"`,
     },
   ];
