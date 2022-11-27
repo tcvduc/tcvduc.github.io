@@ -1,3 +1,15 @@
+I. Words
+
+5. Neat
+- arranged in an orderly, tidy way.
++ The books had been stacked up in neat piles.
++ The books had been stacked up in neat piles.
++ The books had been stacked up in neat piles.
++ The books had been stacked up in neat piles.
++ The books had been stacked up in neat piles.
++ The books had been stacked up in neat piles.
++ The books had been stacked up in neat piles.
+
 1. query
 + Our assistants will be happy to answer your queries.
 + Our assistants will be happy to answer your queries.
@@ -25,6 +37,7 @@ represents somebody/something.
 images on file.
 + We already have more than 22,000 digital 
 images on file.  
+
 
 Some writes
 + Tedious creates boredom, was it?
