@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --primary-color: #fff;
+  --secondary-color: #000;
+}
+
+body {
+  font-size: 18px;
+}
+
+.layer {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.buttonMode {
+  margin-top: 120px;
+  padding: 8px 16px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.buttonMode:active {
+  background-color: rgba(0, 0, 0, 0.738);
+}
+
+.marginTop24px {
+  margin-top: 24px;
+}
+
+.time {
+  font-weight: 400;
+  font-size: 52px;
+}
+
+.dayMonth {
+  color: #aaa;
+}
+
+.dayNumber {
+  --size: 28px;
+  display: inline-flex;
+  width: var(--size);
+  height: var(--size);
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  --size: 150px;
+  width: var(--size);
+  height: var(--size);
+  border: 1px solid #000;
+  position: relative;
+}
+
+.barHour {
+  position: absolute;
+  height: calc(100% - 50%);
+  width: 3px;
+  background-color: var(--secondary-color);
+  left: 50%;
+  border-radius: 2px;
+  transform: translateX(-50%) translateY(0);
+}
+
+.barMinute {
+  position: absolute;
+  height: calc(100% - 60%);
+  width: 3px;
+  background-color: var(--secondary-color);
+  top: 50%;
+  left: 50%;
+  border-radius: 2px;
+  transform-origin: 0% 100% 0;
+  transform: translateX(-50%) translateY(-100%) rotate(45deg);
+  transition-duration: 800ms;
+}
+
+.barSecond {
+  position: absolute;
+  height: calc(100% - 15%);
+  width: 3px;
+  background-color: var(--secondary-color);
+  top: 50%;
+  left: 50%;
+  border-radius: 2px;
+  transform-origin: 0% 100% 0;
+  transform: translateX(-50%) translateY(-100%) rotate(20deg);
+  transition-duration: 800ms;
+  background-color: #e74c3c;
+}
+
+.active {
+  transform: translateX(-50%) translateY(-100%) rotate(80deg);
+}
+
+.chain1 {
+  --size: 9px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border: 2px solid #e74c3c;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.chain2 {
+  --size: 5px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  background-color: #000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
