@@ -4,6 +4,11 @@ I. Words
 - Examination of something in order to understand more about it.
 The result of the study.
 + Further analysis revealed significant regional variations in the results.
++ Further analysis revealed significant regional variations in the results.
+  + Example
+    + Code Analysis Result: Write better code
+    + Problem Analysis Result: Got some solutions.
+
 
 6. Relief
 - Removal of anxiety / pain
