@@ -72,6 +72,10 @@
         hourTimeUnit++;
       }
 
+      if (hourTimeUnit === maxHourTimeUnit) {
+        hourTimeUnit = 0;
+      }
+
       console.log(`${hourTimeUnit}:${minuteTimeUnit}:${secondTimeUnit}`);
     }, oneSecondIntervalUnitFastDebug);
   }
