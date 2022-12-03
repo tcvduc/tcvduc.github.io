@@ -76,65 +76,60 @@ body {
 
 .barHour {
   position: absolute;
-  height: calc(100% - 50%);
+  height: 50%;
   width: 3px;
   background-color: var(--secondary-color);
-  left: 50%;
   border-radius: 2px;
-  transform: translateX(-50%) translateY(0);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .barMinute {
   position: absolute;
-  height: calc(100% - 60%);
+  height: 40%;
   width: 3px;
   background-color: var(--secondary-color);
+  border-radius: 2px;
+  top: 10%;
+  left: 50%;
+  transform-origin: 0% 100% 0;
+  transform: translateX(-50%) translateY(0%) rotate(45deg);
+  transition-duration: 800ms;
+}
+
+.barMinute.active {
+  left: calc(50% + 3px);
+  top: calc(10% - 1px);
+  transform: translateX(-50%) translateY(0%) rotate(180deg);
+}
+
+.centerPoint {
+  --size: 15px;
+  width: var(--size);
+  height: var(--size);
+  border: 3.2px solid #e74c3c;
+  border-radius: 50%;
+  position: absolute;
   top: 50%;
   left: 50%;
-  border-radius: 2px;
-  transform-origin: 0% 100% 0;
-  transform: translateX(-50%) translateY(-100%) rotate(45deg);
+  transform: translateX(-50%) translateY(-50%);
+  cursor: pointer;
+  z-index: 5;
   transition-duration: 800ms;
 }
 
 .barSecond {
   position: absolute;
-  height: calc(100% - 15%);
+  bottom: 100%;
+  left: 50%;
+  height: 120px;
   width: 3px;
-  background-color: var(--secondary-color);
-  top: 50%;
-  left: 50%;
-  border-radius: 2px;
-  transform-origin: 0% 100% 0;
-  transform: translateX(-50%) translateY(-100%) rotate(20deg);
-  transition-duration: 800ms;
   background-color: #e74c3c;
+  transform-origin: 0 100% 0;
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
-.active {
-  transform: translateX(-50%) translateY(-100%) rotate(80deg);
-}
-
-.chain1 {
-  --size: 9px;
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  border: 2px solid #e74c3c;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-}
-
-.chain2 {
-  --size: 5px;
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  background-color: #000;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
+.centerPoint.active {
+  transform: translateX(-50%) translateY(-50%) rotate(360deg);
 }

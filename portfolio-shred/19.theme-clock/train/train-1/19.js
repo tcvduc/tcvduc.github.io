@@ -1,10 +1,16 @@
 (function () {
   const classes = {
+    barSecond: "barSecond",
     buttonMode: "buttonMode",
     barMinute: "barMinute",
     active: "active",
     clock: "clock",
+    centerPoint: "centerPoint",
   };
+
+  const maxSecondTimeUnit = 60;
+  const maxMinuteTimeUnit = 60;
+  const maxHourTimeUnit = 24;
 
   const modeColors = {
     darkMode: function () {},
@@ -30,12 +36,44 @@
    *
    * @param {HTMLElement} clock
    * @param {HTMLElement} barMinute
+   * @param {HTMLElement} centerPoint
+   *
+   *
    *
    */
-  function clockOnclick(clock, barMinute) {
+  function clockOnclick(clock, barMinute, centerPoint) {
     clock.onclick = function () {
-      toggleElementClassName(barMinute, classes.active);
+      toggleElementClassName(centerPoint, classes.active);
     };
+  }
+
+  /**
+   *
+   * @param {HTMLElement} barSecond
+   */
+  function barSecondClockWiseRotateActive(barSecond) {
+    let oneSecondIntervalUnit = 1000;
+    let oneSecondIntervalUnitFastDebug = 1;
+
+    let secondTimeUnit = 0;
+    let minuteTimeUnit = 0;
+    let hourTimeUnit = 0;
+
+    const timeInterval = window.setInterval(function () {
+      secondTimeUnit++;
+      oneSecondIntervalUnit += 1000;
+      if (secondTimeUnit === maxSecondTimeUnit) {
+        secondTimeUnit = 0;
+        minuteTimeUnit++;
+      }
+
+      if (minuteTimeUnit === maxMinuteTimeUnit) {
+        minuteTimeUnit = 0;
+        hourTimeUnit++;
+      }
+
+      console.log(`${hourTimeUnit}:${minuteTimeUnit}:${secondTimeUnit}`);
+    }, oneSecondIntervalUnitFastDebug);
   }
 
   function main() {
@@ -43,8 +81,15 @@
     const barMinute = window.document.getElementsByClassName(
       classes.barMinute
     )[0];
+    const centerPoint = window.document.getElementsByClassName(
+      classes.centerPoint
+    )[0];
+    const barSecond = window.document.getElementsByClassName(
+      classes.barSecond
+    )[0];
 
-    clockOnclick(clock, barMinute);
+    clockOnclick(clock, barMinute, centerPoint);
+    barSecondClockWiseRotateActive(barSecond);
   }
 
   main();
