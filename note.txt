@@ -27,5 +27,10 @@ I.
 7. Tons
 - Chip Root: Enemy.
 
+8. Indonesian
+- Chip Root: Enemy.
 
-
+9. Vietnamese
+- Chip Root
+  + Enemy  
+  + Friend
