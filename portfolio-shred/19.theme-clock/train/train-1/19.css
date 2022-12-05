@@ -121,7 +121,7 @@ body {
 .barSecond {
   position: absolute;
   bottom: 100%;
-  left: 50%;
+  left: calc(50%);
   height: 120px;
   width: 3px;
   background-color: #e74c3c;

@@ -229,9 +229,7 @@
         x1 = pageX;
         y1 = pageY;
 
-        console.log("mouse down");
-
-        element.onmousemove =
+        window.onmousemove =
           /**
            *
            * @param {MouseEvent} event
@@ -242,19 +240,28 @@
             y2 = pageY;
 
             const deltaX = x2 - x1;
-            const elementLeftNumber = getPixelNumber(element.style.left);
-            console.log(`elementLeftNumber:${elementLeftNumber}`);
+            x1 = x2;
 
-            element.style.left = `${elementLeftNumber + deltaX}px`;
+            const elementLeftNumber = getPixelNumber(element.style.left);
+
+            console.log("deltaX: ", deltaX);
+            console.log("elementLeftNumber: ", elementLeftNumber);
+
+            const s = `calc(50% + ${elementLeftNumber + deltaX}px)`;
+
+            console.log("s: ", s);
+            element.style.left = `calc(50% + ${
+              elementLeftNumber + deltaX
+            }px)px`;
           };
 
-        element.onmouseup =
+        window.onmouseup =
           /**
            *
            * @param {MouseEvent} event
            */
           function (event) {
-            element.onmousemove = null;
+            window.onmousemove = null;
             element.onmousedown = null;
           };
       };
