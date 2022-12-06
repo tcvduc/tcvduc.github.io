@@ -74,33 +74,36 @@ body {
   position: relative;
 }
 
-.barHour {
+.circleBarMinute {
+  --size: 10px;
+  width: var(--size);
+  height: var(--size);
+  background-color: #000;
+  border-radius: 50%;
   position: absolute;
-  height: 50%;
-  width: 3px;
-  background-color: var(--secondary-color);
-  border-radius: 2px;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .barMinute {
   position: absolute;
-  height: 40%;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  height: 50px;
   width: 3px;
   background-color: var(--secondary-color);
-  border-radius: 2px;
-  top: 10%;
-  left: 50%;
-  transform-origin: 0% 100% 0;
-  transform: translateX(-50%) translateY(0%) rotate(45deg);
+  border-radius: 3px;
+}
+
+.circleBarMinute {
+  transform-origin: 50% 50% 0;
   transition-duration: 800ms;
 }
 
-.barMinute.active {
-  left: calc(50% + 3px);
-  top: calc(10% - 1px);
-  transform: translateX(-50%) translateY(0%) rotate(180deg);
+.circleBarMinute.active {
+  transform: translateX(-50%) translateY(-50%) rotate(360deg);
 }
 
 .centerPoint {
@@ -132,4 +135,36 @@ body {
 
 .centerPoint.active {
   transform: translateX(-50%) translateY(-50%) rotate(360deg);
+}
+
+.circleBarHour {
+  --size: 10px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.circleBarHour {
+  transform-origin: 50% 50% 0;
+  transition-duration: 800ms;
+}
+
+.circleBarHour.active {
+  transform: translateX(-50%) translateY(-50%) rotate(360deg);
+}
+
+.barHour {
+  position: absolute;
+  left: 50%;
+  height: 50px;
+  width: 3px;
+  background-color: #000;
+  transform: translateX(-50%);
+  bottom: 100%;
+  border-radius: 3px;
 }
