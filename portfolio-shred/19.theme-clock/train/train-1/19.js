@@ -53,7 +53,7 @@
     }
   }
 
-  function debugSecondMatchDegree() {
+  function debugSecondMatchDegreeCase1() {
     /**
      * + Second: 1 -> 5
      *   + Second Minimum: 1
@@ -85,6 +85,42 @@
       }
       secondIncrease++;
       degreeIncrease = secondIncrease * delta;
+    }, secondIntervalTimeUnit);
+  }
+
+  function debugSecondMatchDegreeCase2() {
+    /**
+     * + Second: 0 -> 59
+     *   + Second Minimum: 0
+     *   + Second Maximum: 59
+     * + Degree: 0 -> 359
+     *   + Degree Minimum: 0
+     *   + Degree Maximum: 359
+     * + The Equation
+     *   + delta = degree maximum / second maximum
+     *   + degree increasing = second increasing x delta
+     *
+     * + step 1: increase the second from 0 to 59
+     * + step 2: use the equation increase the degree
+     * + step 3: watch ret
+     *
+     *
+     */
+
+    const secondIntervalTimeUnit = 100;
+    const secondMaximum = 59;
+    const degreeMaximum = 359;
+    const delta = degreeMaximum / secondMaximum;
+
+    let secondIncrease = 0;
+
+    const interval = window.setInterval(function () {
+      console.log("secondIncrease: ", secondIncrease);
+      secondIncrease++;
+      if (secondIncrease === secondMaximum) {
+        console.log("secondIncrease: ", secondIncrease);
+        secondIncrease = 0;
+      }
     }, secondIntervalTimeUnit);
   }
 
@@ -144,7 +180,7 @@
        *
        *
        */
-      debugSecondMatchDegree();
+      debugSecondMatchDegreeCase2();
 
       let oneSecondIntervalUnit = 1000;
       let oneSecondIntervalUnitFastDebug = 100;
