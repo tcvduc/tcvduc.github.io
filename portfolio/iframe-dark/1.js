@@ -2,7 +2,6 @@
   const classes = {
     hashtag: "hashtag",
     project: "project",
-    liveDemo: "live-demo",
     colorHoverBar: "color-hover-bar",
     colorClickBar: "color-click-bar",
     bar: "bar",
@@ -23,7 +22,7 @@
       projectName: "Expanding Cards",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/1.expanding-cards/live-demo",
-      liveDemoHref: `"/portfolio-shred/1.expanding-cards/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/1.expanding-cards/live-demo"`,
     },
 
     {
@@ -31,7 +30,7 @@
       projectName: "Progress Steps",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/2.progress-steps/live-demo",
-      liveDemoHref: `"/portfolio-shred/2.progress-steps/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/2.progress-steps/live-demo"`,
     },
 
     {
@@ -39,15 +38,14 @@
       projectName: "Rotating Navigation",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/3.rotating-navigation/live-demo",
-      liveDemoHref: `"/portfolio-shred/3.rotating-navigation/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/3.rotating-navigation/live-demo"`,
     },
-
     {
       projectHashtag: "04",
       projectName: "Hidden Search",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/4.hidden-search/live-demo",
-      liveDemoHref: `"/portfolio-shred/4.hidden-search/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/4.hidden-search/live-demo"`,
     },
 
     {
@@ -55,7 +53,7 @@
       projectName: "Blurry Loading",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/5.blurry-loading/live-demo",
-      liveDemoHref: `"/portfolio-shred/5.blurry-loading/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/5.blurry-loading/live-demo"`,
     },
 
     {
@@ -63,7 +61,7 @@
       projectName: "Scroll Animation",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/6.scroll-animation/live-demo",
-      liveDemoHref: `"/portfolio-shred/6.scroll-animation/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/6.scroll-animation/live-demo"`,
     },
 
     {
@@ -71,7 +69,7 @@
       projectName: "Split Landing Page",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/7.split-landing-page/live-demo",
-      liveDemoHref: `"/portfolio-shred/7.split-landing-page/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/7.split-landing-page/live-demo"`,
     },
 
     {
@@ -79,7 +77,7 @@
       projectName: "Form Wave",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/8.form-wave/live-demo",
-      liveDemoHref: `"/portfolio-shred/8.form-wave/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/8.form-wave/live-demo"`,
     },
 
     {
@@ -87,7 +85,7 @@
       projectName: "Sound Board",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/9.sound-board/live-demo",
-      liveDemoHref: `"/portfolio-shred/9.sound-board/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/9.sound-board/live-demo"`,
     },
 
     {
@@ -95,7 +93,7 @@
       projectName: "Dad Jokes",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/10.dad-jokes/live-demo",
-      liveDemoHref: `"/portfolio-shred/10.dad-jokes/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/10.dad-jokes/live-demo"`,
     },
 
     {
@@ -103,7 +101,7 @@
       projectName: "Event KeyCodes",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/11.event-keycodes/live-demo",
-      liveDemoHref: `"/portfolio-shred/11.event-keycodes/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/11.event-keycodes/live-demo"`,
     },
 
     {
@@ -111,7 +109,7 @@
       projectName: "FAQ Collapse",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/12.faq-collapse/live-demo",
-      liveDemoHref: `"/portfolio-shred/12.faq-collapse/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/12.faq-collapse/live-demo"`,
     },
 
     {
@@ -119,7 +117,7 @@
       projectName: "Random Choice Picker",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/13.random-choice-picker/live-demo",
-      liveDemoHref: `"/portfolio-shred/13.random-choice-picker/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/13.random-choice-picker/live-demo"`,
     },
 
     {
@@ -127,7 +125,7 @@
       projectName: "Animated Navigation",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/14.navigation-animation/live-demo",
-      liveDemoHref: `"/portfolio-shred/14.navigation-animation/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/14.navigation-animation/live-demo"`,
     },
 
     {
@@ -135,7 +133,7 @@
       projectName: "Incrementing Counter",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/15.incrementing-counter/live-demo",
-      liveDemoHref: `"/portfolio-shred/15.incrementing-counter/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/15.incrementing-counter/live-demo"`,
     },
 
     {
@@ -143,7 +141,7 @@
       projectName: "Drink Water",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/16.drink-water/live-demo",
-      liveDemoHref: `"/portfolio-shred/16.drink-water/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/16.drink-water/live-demo"`,
     },
 
     {
@@ -151,7 +149,7 @@
       projectName: "Movie App",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/17.movie-app/live-demo",
-      liveDemoHref: `"/portfolio-shred/17.movie-app/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/17.movie-app/live-demo"`,
     },
 
     {
@@ -159,7 +157,7 @@
       projectName: "Movie App - Query String Tech",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/17.movie-app/train/train-2/",
-      liveDemoHref: `"/portfolio-shred/17.movie-app/train/train-2"`,
+      projectWatchLink: `"/portfolio-shred/17.movie-app/train/train-2"`,
     },
 
     {
@@ -167,19 +165,7 @@
       projectName: "Background Slider",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/18.background-slider/live-demo",
-      liveDemoHref: `"/portfolio-shred/18.background-slider/live-demo"`,
-    },
-  ];
-
-  const portfolioReactJSProject = [
-    {
-      projectHashtag: "01",
-      projectName: "To Do List",
-      content: {
-        light: `<iframe width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-light/1.html" /> `,
-        dark: `<iframe  width="100%" height="100%" src="./portfolio-shred/1.expanding-cards/shred/iframe-dark/1.html" />`,
-      },
-      liveDemoHref: `https://tcvduc.github.io/train-reactjs/`,
+      projectWatchLink: `"/portfolio-shred/18.background-slider/live-demo"`,
     },
   ];
 
@@ -187,30 +173,21 @@
    *
    * @param {string} projectHashtag
    * @param {string} projectName
-   * @param {string} liveDemoHref
-   * @param {string} sourceCodeHref
+   * @param {string} projectWatchLink
    *
    *
    */
   function createAnPortfolioBarElement(
     projectHashtag,
     projectName,
-    liveDemoHref,
-    sourceCodeHref
+    projectWatchLink
   ) {
     const htmlCode = `
     <div class="hashtag">${projectHashtag}</div>
     <div class="project">
       <a target="_blank"
-       href="${sourceCodeHref}"
+       href=${projectWatchLink}
        >${projectName}</a>
-    </div>
-    <div class="live-demo">
-      <a
-        target="_blank"
-        href=${liveDemoHref}
-        >Live Demo</a
-      >
     </div>
     `;
     const ret = document.createElement("div");
@@ -224,13 +201,12 @@
    *
    * @param {HTMLElement} layerBars
    */
-  function innerHTMLPortfolioHtmlCssJsBars(layerBars) {
+  function displayProjectList(layerBars) {
     portfolioHtmlCssJsProjects.forEach(function (project, i) {
       const portfolioBarElement = createAnPortfolioBarElement(
         project.projectHashtag,
         project.projectName,
-        project.liveDemoHref,
-        project.sourceCodeHref
+        project.projectWatchLink
       );
 
       layerBars.appendChild(portfolioBarElement);
@@ -239,32 +215,11 @@
 
   /**
    *
-   * @param {HTMLElement} layerReactJsBars
-   */
-  function innerHTMLPortfolioReactJSBars(layerReactJsBars) {
-    portfolioReactJSProject.forEach(function (project) {
-      const portfolioBarElement = createAnPortfolioBarElement(
-        project.projectHashtag,
-        project.projectName,
-        project.liveDemoHref
-      );
-
-      // layerReactJsBars.appendChild(portfolioBarElement);
-    });
-  }
-
-  /**
-   *
    * @param {HTMLElement[]} hashtags
    * @param {HTMLElement[]} projects
-   * @param {HTMLElement[]} liveDemos
    *
    */
-  function barShredElementOnMouseOverAndOnMouseLeave(
-    hashtags,
-    projects,
-    liveDemos
-  ) {
+  function barShredElementOnMouseOverAndOnMouseLeave(hashtags, projects) {
     for (let i = hashtags.length - 1; i >= 0; --i) {
       hashtags[i].onmouseover = function () {
         hashtags[i].classList.add(classes.colorHoverBar);
@@ -293,80 +248,68 @@
       projects[j].onmousedown = function () {
         projects[j].classList.add(classes.colorClickBar);
 
-        if (projects[j].children[0]?.textContent) {
-          // get attribute data side bar index value
-          const dataSidebarIndex = projects[j].getAttribute(
-            elementAttributes.dataSideBarIndex
-          );
-
-          // const localStorageValue = {
-          //   dataSidebarIndex: dataSidebarIndex,
-          //   project: projects[j].children[0].textContent,
-          // };
-
-          // set to local storage
-          // window.localStorage.removeItem(localStorageKeyProjectSideBarIndex);
-
-          // window.localStorage.setItem(
-          //   localStorageKeyProjectSideBarIndex,
-          //   JSON.stringify(localStorageValue)
-          // );
-        }
-
         window.onmouseup = function () {
           projects[j].classList.remove(classes.colorClickBar);
         };
       };
     }
-
-    for (let k = liveDemos.length - 1; k >= 0; --k) {
-      liveDemos[k].onmouseover = function () {
-        liveDemos[k].classList.add(classes.colorHoverBar);
-      };
-      liveDemos[k].onmouseleave = function () {
-        liveDemos[k].classList.remove(classes.colorHoverBar);
-      };
-
-      liveDemos[k].onmousedown = function () {
-        liveDemos[k].classList.add(classes.colorClickBar);
-
-        window.onmouseup = function () {
-          liveDemos[k].classList.remove(classes.colorClickBar);
-        };
-      };
-    }
   }
 
-  function thisIsPortfolioIframeLightGetPostMessageFromParent() {
-    window.onmessage =
-      /**
-       *
-       * @param {MessageEvent} event
-       */
-      function (event) {
-        const { data: searchKeyword } = event;
+  /**
+   *
+   * @param {string} s
+   */
+  function advanceTrim(s) {
+    /**
+     * - s = `
+     *  abc      def
+     * `
+     * + ret = `abc def`
+     *
+     *
+     *
+     */
+    const regexDownLine = /\n/g;
+    const regexMultipleEmpties = / +/g;
+    const regexBeginEmpty = /^ +/g;
+    const regexEndEmpty = / +$/g;
 
-        if (searchKeyword !== "") {
-          console.log("Log from: ", window.location.pathname);
-        }
-      };
+    return s
+      .replace(regexDownLine, "")
+      .replace(regexMultipleEmpties, " ")
+      .replace(regexBeginEmpty, "")
+      .replace(regexEndEmpty, "");
+  }
+
+  /**
+   *
+   * @param {string} searchKeyword
+   */
+  function activateSearchResult(searchKeyword) {
+    console.log("searchKeyword: ", searchKeyword);
+    const elements = window.document.all;
+    const lowercasedSearchKeyword = searchKeyword.toLowerCase();
+
+    for (let i = elements.length - 1; i >= 0; --i) {
+      const elementTextContent = elements[i].textContent;
+      const trimmedText = advanceTrim(elementTextContent);
+      const lowercasedText = trimmedText.toLowerCase();
+
+      if (lowercasedText.includes(lowercasedSearchKeyword)) {
+        console.log(elements[i]);
+        break;
+      }
+    }
   }
 
   function main() {
     const hashtags = document.getElementsByClassName(classes.hashtag);
     const projects = document.getElementsByClassName(classes.project);
-    const liveDemos = document.getElementsByClassName(classes.liveDemo);
     const layerBars = document.getElementsByClassName(classes.layerBars)[0];
-    const layerReactJsBars = document.getElementsByClassName(
-      classes.layerBars
-    )[1];
 
-    innerHTMLPortfolioHtmlCssJsBars(layerBars);
-    innerHTMLPortfolioReactJSBars(layerReactJsBars);
+    displayProjectList(layerBars);
 
-    barShredElementOnMouseOverAndOnMouseLeave(hashtags, projects, liveDemos);
-
-    thisIsPortfolioIframeLightGetPostMessageFromParent();
+    barShredElementOnMouseOverAndOnMouseLeave(hashtags, projects);
   }
 
   main();

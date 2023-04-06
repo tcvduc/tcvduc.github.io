@@ -57,7 +57,7 @@ a {
   margin: 18px 0;
 }
 
-.project-information-title {
+.projectInformationTitle {
   border-bottom: 1px solid var(--color-light-stroke);
   height: 50px;
   max-height: 50px;
@@ -92,7 +92,7 @@ a {
 }
 
 .hashtag {
-  width: 50px;
+  width: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,11 +100,12 @@ a {
 }
 
 .project {
+  --hashTagSize: 70px;
   border-left: 1px solid var(--color-light-stroke);
   border-right: 1px solid var(--color-light-stroke);
   display: flex;
   align-items: center;
-  width: calc(100% - 50px - 100px);
+  width: calc(100% - var(--hashTagSize));
   padding-left: 12px;
   font-weight: 500;
 }

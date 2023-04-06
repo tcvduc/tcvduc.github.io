@@ -59,7 +59,7 @@ a {
   margin: 18px 0;
 }
 
-.project-information-title {
+.projectInformationTitle {
   border-bottom: 1px solid var(--color-dark-stroke);
   height: 50px;
   max-height: 50px;
@@ -94,7 +94,7 @@ a {
 }
 
 .hashtag {
-  width: 50px;
+  width: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,11 +103,12 @@ a {
 }
 
 .project {
+  --hashtagSize: 70px;
   border-left: 1px solid var(--color-dark-stroke);
   border-right: 1px solid var(--color-dark-stroke);
   display: flex;
   align-items: center;
-  width: calc(100% - 50px - 100px);
+  width: calc(100% - var(--hashtagSize));
   padding-left: 12px;
   font-weight: 500;
   color: var(--color-dark-stroke);
