@@ -126,7 +126,8 @@ a {
 
 .template {
   margin: 24px 0;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
 }
 
 .templateHref {
@@ -140,6 +141,21 @@ a {
 
 .template.foundSearchKeyword a {
   color: #fff;
+}
+
+.sourceReferences {
+  display: flex;
+  flex-direction: column;
+}
+
+.source {
+  display: flex;
+  width: 100%;
+}
+
+.addCharacter {
+  display: flex;
+  align-items: center;
 }
 
 /* Responsive for device   width from 500px  */
