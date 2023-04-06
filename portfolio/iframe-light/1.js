@@ -41,7 +41,6 @@
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/3.rotating-navigation/live-demo",
       liveDemoHref: `"/portfolio-shred/3.rotating-navigation/live-demo"`,
     },
-    {},
     {
       projectHashtag: "04",
       projectName: "Hidden Search",
