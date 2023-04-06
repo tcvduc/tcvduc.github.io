@@ -412,7 +412,8 @@ fec43-90e5f
 - Do
   + git reset --hard b897b12744
 
-
+33. watch changes 
+- git diff
 
 II. Github Pages - Deploy Static HTML File
 - Github Page, deploy static html file, can routing. 
