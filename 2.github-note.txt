@@ -426,6 +426,10 @@ fec43-90e5f
 - git log -1
 - git reset --hard 722dc0fe98cf6adc87596c06c51a26b6ce14b310
 
+37. compare changes between two branches
+or two commits
+- git diff 722dc0fe98cf6adc87596c06c51a26b6ce14b310
+722dc0fe98cf6adc87596c06c51a26b6ce14b312
 
 II. Github Pages - Deploy Static HTML File
 - Github Page, deploy static html file, can routing. 
