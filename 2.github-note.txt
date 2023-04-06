@@ -422,6 +422,11 @@ fec43-90e5f
 35. jump to another code version and jump back
 - git checkout main
 
+36. change code, and want to get back previous code
+- git log -1
+- git reset --hard 722dc0fe98cf6adc87596c06c51a26b6ce14b310
+
+
 II. Github Pages - Deploy Static HTML File
 - Github Page, deploy static html file, can routing. 
 - URI: 
