@@ -415,6 +415,13 @@ fec43-90e5f
 33. watch changes 
 - git diff
 
+34. jump to another code version
+- git log -4
+- git checkout a1e8fb5
+
+35. jump to another code version and jump back
+- git checkout main
+
 II. Github Pages - Deploy Static HTML File
 - Github Page, deploy static html file, can routing. 
 - URI: 
