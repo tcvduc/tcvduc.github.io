@@ -115,7 +115,6 @@
     let secondIncrease = 0;
 
     const interval = window.setInterval(function () {
-      console.log("secondIncrease: ", secondIncrease);
       secondIncrease++;
       if (secondIncrease === secondMaximum) {
         console.log("secondIncrease: ", secondIncrease);
@@ -426,6 +425,16 @@
     }
   }
 
+  /**
+   *
+   * @param {HTMLElement} buttonMode
+   */
+  function buttonModeOnclick(buttonMode) {
+    buttonMode.onclick = function () {
+      alert(1);
+    };
+  }
+
   function main() {
     const clock = window.document.getElementsByClassName(classes.clock)[0];
     const barMinute = window.document.getElementsByClassName(
@@ -443,6 +452,9 @@
     const circleBarHour = window.document.getElementsByClassName(
       classes.circleBarHour
     )[0];
+    const buttonMode = window.document.getElementsByClassName(
+      classes.buttonMode
+    )[0];
 
     clockOnclick(clock, barMinute, centerPoint);
     circleBarMinuteOnclick(circleBarMinute);
@@ -451,6 +463,7 @@
     barSecondClockWiseRotateActive(barSecond);
 
     dragElement(barMinute);
+    buttonModeOnclick(buttonMode);
   }
 
   main();
