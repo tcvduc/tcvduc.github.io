@@ -60,8 +60,8 @@
 }
 
 .bar2 {
-  --delta: calc(20px / 3);
-  top: calc(var(--delta) * 2 + 4px);
+  --delta: calc((20px / 3) * 2 + 4px);
+  top: var(--delta);
 }
 
 .bar3 {
@@ -70,18 +70,15 @@
 }
 
 .bar1Move {
-  --delta: calc(20px / 3);
-  top: calc(var(--delta) * 1 - 2px);
+  top: 4px;
 }
 
 .bar2Move {
-  --delta: calc(20px / 3);
-  top: calc(var(--delta) * 2 + 4px - 6px);
+  top: 12px;
 }
 
 .bar3Move {
-  --delta: calc(20px / 3);
-  top: calc(var(--delta) * 4 - 9px);
+  top: 20px;
 }
 
 .barContent {
