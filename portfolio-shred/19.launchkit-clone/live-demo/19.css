@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.layer {
+  display: flex;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 24px;
+}
+
+.barControl {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.brandName {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.buttonMenu {
+  --size: 50px;
+  height: var(--size);
+  width: var(--size);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bar {
+  width: calc(100% - 24px);
+  height: 4px;
+  background-color: #000;
+}
+
+.bar:nth-child(2) {
+  margin-top: 6px;
+}
+
+.barContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navigationTo {
+  margin-top: 12px;
+}
