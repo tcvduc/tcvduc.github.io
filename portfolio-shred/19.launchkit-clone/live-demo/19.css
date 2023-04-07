@@ -7,6 +7,7 @@
 
 .layer {
   display: flex;
+  flex-direction: column;
   background-color: #fff;
 }
 
@@ -112,4 +113,39 @@ a {
 
 .moveBar3 {
   bottom: 0px !important;
+}
+
+.section1 {
+  padding: 24px 36px;
+  background-image: url("http://launchkit.mediumra.re/img/fit1.jpg");
+  background-size: cover;
+  position: relative;
+}
+.section1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #0000006a;
+}
+
+.text1 {
+  text-align: center;
+  font-size: 32px;
+  color: #fff;
+}
+
+.text2 {
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+.py {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  line-height: 24px;
+}
+
+.sectionContent {
+  position: absolute;
 }
