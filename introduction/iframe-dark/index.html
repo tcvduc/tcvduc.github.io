@@ -189,7 +189,7 @@
     <div class="section section-contact">
       <div class="title">Contact Information</div>
       <div class="contact">
-        <div class="contact-content">tcvduc.io@gmail.com</div>
+        <div class="contact-content">+84901435802</div>
         <div class="icon-copy">
           <svg height="100%" width="100%" viewBox="0 0 100 100">
             <defs>
@@ -238,47 +238,50 @@
         </div>
       </div>
       <div class="contact">
-        <div class="contact-content">https://www.linkedin.com/in/tcvduc/</div>
+        <div class="contact-content">tcvduc.io@gmail.com</div>
         <div class="icon-copy">
           <svg height="100%" width="100%" viewBox="0 0 100 100">
             <defs>
-              <rect height="100%" width="100%" fill="#fff" id="canvas" />
+              <rect fill="#fff" id="canvas" width="100%" height="100%" />
 
               <polygon
                 id="polygon1"
-                points="
-                  40 20, 80 20, 80 60, 40 60
+                style="
+                  stroke: #111;
+                  stroke-linejoin: round;
+                  stroke-linecap: round;
                 "
-                style="stroke: #111; stroke-linejoin: round"
-              />
+                points="40 20, 40 55, 85 55, 85 20"
+              ></polygon>
 
               <polygon
                 id="polygon2"
-                points="
-                  20 40, 60 40, 60 80, 20 80
+                style="
+                  stroke: #111;
+                  stroke-linejoin: round;
+                  stroke-linecap: round;
                 "
-                style="stroke: #111; stroke-linejoin: round"
-              />
-
-              <mask id="polygon2-cutout">
-                <use href="#canvas" />
-                <use href="#polygon2" />
-              </mask>
+                points="20 35, 20 70, 65 70, 65 35"
+              ></polygon>
 
               <mask id="polygon1-cutout">
                 <use href="#canvas" />
                 <use href="#polygon1" />
               </mask>
+
+              <mask id="polygon2-cutout">
+                <use href="#canvas" />
+                <use href="#polygon2" />
+              </mask>
             </defs>
 
-            <use href="#polygon1" fill="none" stroke="#111" />
+            <use href="#polygon1" fill="  none" stroke="#111" />
 
             <use
+              mask="url(#polygon1-cutout)"
               href="#polygon2"
               fill="none"
-              mask="url(#polygon1-cutout)"
-              fill="none"
-              stroke="#111"
+              stroke="#fff"
             />
           </svg>
         </div>
