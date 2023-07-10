@@ -173,7 +173,7 @@
       projectName: "Half Circle Chart",
       sourceCodeHref:
         "https://github.com/tcvduc/tcvduc.github.io/tree/main/portfolio-shred/19.haft-circle-chart/live-demo",
-      projectWatchLink: `"/portfolio-shred/19.background-slider/live-demo"`,
+      projectWatchLink: `"/portfolio-shred/19.haft-circle-chart/live-demo"`,
     },
   ];
 
